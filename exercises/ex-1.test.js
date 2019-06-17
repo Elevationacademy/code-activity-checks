@@ -1,21 +1,24 @@
 let Classes
+let Document
+let Employee
+let Manager
+let Cleaner
+let Office
 
 try{
   console.log("hello?")
   Classes = require("../../src/main")
+  Document = Classes.Document
+  Employee = Classes.Employee
+  Manager = Classes.Manager
+  Cleaner = Classes.Cleaner
+  Office = Classes.Office
 }catch(error){
   describe("Bad file", function(){
     console.log("i")
-    Clasess = {}
     expect(1, "Make sure you define all the classes").toBe(2)
   })
 }
-
-const Document = Classes.Document
-const Employee = Classes.Employee
-const Manager = Classes.Manager
-const Cleaner = Classes.Cleaner
-const Office = Classes.Office
 
 describe("Document class", function () {
     it("should create an object with an attribute called - EmployeeName and it should be initialized in the constructor", function () {

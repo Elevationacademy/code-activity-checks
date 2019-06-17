@@ -1,4 +1,14 @@
-const Classes = require("../../src/main")
+let Classes
+
+try{
+  console.log("hello?")
+  Classes = require("../../src/main")
+}catch(error){
+  describe("Bad file", function(){
+    console.log("i")
+    expect(1, "Make sure you define all the classes").toBe(2)
+  })
+}
 
 const Document = Classes.Document
 const Employee = Classes.Employee

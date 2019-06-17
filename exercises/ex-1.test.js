@@ -9,7 +9,7 @@ const Office = Classes.Office
 describe("Document class", function () {
     it("should create an object with an attribute called - EmployeeName and it should be initialized in the constructor", function () {
       let doc = new Document("elevation");
-      expect(doc.EmployeeName).toEqual("elevation");
+      expect(doc.EmployeeName, "EmployeeName was not initialized in the contructor").toEqual("elevation");
     });
   });
   

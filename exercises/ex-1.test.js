@@ -6,6 +6,7 @@ try{
 }catch(error){
   describe("Bad file", function(){
     console.log("i")
+    Clasess = {}
     expect(1, "Make sure you define all the classes").toBe(2)
   })
 }

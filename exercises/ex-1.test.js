@@ -1,27 +1,58 @@
-let Classes
-let Document
-let Employee
-let Manager
-let Cleaner
-let Office
+// let Document
+// let Employee
+// let Manager
+// let Cleaner
+// let Office
 
-try {
-  console.log("hello?")
-  Classes = require("../../src/main")
-  Document = Classes.Document
-  Employee = Classes.Employee
-  Manager = Classes.Manager
-  Cleaner = Classes.Cleaner
-  Office = Classes.Office
-} catch (error) {
-  describe("Bad file", function () {
-    console.log("i")
-    expect(1, "Make sure you define all the classes").toBe(2)
-  })
+let Document, Employee, Manager, Cleaner, Office
+
+const checkIfClassExists = function() {
+  let classesToCheck = ["Document", "Employee", "Manager", "Cleaner", "Office"]
+
+  for(let classToCheck of classesToCheck) {
+    try {
+      console.log("hello?")
+      // Classes = require("../../src/main")
+      classToCheck === "Document" ? Document = require(`../../src/${classToCheck}`)
+            : classToCheck === "Employee" ? Employee = require(`../../src/${classToCheck}`)
+            : classToCheck === "Manager" ? Manager = require(`../../src/${classToCheck}`)
+            : classToCheck === "Cleaner" ? Cleaner = require(`../../src/${classToCheck}`)
+            : classToCheck === "Office" ? Office = require(`../../src/${classToCheck}`)
+            : null
+      // Document = Classes.Document
+      // Employee = Classes.Employee
+      // Manager = Classes.Manager
+      // Cleaner = Classes.Cleaner
+      // Office = Classes.Office
+    } catch (error) {
+      describe("Bad file", function () {
+        console.log("i")
+        expect(1, "Make sure you define all the classes").toBe(2)
+      })
+    }
+  }
 }
+
+checkIfClassExists()
+
+// try {
+//   console.log("hello?")
+//   Classes = require("../../src/main")
+//   Document = Classes.Document
+//   Employee = Classes.Employee
+//   Manager = Classes.Manager
+//   Cleaner = Classes.Cleaner
+//   Office = Classes.Office
+// } catch (error) {
+//   describe("Bad file", function () {
+//     console.log("i")
+//     expect(1, "Make sure you define all the classes").toBe(2)
+//   })
+// }
 
 describe("Document class", function () {
   it("should create an object with an attribute called - EmployeeName and it should be initialized in the constructor", function () {
+    
     let doc = new Document("elevation");
     expect(doc.EmployeeName, "EmployeeName was not initialized in the contructor").toEqual("elevation");
   });

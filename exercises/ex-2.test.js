@@ -1,4 +1,4 @@
-import { MyApp } from '../../App';
+let MyApp = require('../../App');
 
 describe("exercise2", () => {   
       it('You should define a subtract method on the MyApp class', () => {

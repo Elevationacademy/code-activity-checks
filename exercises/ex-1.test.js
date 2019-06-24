@@ -1,4 +1,4 @@
-import { MyApp } from '../../App';
+let MyApp = require('../../App');
 
 describe("exercise1", () => {     
       it('Your add method should return the sum of the two numbers provided as arguments to the function', () => {

@@ -1,4 +1,4 @@
-const client = require( '../../utils/client.class' )
+const client = require( '../../../utils/client.class' )
 const exec = require( 'child_process' ).exec
 
 beforeAll( async done => {

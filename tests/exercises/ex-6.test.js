@@ -1,24 +1,22 @@
-const client = require( '../../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+const client = require( '../../utils/client.class' )
 const _ = require( 'lodash' )
+let server
 
 function isArraysEqual( x, y ) {
     return _( x ).xorWith( y, _.isEqual ).isEmpty()
 }
 
 beforeAll( async done => {
-    exec( 'node src/server', { async: true } )
-    // expect( 1 ).toEqual( 2 )
-
+    server = require( '../../src/server' )
     done()
 } )
 
 describe( 'exercise6', () => {
     it( 'Should be the same store of calling with false admin param', async ( done ) => {
         const originalStore = await client.fetchStore()
-        let store = await client.sale( false )
+        const store = await client.sale( false )
 
-        expect( isArraysEqual( store, originalStore ) ).toBeTruthy()
+        expect( isArraysEqual( store, originalStore ), 'You should not change the store when calling with false admin param' ).toBeTruthy()
         done()
     } )
 
@@ -33,13 +31,14 @@ describe( 'exercise6', () => {
             }
         }
 
-        expect( isArraysEqual( store, originalStore ) ).toBeTruthy()
+        expect( isArraysEqual( store, originalStore ), 'You should reduce the price of any item with an inventory greater than 10 by 50%' ).toBeTruthy()
 
         done()
     } )
 } )
 
 afterAll( done => {
-    client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

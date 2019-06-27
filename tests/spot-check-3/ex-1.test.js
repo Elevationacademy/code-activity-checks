@@ -1,8 +1,8 @@
-const client = require( '../../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+const client = require( '../../utils/client.class' )
+let server
 
 beforeAll( async done => {
-    exec( 'node src/server', { async: true } )
+    server = require( '../../src/server' )
     done()
 } )
 
@@ -29,6 +29,7 @@ describe( 'spot-check-3', () => {
 } )
 
 afterAll( done => {
-    client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

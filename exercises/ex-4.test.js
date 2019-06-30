@@ -7,7 +7,7 @@ beforeAll( async done => {
 } )
 
 describe( 'exercise4', () => {
-    it( 'Should return 15', async done => {
+    it( 'Should respond with 15', async done => {
         const itemName = 'chair'
         const chair = await client.checkItem( itemName )
         const quantity = chair.inventory
@@ -18,7 +18,7 @@ describe( 'exercise4', () => {
         done()
     } )
 
-    it( 'Should return 0', async done => {
+    it( 'Should respond with 0', async done => {
         const itemName = 'couch'
         const chair = await client.checkItem( itemName )
         const quantity = chair.inventory

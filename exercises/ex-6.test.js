@@ -12,7 +12,7 @@ beforeAll( async done => {
 } )
 
 describe( 'exercise6', () => {
-    it( 'Should be the same store of calling with false admin param', async ( done ) => {
+    it( 'If admin equals false store should not change', async ( done ) => {
         const originalStore = await client.fetchStore()
         const store = await client.sale( false )
 

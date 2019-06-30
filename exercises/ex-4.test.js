@@ -13,7 +13,7 @@ describe( 'exercise4', () => {
         const quantity = chair.inventory
 
         const response = await client.buyItem( itemName )
-        expect( response.inventory ).toBe( quantity - 1 )
+        expect( response.inventory ).toBe( `${quantity - 1}` )
 
         done()
     } )
@@ -24,7 +24,7 @@ describe( 'exercise4', () => {
         const quantity = chair.inventory
 
         const response = await client.buyItem( itemName )
-        expect( response.inventory ).toBe( quantity - 1 )
+        expect( response.inventory ).toBe( `${quantity - 1}` )
 
         done()
     } )

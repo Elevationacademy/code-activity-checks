@@ -7,7 +7,7 @@ beforeAll( async done => {
 } )
 
 describe( 'spot-check-1', () => {
-    it( 'You should add a POST route called /wonder that receives and object and adds it to the wonders array', async done => {
+    it( 'You should add a POST route called /wonder that receives an object and adds it to the wonders array', async done => {
         try {
             await Client.post( 'wonder', { name: 'Gordon Beach', location: 'Tel Aviv' }, true )
 

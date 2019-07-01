@@ -10,7 +10,7 @@ beforeAll( async done => {
 describe( 'exercise1', () => {
     it( `You should create a \`get('/sanity')\` route`, async done => {
         const response = await Client.get( 'sanity', false )
-        expect( response, 'You should return a simple string (not object) that server is up and running' ).toBe( 'Server up and running' )
+        expect( response, 'You should return a simple string (not object) that server is up and running' ).toBeTruthy()
         done()
     } )
 } )

@@ -12,11 +12,10 @@ describe( 'exercise4', () => {
         await Client.get( 'clear' )
 
         const response = await Client.post( 'words', { sentence: 'You know nothing john snow nothing' } )
-
-        expect( response, 'The response from the server should be {text: "Added {numNewWords} words, {numOldWords} already existed", currentCount: -1}' ).toEqual( {
-            currentCount: -1,
-            text: 'Added 5 words, 1 already existed'
-        } )
+expect(typeof response).toBe("object")
+        expect( response.currentCount, 'The response object from the server should have a currentCount key equal to -1}' ).toBe(-1)
+        expect( response.text, 'The response from the server should be {text: "Added {numNewWords} words, {numOldWords} already existed", currentCount: -1}' ).toContain('5')
+        expect( response.text, 'The response from the server should be {text: "Added {numNewWords} words, {numOldWords} already existed", currentCount: -1}' ).toContain('1')
 
         const words = await Client.get( 'words' )
 

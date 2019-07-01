@@ -20,19 +20,19 @@ describe("exercise2", () => {
         let input = 40
         let expectedOutput = 'hell-scape'
         expect(App.prototype.getClassName, 'You must define the getClassName method in your App component').toBeDefined()
-        expect(App.prototype.getClassName(input), "an input above 30 should output 'hell-scape'").toBe(expectedOutput)
+        expect(App.prototype.getClassName(input), "passing an input above 30 to the getClassName method should output 'hell-scape'").toBe(expectedOutput)
     });
     it("Passing a parameter between 15 and 30 should create a div with a class of 'fair'", () => {
         let input = 20
         let expectedOutput = 'fair'
         expect(App.prototype.getClassName, 'You must define the getClassName method in your App component').toBeDefined()
-        expect(App.prototype.getClassName(input), "an input between 15 and 30 should output 'fair'").toBe(expectedOutput)
+        expect(App.prototype.getClassName(input), "Passing an input between 15 and 30 to the getClassName method should output 'fair'").toBe(expectedOutput)
     });
     it("Passing a parameter below 15 should create a div with a class of 'freezing'", () => {
         let input = 10
         let expectedOutput = 'freezing'
         expect(App.prototype.getClassName, 'You must define the getClassName method in your App component').toBeDefined()
-        expect(App.prototype.getClassName(input), "an input under 15 should output 'freezing'").toBe(expectedOutput)
+        expect(App.prototype.getClassName(input), "Passing an input under 15 to the getClassName method should output 'freezing'").toBe(expectedOutput)
     });
     it("Your render function should return a div with a className equal to your getClassName function", () => {
         expect(App.prototype.getClassName, 'You must define the getClassName method in your App component').toBeDefined()
@@ -40,7 +40,7 @@ describe("exercise2", () => {
             return "mock"
         }
         const wrapper = mount(<App />);
-        expect(wrapper.find('.mock').exists(), 'Your get getClassName function did not render a div with a class').toBeTruthy();
+        expect(wrapper.find('.mock').exists(), 'Your get getClassName function did not render a div with a class of "mock"').toBeTruthy();
     });
 
 })

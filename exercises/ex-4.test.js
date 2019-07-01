@@ -7,7 +7,7 @@ beforeAll( async done => {
 } )
 
 describe( 'exercise4', () => {
-    it( 'You should create a post route called /words - this receives one parameter: sentence - still a string, but it should be a string with many words.', async done => {
+    it( "You should create a post route called /words - that also accepts a body payload: { sentence: 'many words in a sentence' } - an object with a string of many words.", async done => {
         await Client.post( 'add-ten-words' )
         await Client.get( 'clear' )
 

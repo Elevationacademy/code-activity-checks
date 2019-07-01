@@ -1,8 +1,8 @@
 const Client = require( '../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+let server
 
 beforeAll( async done => {
-    exec( 'node server/server', { async: true } )
+    server = require( '../../server/server' )
     done()
 } )
 
@@ -25,6 +25,7 @@ describe( 'exercise5', () => {
 } )
 
 afterAll( done => {
-    Client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

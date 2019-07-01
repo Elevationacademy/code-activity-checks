@@ -1,8 +1,8 @@
 const Client = require( '../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+let server
 
 beforeAll( async done => {
-    exec( 'node server/server', { async: true } )
+    server = require( '../../server/server' )
     done()
 } )
 
@@ -14,15 +14,21 @@ describe( 'spot-check-3', () => {
         await Client.delete( 'wonder/Colosseum' )
 
         const wonders = await Client.get( 'wonders' )
-        const found = wonders.find( wonder => wonder.name === 'Colosseum' )
 
-        expect( found, 'You should remove the wonder from the wonders array' ).toBeUndefined()
+        if ( wonders === false ) {
+            fail( 'You should create a DELETE route called /wonder that removes wonder from the wonders array' )
+            done()
+        } else {
+            const found = wonders.find( wonder => wonder.name === 'Colosseum' )
+            expect( found, 'You should remove the wonder from the wonders array' ).toBeUndefined()
 
-        done()
+            done()
+        }
     } )
 } )
 
 afterAll( done => {
-    Client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

@@ -1,9 +1,8 @@
 const Client = require( '../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+let server
 
 beforeAll( async done => {
-    exec( 'node server/server.js', { async: true } )
-    jest.setTimeout( 3000 )
+    server = require( '../../server/server' )
     done()
 } )
 
@@ -28,6 +27,7 @@ describe( 'spot-check-1', () => {
 } )
 
 afterAll( done => {
-    Client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

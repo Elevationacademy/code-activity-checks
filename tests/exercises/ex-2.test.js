@@ -1,10 +1,11 @@
 const Client = require( '../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+let server
 
 beforeAll( async done => {
-    exec( 'node server/server', { async: true } )
+    server = require( '../../server/server' )
     done()
 } )
+
 
 describe( 'exercise2', () => {
     it( 'You should set up a get route called `/word` that receives one parameter: word (a string with a single word in it)', async done => {
@@ -15,17 +16,18 @@ describe( 'exercise2', () => {
 
         let count = wordsDictionary[ words[ 0 ] ]
         let wordCount = await Client.get( `word/${ words[ 0 ] }` )
-        expect( wordCount.count, '' ).toBe( count )
+        expect( wordCount.count, 'You should return the `count` words' ).toBe( count )
 
         count = wordsDictionary[ words[ 1 ] ]
         wordCount = await Client.get( `word/${ words[ 1 ] }` )
-        expect( wordCount.count, '' ).toBe( count )
+        expect( wordCount.count, 'You should return the `count` words' ).toBe( count )
 
         done()
     } )
 } )
 
 afterAll( done => {
-    Client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

@@ -1,16 +1,16 @@
 const Client = require( '../../utils/client.class' )
-const exec = require( 'child_process' ).exec
+let server
 
 beforeAll( async done => {
-    exec( 'node server/server', { async: true } )
+    server = require( '../../server/server' )
     done()
 } )
 
 describe( 'exercise4', () => {
     it( 'You should create a post route called /words - this receives one parameter: sentence - still a string, but it should be a string with many words.', async done => {
-
         await Client.post( 'add-ten-words' )
         await Client.get( 'clear' )
+
         const response = await Client.post( 'words', { sentence: 'You know nothing john snow nothing' } )
 
         expect( response, 'The response from the server should be {text: "Added {numNewWords} words, {numOldWords} already existed", currentCount: -1}' ).toEqual( {
@@ -36,6 +36,7 @@ describe( 'exercise4', () => {
 } )
 
 afterAll( done => {
-    Client.shutdown()
-    done()
+    server.socket.close( () => {
+        done()
+    } )
 } )

@@ -7,9 +7,9 @@ beforeAll( async done => {
 } )
 
 describe( 'spot-check-2', () => {
-    it( 'Create a PUT route called /wonder that accepts a name parameter (in body payload) and marks this wonder as visited (visited: true)', async done => {
+    it( 'Create a PUT route called /wonder that accepts a name parameter and marks this wonder as visited (visited: true)', async done => {
         await Client.post( 'wonder', { name: 'Elevation', location: 'Tel Aviv, Israel' }, true )
-        await Client.put( 'wonder', { name: 'Elevation' }, true )
+        await Client.put( 'wonder/Elevation', true )
 
         const wonders = await Client.get( 'wonders' )
 

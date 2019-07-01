@@ -12,7 +12,7 @@ describe("exercise1", () => {
         ReactDOM.render(<App />, div);
         ReactDOM.unmountComponentAtNode(div);
       });      
-      it('The first div should say, Tesla makes 140 every year', () => {
+      it('The first div should say, Tesla makes 140 every year and have an id of Tesla', () => {
           const EXPECTED_TEXT = "Tesla makes 140 every year";
           const wrapper = mount(<App />)
           let teslaDiv = wrapper.find('#Tesla')
@@ -20,7 +20,7 @@ describe("exercise1", () => {
           let teslaText = teslaDiv.text().trim().toLowerCase();
           expect(teslaText.toLowerCase(), `The text should read '${EXPECTED_TEXT}'. Instead we found '${teslaText}'`).toBe(EXPECTED_TEXT.toLowerCase());
       });     
-      it('The second div should say, Microsoft makes 300 every year', () => {
+      it('The second div should say, Microsoft makes 300 every year and have an id of Microsoft', () => {
         const EXPECTED_TEXT = "Microsoft makes 300 every year";
         const wrapper = mount(<App />);          
         let microsoftDiv = wrapper.find('#Microsoft')
@@ -29,7 +29,7 @@ describe("exercise1", () => {
         expect(microsoftText.toLowerCase(), `The text should read '${EXPECTED_TEXT}'. Instead we found ${microsoftText}`).toBe(EXPECTED_TEXT.toLowerCase());
       });
  
-      it('The third div should say, Google makes 600 every year', () => {
+      it('The third div should say, Google makes 600 every year and have an id of Google', () => {
         const EXPECTED_TEXT = "Google makes 600 every year";
         const wrapper = mount(<App />); 
         let googleDiv = wrapper.find('#Google')

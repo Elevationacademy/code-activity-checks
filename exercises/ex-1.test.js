@@ -146,7 +146,7 @@ describe("exercise1", function () {
 });
 
 describe("exercise1", function () {
-  it("The Office class should have a function called - startWorkDay that will start the working day - after this function invokation the office's documents array should have 10 * (the number of total employees) new documents", function () {
+  it("The Office class should have a function called - startWorkDay that will start the working day - it should call the askEmployeesToWork function for all the managers and the clean function for all the cleaners", function () {
     let office = new Office();
     office.hireManager("elevation");
     office.hireManager("elevation");

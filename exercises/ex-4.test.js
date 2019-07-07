@@ -26,14 +26,30 @@ describe("exercise4", () => {
         let navComponent = wrapper.find(NavBar);
         let menuComponent = wrapper.find(Menu);
         let checkoutComponent = wrapper.find(Checkout);
-        expect(navComponent, 'The NavBar component should be returned in the render function of App').toHaveLength(1);
-        expect(menuComponent, 'The Menu component should be returned in the render function of App').toHaveLength(1);
-        expect(checkoutComponent, 'The Checkout component should be returned in the render function of App').toHaveLength(1);
+        expect(navComponent.find(Checkout).exists(), 'The NavBar component should be returned in the render function of App and should not render any other components').toBeFalsy();
+        expect(navComponent.find(Menu).exists(), 'The NavBar component should be returned in the render function of App and should not render any other components').toBeFalsy();
+        expect(navComponent.find(Item).exists(), 'The NavBar component should be returned in the render function of App and should not render any other components').toBeFalsy();        
+        
+        expect(menuComponent.find(Checkout).exists(), 'The Menu component should be returned in the render function of App').toBeFalsy();
+        expect(menuComponent.find(NavBar).exists(), 'The Menu component should be returned in the render function of App').toBeFalsy();
 
+        expect(checkoutComponent.find(NavBar).exists(), 'The Checkout component should be returned in the render function of App').toBeFalsy();
+        expect(checkoutComponent.find(Menu).exists(), 'The Checkout component should be returned in the render function of App').toBeFalsy();
     })
+    // it('The Menu component should render the Item component once', () => {
+    //     const wrapper = mount(<Menu />);
+    //     let itemComponent = wrapper.find(Item);
+    //     expect(itemComponent, 'The Item component should be returned in the render function of the Menu component').toHaveLength(1);
+
+    // })
+    // it('The Checkout component should render the Item component once', () => {
+    //     const wrapper = mount(<Checkout />);
+    //     let itemComponent = wrapper.find(Item);
+    //     expect(itemComponent, 'The Item component should be returned in the render function of the Checkout component').toHaveLength(1);
+    // })
     it("Each Component should render a div with its class' name as text", () => {
         const wrapper = mount(<App />);
-        let itemComponent = wrapper.find(Item).first();
+        let itemComponent = wrapper.find(Item);
         let navComponent = wrapper.find(NavBar);
         let menuComponent = wrapper.find(Menu);
         let checkoutComponent = wrapper.find(Checkout);
@@ -43,9 +59,3 @@ describe("exercise4", () => {
         expect(checkoutComponent.exists(), 'could not find Checkout component').toBeTruthy()
     })
 })
-
-
-
-
-
-

@@ -1,52 +1,30 @@
-const MongoDbTester = require('../../utils/MongoDbTester');
-const Client = require('../../utils/Client');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '../../src/App';
+import { mount, render, shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import Exercise2 from '../../src/components/Exercise2';
 
-require('dotenv').config();
-const PORT = process.env.SERVER_PORT;
+configure({ adapter: new Adapter() });
 
-describe('ex-2', () => {
-  let mongoose;
-  let tester;
-  let app;
-  let server;
-
-  const DATABASE_NAME = 'peopleDB';
-  const TEST_MODEL_NAME = 'person';
-
-  beforeAll(async done => {
-    app = require('../solutions/exercises/server/app/app.js');
-    mongoose = require('../solutions/exercises/server/app/mongoose.js');
-    tester = new MongoDbTester(mongoose, DATABASE_NAME);
-
-    server = app.listen(PORT);
-    await tester.dropDatabase();
-
-    done();
+describe("ex-2", () => {
+  it('Application should render without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
-  afterAll(async done => {
-    await tester.dropDatabase();
-    tester.close();
-    server.close(() => done());
+  it('There should be a `fruit` property in state that is updated when changing selection in the dropdown with the class `option-menu`', () => {
+    const wrapper = mount(<Exercise2 />)
+
+    let options = wrapper.find('option');
+    expect(options.length, "There should be at least 1 <option> inside the select").toBeGreaterThanOrEqual(1)
+
+    let optionValue = options.at(0).prop('value') || options.at(0).text();
+    let select = wrapper.find('#select-input')
+
+    select.instance().value = optionValue
+    select.simulate('change')
+    expect(wrapper.state("fruit"), "When a different drop-down value is selected, the state's `fruit` property should change to the selected option").toEqual(optionValue);
   });
-
-  it('In the /person/:id put route you should receive id update the record with age of 80', async done => {
-    tester.setModelName(TEST_MODEL_NAME);
-    tester.applyActualModel();
-
-    const model = tester.getModel();
-    const person = await new model({ firstName: 'John', lastName: 'Snow', age: 30 });
-    await person.save();
-
-    let people = await tester.fetchCollectionContent();
-    const id = people[0]._id;
-
-    await Client.PUT(`/person/${id}`);
-
-    people = await tester.fetchCollectionContent();
-
-    expect(people[0].age, 'The put request should update the age').toBe(80);
-
-    done();
-  });
-});
+})

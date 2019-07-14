@@ -1,5 +1,5 @@
-const MongoDbTester = require( '../utils/MongoDbTester' )
-const MongooseConnection = require( '../utils/MongooseConnection' )
+const MongoDbTester = require( '../../utils/MongoDbTester' )
+const MongooseConnection = require( '../../utils/MongooseConnection' )
 const mongoose = require( 'mongoose' )
 const Schema = mongoose.Schema
 

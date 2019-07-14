@@ -1,5 +1,5 @@
-const MongoDbTester = require( '../utils/MongoDbTester' )
-const Client = require( '../utils/Client' )
+const MongoDbTester = require( '../../utils/MongoDbTester' )
+const Client = require( '../../utils/Client' )
 
 require( 'dotenv' ).config()
 const PORT = process.env.SERVER_PORT

@@ -16,10 +16,12 @@ describe( 'exercise3', () => {
         let count = wordsDictionary[ words[ 1 ] ]
 
         let response = await Client.post( 'word', { word: 'some-random-word' } )
-        expect( response, 'You should add a new word to the dictionary and set the count to be 1 and send a proper response (`Added {word}`)' ).toEqual( { text: 'Added some-random-word', currentCount: 1 } )
+        expect( response.text, 'You should add a new word to the dictionary and set the count to be 1 and send a proper response (`Added {word}`)' ).toContain('some-random-word')
+        expect( response.currentCount, 'You should add a new word to the dictionary and set the count to be 1 and send a proper response (`Added {word}`)' ).toEqual(1)
 
         response = await Client.post( 'word', { word: words[ 1 ] } )
-        expect( response, 'You should increase the count of the word by 1 and send a proper response (`Added {word}`)' ).toEqual( { text: `Added ${words[ 1 ]}`, currentCount: ++count } )
+        expect( response.text, 'You should increase the count of the word by 1 and send a proper response (`Added {word}`)' ).toContain(words[ 1 ])
+        expect( response.currentCount, 'You should increase the count of the word by 1 and send a proper response (`Added {word}`)' ).toEqual(++count)
 
         done()
     } )

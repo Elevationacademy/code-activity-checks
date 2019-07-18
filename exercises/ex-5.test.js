@@ -18,7 +18,7 @@ describe( 'exercise5', () => {
             sum += words[ word ]
         }
 
-        expect( response, 'The response from the server should be {text: "Total count", count: {sum} }' ).toEqual( { text: 'Total count', count: sum } )
+        expect( response.count, 'The response from the server should be {text: "Total count", count: {sum} }' ).toEqual(sum)
 
         done()
     } )

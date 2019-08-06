@@ -19,25 +19,36 @@ describe("spotcheck4", () => {
     let spotcheck4 = wrapper.find('#spotcheck-4').children().find(Article)
     expect(spotcheck4, 'There should be 5 Article instances').toHaveLength(5)
 
-    let expected1 = 'red shirt'
+    let expectedColor1 = 'red'
+    let expectedArticle1 = 'shirt'
     let actual1 = spotcheck4.first().text()
-    expect(actual1, `The first Article should have the text '${expected1}, instead found ${actual1}'`).toContain(expected1)
+    expect(actual1, `The first Article should contain the text '${expectedColor1}'`).toContain(expectedColor1)
+    expect(actual1, `The first Article should contain the text '${expectedArticle1}'`).toContain(expectedArticle1)
 
-    let expected2 = 'blue shirt'
+
+    let expectedColor2 = 'blue'
+    let expectedArticle2 = 'shirt'
     let actual2 = spotcheck4.at(1).text()
-    expect(actual2, `The second Article should have the text '${expected2}', instead found ${actual2}`).toContain(expected2)
+    expect(actual2, `The second Article should contain the text '${expectedColor2}'`).toContain(expectedColor2)
+    expect(actual2, `The second Article should contain the text '${expectedArticle2}'`).toContain(expectedArticle2)
 
-    let expected3 = 'blue pants'
+    let expectedColor3 = 'blue'
+    let expectedArticle3 = 'pants'
     let actual3 = spotcheck4.at(2).text()
-    expect(actual3, `The third Article should have the text '${expected3}', instead found ${actual3}`).toContain(expected3)
+    expect(actual3, `The third Article should contain the text '${expectedColor3}'`).toContain(expectedColor3)
+    expect(actual3, `The third Article should contain the text '${expectedArticle3}'`).toContain(expectedArticle3)
 
-    let expected4 = 'sapphire accessory'
+    let expectedColor4 = 'sapphire'
+    let expectedArticle4 = 'accessory'
     let actual4 = spotcheck4.at(3).text()
-    expect(actual4, `The fourth Article should have the text '${expected4}', instead found ${actual4}`).toContain(expected4)
+    expect(actual4, `The fourth Article should contain the text '${expectedColor4}'`).toContain(expectedColor4)
+    expect(actual4, `The fourth Article should contain the text '${expectedArticle4}'`).toContain(expectedArticle4)
 
-    let expected5 = 'lilac accessory'
+    let expectedColor5 = 'lilac'
+    let expectedArticle5 = 'accessory'
     let actual5 = spotcheck4.at(4).text()
-    expect(actual5, `The fifth Article should have the text '${expected5}', instead found ${actual5}`).toContain(expected5)
+    expect(actual5, `The fifth Article should contain the text '${expectedColor5}'`).toContain(expectedColor5)
+    expect(actual5, `The fifth Article should contain the text '${expectedArticle5}'`).toContain(expectedArticle5)
   });
 
   it('The App component should render the Wardrobe component', () => {

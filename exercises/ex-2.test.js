@@ -19,7 +19,7 @@ describe("exercise2", () => {
         let spamalotComponent = wrapper.find(Spamalot);
         expect(spamalotComponent, 'could not find Spamalot component').toHaveLength(1);
     })
-    it('Your Spamalot component should render your Spam functional component', () => {
+    it('Your Spamalot component should render your Spam functional component 500 times', () => {
         const wrapper = mount(<Spamalot />);
         let spamComponent = wrapper.find(Spam);
         let spamLength = spamComponent.length

@@ -22,8 +22,9 @@ describe("exercise2", () => {
     it('Your Spamalot component should render your Spam functional component', () => {
         const wrapper = mount(<Spamalot />);
         let spamComponent = wrapper.find(Spam);
+        let spamLength = spamComponent.length
         expect(spamComponent.exists(), 'You must create a functional Component called Spam').toBeTruthy()
-        expect(spamComponent, 'The Spamalot component must render the Spam component 500 times').toHaveLength(500);
+        expect(spamComponent, `The Spamalot component must render the Spam component 500 times, instead it rendered it ${spamLength} times`).toHaveLength(500);
     })
 })
 

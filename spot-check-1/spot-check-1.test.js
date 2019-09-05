@@ -35,7 +35,7 @@ describe("spotcheck1", () => {
         const wrapper = mount(<Company name='Tesla' />);
         let subCompanyComponent = wrapper.find('SubCompany');
         expect(subCompanyComponent.exists(), 'You must create a Component called SubCompany').toBeTruthy()
-        expect(wrapper, 'The Company component must render the SubCompany component').toHaveLength(1);
+      
     })
 })
 

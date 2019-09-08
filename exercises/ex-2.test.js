@@ -10,7 +10,7 @@ describe("exercise2", () => {
     outputData = ""
     const num = 3
     const expectedResult = "***~**~*~"
-    const otherResult = "~***\n**\n*~"
+    const otherResult = "***\n**\n*\n~"
 
     allFuncs.printBackwardsStars(num)
     expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()

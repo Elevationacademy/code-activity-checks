@@ -1,4 +1,4 @@
-import { decrypt } from "../../src/App"
+const allFuncs = require("../../src/App")
 
 describe("exercise7", () => {
   it('Every letter in string should move one place down in the alphabet', () => {

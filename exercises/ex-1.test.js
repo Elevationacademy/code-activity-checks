@@ -9,10 +9,9 @@ test("Should console.log stars on separate lines in ascending order with icremen
     outputData = ""
     const num = 3
     const expectedResult = "*~**~***~"
-    const otherResult = "~*\n**\n***\n~"
-console.log(outputData)
+    const otherResult = "*\n**\n***\n~"
     allFuncs.printStars(num)
-    expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()
+    expect(expectedResult == outputData || otherResult == outputData, `expected ${expectedResult} or ${otherResult} instead found ${outputData}`).toBeTruthy()
 })
 })
 

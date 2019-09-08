@@ -1,4 +1,4 @@
-import { printStarSeries } from "../../src/App"
+const allFuncs = require("../../src/App")
 
 let outputData = ""
 const storeLog = inputs => (outputData += inputs + '~')
@@ -13,7 +13,7 @@ describe("exercise3", () => {
     const expectedResult = "*~**~***~****~*****~****~***~**~*~~"
   
 
-    printStarSeries(num, count)
+    allFuncs.printStarSeries(num, count)
     expect(outputData).toBe(expectedResult)
 })
 
@@ -25,7 +25,7 @@ describe("exercise3", () => {
     const expectedResult = "*~**~***~****~***~**~*~~*~**~***~****~***~**~*~~"
 
 
-    printStarSeries(num, count)
+    allFuncs.printStarSeries(num, count)
     expect(outputData).toBe(expectedResult)
 })
 
@@ -37,7 +37,7 @@ describe("exercise3", () => {
     const expectedResult = "*~**~***~**~*~~*~**~***~**~*~~*~**~***~**~*~~"
 
 
-    printStarSeries(num, count)
+    allFuncs.printStarSeries(num, count)
     expect(outputData).toBe(expectedResult)
 })
 })

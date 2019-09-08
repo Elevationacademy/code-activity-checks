@@ -1,4 +1,4 @@
-import { printBackwardsStars } from "../../src/App"
+const allFuncs = require("../../src/App")
 
 let outputData = ""
 const storeLog = inputs => (outputData += inputs + '~')
@@ -12,7 +12,7 @@ describe("exercise2", () => {
     const expectedResult = "***~**~*~"
     const otherResult = "***\n**\n*"
 
-    printBackwardsStars(num)
+    allFuncs.printBackwardsStars(num)
     expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()
 })
 })

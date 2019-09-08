@@ -1,11 +1,11 @@
-import { getLetter } from "../../src/App"
+const allFuncs = require("../../src/App")
 
 describe("exercise9", () => {
     it("There should be a 60% chance of getting the letter A", () => {
         let times = 0
         let counter = 0
         while (times !== 1000) {
-            let letter = getLetter()
+            let letter = allFuncs.getLetter()
             if (letter === 'A') {
                 counter++
             }
@@ -18,7 +18,7 @@ describe("exercise9", () => {
         let times = 0
         let counter = 0
         while (times !== 1000) {
-            let letter = getLetter()
+            let letter = allFuncs.getLetter()
             if (letter === 'B') {
                 counter++
             }
@@ -31,7 +31,7 @@ describe("exercise9", () => {
         let times = 0
         let counter = 0
         while (times !== 1000) {
-            let letter = getLetter()
+            let letter = allFuncs.getLetter()
             if (letter === 'C') {
                 counter++
             }
@@ -44,7 +44,7 @@ describe("exercise9", () => {
         let times = 0
         let counter = 0
         while (times !== 1000) {
-            let letter = getLetter()
+            let letter = allFuncs.getLetter()
             if (letter === 'D') {
                 counter++
             }

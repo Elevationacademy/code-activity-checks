@@ -1,4 +1,4 @@
-import { printStars } from "../../src/App"
+const allFuncs = require("../../src/App")
 
 let outputData = ""
 const storeLog = inputs => (outputData += inputs + '~')
@@ -11,7 +11,7 @@ test("Should console.log stars on separate lines in ascending order with icremen
     const expectedResult = "*~**~***~"
     const otherResult = "*\n**\n***"
 
-    printStars(num)
+    allFuncs.printStars(num)
     expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()
 })
 })

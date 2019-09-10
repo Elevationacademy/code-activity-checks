@@ -13,7 +13,7 @@ describe("exercise7", () => {
   it('The letter A should become Z', () => {
     let input2 = "app"
     let expectedOutput2 = "zoo"
-    let result2 = allFuncs.encrypt(input2)
+    let result2 = allFuncs.decrypt(input2)
 
     expect(result2, `if the string '${input2}' is passed to the function, the output should be '${expectedOutput2}', instead the function returned ${result2}`).toBe(expectedOutput2)
     

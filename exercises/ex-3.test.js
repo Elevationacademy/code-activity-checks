@@ -16,7 +16,7 @@ describe("exercise3", () => {
 
 
     allFuncs.printStarSeries(num, count)
-    expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()
+    expect(expectedResult == outputData || otherResult == outputData, `If num = 4 and count = 2, function should console.log ${expectedResult} or ${otherResult}`).toBeTruthy()
 })
 
 })

@@ -2,7 +2,7 @@ const allFuncs = require("../../src/App")
 
 describe("exercise5", () => {
     it('Output should read the same backwards as it does forwards (ignoring spaces)', () => {
-        let input1 = "Taco cat"
+        let input1 = "Taco Cat"
         let expectedOutput1 = true
         let result1 = allFuncs.isPallindrome(input1)
         expect(allFuncs.isPallindrome(input1), `If the string '${input1}' enters the function, the function should return ${expectedOutput1}, instead the function returned: ${result1}`).toBe(expectedOutput1)

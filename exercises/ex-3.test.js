@@ -12,10 +12,10 @@ describe("exercise3", () => {
     const count = 1
     const expectedResult = "*~**~***~****~*****~****~***~**~*~~"
     const otherResult = "*\n**\n***\n****\n*****\n****\n***\n**\n*\n~"
-
-
+    let result = allFuncs.printStarSeries(num, count)
     allFuncs.printStarSeries(num, count)
-    expect(expectedResult == outputData || otherResult == outputData).toBeTruthy()
+    expect(expectedResult == outputData || otherResult == outputData, `the output was ${result}`).toBeTruthy()
+
 })
 
     test("Should console.log stars on separate lines in ascending order until first paramater number of stars is reached and then descending order, and then repeat as many times as second parameter number ", function () {

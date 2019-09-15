@@ -6,6 +6,6 @@ describe('Exercise 2', function () {
         const expectedResult = 'rac ecar'
         const result = reverseString(param)
 
-        expect(result, `the function did not return the correct value, when passing ${param} to the function expected ${expectedResult} got ${result}`).toBe(expectedResult)
+        expect(result, `the function did not return the correct value - when passing ${param} to the function expected ${expectedResult} but got ${result}`).toBe(expectedResult)
     })
 } )

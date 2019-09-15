@@ -6,6 +6,6 @@ describe('Exercise 1', function () {
         const expectedResult = 3628800
         const result = findFactorial(param)
 
-        expect(result, `the function did not return the correct value, when passing ${param} to the function expected ${expectedResult} got ${result}`).toBe(expectedResult)
+        expect(result, `the function did not return the correct value - when passing ${param} to the function expected ${expectedResult} but got ${result}`).toBe(expectedResult)
     })
 } )

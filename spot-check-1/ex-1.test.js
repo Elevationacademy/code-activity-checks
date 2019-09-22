@@ -1,4 +1,10 @@
-const Stack = require('../../src/Stack')
+let Stack
+
+try {
+    Stack = require('../../src/Stack')
+} catch (error) {
+  console.log("i")
+}
 
 describe('exercise1', () => {
     it('Should create a `push` method which adds a new element to the top of the stack', function () {

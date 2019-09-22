@@ -1,4 +1,10 @@
-const Queue = require('../../src/Queue')
+let Queue
+
+try {
+  Queue = require('../../src/Queue')
+} catch (error) {
+  console.log("i")
+}
 
 describe('Exercise 1', () => {
     it('Should create an `enqueue` method which adds a new element to the end of the queue', function () {

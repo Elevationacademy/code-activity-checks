@@ -1,4 +1,10 @@
-const MinStack = require('../../src/MinStack')
+let MinStack
+
+try {
+    MinStack = require('../../src/MinStack')
+} catch (error) {
+  console.log("i")
+}
 
 const pushMany = function (num, stack) {
     for (let i = 0; i < num; i++) {

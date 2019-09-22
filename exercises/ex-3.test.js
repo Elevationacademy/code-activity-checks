@@ -1,4 +1,10 @@
-const DuoQueue = require('../../src/DuoQueue')
+let DuoQueue
+
+try {
+  DuoQueue = require('../../src/DuoQueue')
+} catch (error) {
+  console.log("i")
+}
 
 const enqueueMany = function (duoQueue, addToFirst, addToSecond) {
 

@@ -27,7 +27,7 @@ const getRunTime = function (duoQueue, method) {
 
 
 describe('Exercise 3', () => {
-  it('Should create a DuoQueue which consists of ', function () {
+  it("Should create a DuoQueue which consists of 'enqueue', 'dequeue', 'getShortestQueue', 'getLongestQueue', & 'balanceQueues' methods", function () {
     const dq = new DuoQueue()
 
     dq.enqueue(1, 1)
@@ -56,24 +56,5 @@ describe('Exercise 3', () => {
 
     expect(JSON.stringify(dq.getLongestQueue()), `after balancing queue - longest queue should be [1,1,1,1,1] but got ${dq.getLongestQueue()}`).toContain('[1,1,1,1,1]')
     expect(JSON.stringify(dq.getShortestQueue()), `after balancing queue - shortest queue should be [2,2,1,1] but got ${dq.getShortestQueue()}`).toContain('[2,2,1,1]')
-  })
-
-  it("The balanceQueue method should run in O(1)", function () {
-    const smallQueue = new DuoQueue()
-    const largeQueue = new DuoQueue()
-
-    enqueueMany(smallQueue, 2500, 7500)
-    enqueueMany(largeQueue, 2500000, 7500000)
-
-    const runTimeShortSmall = getRunTime(smallQueue, "getShortestQueue")
-    const runTimeLongSmall = getRunTime(smallQueue, "getLongestQueue")
-    const runTimeShortLarge = getRunTime(largeQueue, "getShortestQueue")
-    const runTimeLongLarge = getRunTime(largeQueue, "getLongestQueue")
-
-
-    const runTimeDifferenceShortest = Math.abs(runTimeShortLarge - runTimeShortSmall)
-    const runTimeDifferenceLongest = Math.abs(runTimeLongLarge - runTimeLongSmall)
-    expect(runTimeDifferenceShortest, 'the `getShortestQueue` method does not run in O(1)').toBeLessThan(100)
-    expect(runTimeDifferenceLongest, 'the `getLongestQueue` method does not run in O(1)').toBeLessThan(100)
   })
 })

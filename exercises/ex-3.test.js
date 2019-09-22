@@ -6,25 +6,6 @@ try {
   console.log("i")
 }
 
-const enqueueMany = function (duoQueue, addToFirst, addToSecond) {
-
-  for (let i = 0; i < addToFirst; i++) {
-    duoQueue.enqueue(1, 1)
-  }
-
-  for (let i = 0; i < addToSecond; i++) {
-    duoQueue.enqueue(2, 2)
-  }
-}
-
-const getRunTime = function (duoQueue, method) {
-  const startTime = new Date()
-  duoQueue[method]()
-  const endTime = new Date()
-
-  return endTime - startTime
-}
-
 
 describe('Exercise 3', () => {
   it("Should create a DuoQueue which consists of 'enqueue', 'dequeue', 'getShortestQueue', 'getLongestQueue', & 'balanceQueues' methods", function () {
@@ -54,7 +35,7 @@ describe('Exercise 3', () => {
 
     dq.balanceQueues()
 
-    expect(JSON.stringify(dq.getLongestQueue()), `after balancing queue - longest queue should be [1,1,1,1,1] but got ${dq.getLongestQueue()}`).toContain('[1,1,1,1,1]')
-    expect(JSON.stringify(dq.getShortestQueue()), `after balancing queue - shortest queue should be [2,2,1,1] but got ${dq.getShortestQueue()}`).toContain('[2,2,1,1]')
+    expect(dq.getLongestQueue().length, `after balancing queue - longest queue should have 5 elements instead got ${dq.getLongestQueue().length}`).toBe(5)
+    expect(dq.getShortestQueue().length, `after balancing queue - shortest queue should have 4 elements instead got ${dq.getShortestQueue().length}`).toBe(4)
   })
 })

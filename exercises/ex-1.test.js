@@ -42,7 +42,7 @@ describe('Exercise 1', () => {
             expectedLength--
 
             queue.dequeue()
-            expect(queue.peek(), `when enqueueing 1,2,3 to the queue and dequeueing, the front element should be ${i + 1}`).toBe(i + 1)
+            expect(queue.peek(), `when enqueueing 1,2,3 to the queue and dequeueing, the front element should be ${i + 1}, instead got ${queue.peek()}`).toBe(i + 1)
         }
     })
 

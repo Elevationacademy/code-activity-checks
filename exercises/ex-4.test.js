@@ -8,12 +8,12 @@ try {
 }
 
 describe('exercise4', () => {
-    it(`should create a method 'getEmployees' in your matrix which receives a department and returns an array with the names of all employees in that department`, function () {
+    it(`should create a 'getEmployees' method in your matrix which receives a department and returns an array with the names of all the employees in that department`, function () {
         const em = new EmployeeMatrix()
         em.loadData(salaryData)
 
         let result = em.getEmployees('Marketing')
-        expect(result[0], `when loading some data to the matrix - running 'getEmployees('Marketing')' should return an array where the value of the first index is 'Jakub' instead got ${result[0]}`).toBe('Jakub')
-        expect(result[1], `when loading some data to the matrix - running 'getEmployees('Marketing')' should return an array where the value of the first index is 'Mar' instead got ${result[1]}`).toBe('Mar')
+        expect(result[0], `when loading the salary data from the data.json file into the matrix - running 'getEmployees('Marketing')' should return an array where the value of the first index is 'Jakub' instead got ${result[0]}`).toBe('Jakub')
+        expect(result[1], `when loading the salary data from the data.json file into the matrix - running 'getEmployees('Marketing')' should return an array where the value of the first index is 'Mar' instead got ${result[1]}`).toBe('Mar')
     })
 })

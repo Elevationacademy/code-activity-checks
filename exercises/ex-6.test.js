@@ -13,6 +13,6 @@ describe('exercise6', () => {
         em.loadData(salaryData)
 
         let result = em.findRichest()
-        expect(result, `when loading some data to the matrix - running 'findRichest()' should return 'Anisha' instead got ${result}`).toBe('Anisha')
+        expect(result, `when loading the salary data from the data.json file into the matrix - running 'findRichest()' should return 'Anisha' instead got ${result}`).toBe('Anisha')
     })
 })

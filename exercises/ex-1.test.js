@@ -13,7 +13,7 @@ describe('exercise1', () => {
 
         for (let i = 0; i < expectedResults.length; i++) {
             const result = m1.get(i, i)
-            expect(result, `when creating a 4x5 matrix running get(${i}, ${i}) should return ${expectedResults[i]}, instead got ${result}`).toBe(expectedResults[i])
+            expect(result, `when creating a 4x5 matrix - running get(${i}, ${i}) should return ${expectedResults[i]}, instead got ${result}`).toBe(expectedResults[i])
         }
 
         const m2 = new Matrix(6, 6)
@@ -21,19 +21,19 @@ describe('exercise1', () => {
 
         for (let i = 0; i < expectedResults.length; i++) {
             const result = m2.get(i, i)
-            expect(result, `when creating a 6x6 matrix running get(${i}, ${i}) should return ${expectedResults[i]}, instead got ${result}`).toBe(expectedResults[i])
+            expect(result, `when creating a 6x6 matrix - running get(${i}, ${i}) should return ${expectedResults[i]}, instead got ${result}`).toBe(expectedResults[i])
         }
     })
 
-    it(`should create a class Matrix with the method 'alter' which receives a coordinate and value and alters that coordinate to the given value`, function () {
+    it(`should create a class Matrix with the method 'alter' which receives a coordinate and a value and chnages the value of that coordinate to the given value`, function () {
         const m = new Matrix(5, 6)
 
         m.alter(1, 2, 10)
         let result = m.get(1, 2)
-        expect(result, `when creating a 5x6 matrix running 'alter(1, 2, 10)', the 'get(1, 2)' method should return 10, instead got ${result}`).toBe(10)
+        expect(result, `when creating a 5x6 matrix - after running 'alter(1, 2, 10)', running 'get(1, 2)' should return 10, instead got ${result}`).toBe(10)
 
         m.alter(4, 1, 99)
         result = m.get(4, 1)
-        expect(result, `when creating a 5x6 matrix running 'alter(4, 1, 99)', the 'get(4, 1)' method should return 99, instead got ${result}`).toBe(99)
+        expect(result, `when creating a 5x6 matrix - after running 'alter(4, 1, 99)', running 'get(4, 1)' should return 99, instead got ${result}`).toBe(99)
     })
 })

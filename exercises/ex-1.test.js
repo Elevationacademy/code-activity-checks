@@ -1,12 +1,6 @@
 const $ = require('cheerio')
 const path = require('path')
 
-const selectElements = function (html) {
-  const firstPost = $('.todo', html)[0].attribs
-  return firstPost
-}
-
-
 describe('exercise-1', () => {
   beforeAll(async () => {
     await page.goto('file://' + path.join(__dirname, '..', '..', 'src', 'index.html'))

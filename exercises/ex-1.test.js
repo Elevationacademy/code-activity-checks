@@ -6,26 +6,24 @@ const selectElements = function (html) {
   return firstPost
 }
 
-// const getHtml = async function () {
-//   await page.goto('file://' + path.join(__dirname, '..', '..', 'src', 'index.html'))
-
-//   const html = await page.content()
-//   return html
-// }
-
 
 describe('exercise-1', () => {
   beforeAll(async () => {
     await page.goto('file://' + path.join(__dirname, '..', '..', 'src', 'index.html'))
   })
 
-  it('Should create an `enqueue` method which adds a new element to the end of the queue', async function (done) {
+  it(`Should add any numbers of div's to the web page inside the div with id of 'boxes'`, async function (done) {
     const html = await page.content()
-    const id = selectElements(html)['data-id']
-    // const firstPost = page.$('.todo')[0].attribs['data-id']
 
+    let boxes = $('.box', html)
+    expect(boxes.length, `could not find any elements with a class of 'box' on the web page`).toBeGreaterThan(0)
 
-    expect(id, `when enqueueing 1 to the queue, the length of the queue should be 1`).toBe('0')
+    boxes =$('div.box', html)
+    expect(boxes.length, `could not find any 'div' with a class of 'box' on the web page`).toBeGreaterThan(0)
+
+    boxes =$('#boxes > .box', html)
+    expect(boxes.length, `could not find any 'div' with a class of 'box' inside the div with id of 'boxes'`).toBeGreaterThan(0)
+
     done()
   })
 

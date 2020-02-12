@@ -1,5 +1,6 @@
 const { mongoose } = require('../../src/server')
 const dbUtils = require('../../utils/db.class')
+const client = require('../../utils/client.class')
 
 describe('exercise4', () => {
     let server
@@ -17,7 +18,7 @@ describe('exercise4', () => {
         }
 
         const userToDelete = await dbUtils.queryDB()
-        await dbUtils.deleteUser(userToDelete._id)
+        await client.deleteUser(userToDelete._id)
 
         const userToCheck = await dbUtils.queryDB(userToDelete.username)
         expect(userToCheck, `After adding ${dummyUsers.length} users to db and deleting user with id ${userToDelete._id} and username ${userToDelete.username} we queried the database for this user and found a document with those attributes`).toBeFalsy()

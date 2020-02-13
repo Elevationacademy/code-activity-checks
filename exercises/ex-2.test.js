@@ -1,11 +1,9 @@
 const { mongoose } = require('../../src/server')
 const client = require('../../utils/client.class')
 const dbUtils = require('../../utils/db.class')
-
+const server = require('../../src/server')
 describe('exercise2', () => {
-  let server
   beforeAll(async done => {
-    server = require('../../src/server')
     await dbUtils.dropDBs()
     done()
   })

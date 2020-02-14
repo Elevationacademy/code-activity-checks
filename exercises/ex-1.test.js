@@ -7,6 +7,8 @@ describe('exercise1', () => {
         const age = 25
         const newUser = new User({ username, age, messages: [] })
 
+        // const symbolToAccess = Object.getOwnPropertySymbols(newUser.messages).find(name => name === 'Symbol(mongoose#Array#_schema)')
+
         expect(newUser.username, `When creating a new user with a username of ${username}, the resulting object had a username of ${newUser.username}`).toBe(username)
         expect(newUser.age, `When creating a new user with an age of ${age}, the resulting object had an age of ${newUser.age}`).toBe(age)
         expect(newUser.messages.length, `When creating a new user with an empty messages array, the resulting object had a messages array of length ${newUser.messages.length}`).toBe(0)

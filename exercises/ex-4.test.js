@@ -17,10 +17,10 @@ describe('exercise4', () => {
             await dbUtils.addToDB('User', user)
         }
 
-        const userToDelete = await dbUtils.queryDB()
+        const userToDelete = await dbUtils.queryDB('User', {})
         await client.deleteUser(userToDelete._id)
 
-        const userToCheck = await dbUtils.queryDB(userToDelete.username)
+        const userToCheck = await dbUtils.queryDB('User', { username: userToDelete.username })
         expect(userToCheck, `After adding ${dummyUsers.length} users to db and deleting user with id ${userToDelete._id} and username ${userToDelete.username} we queried the database for this user and found a document with those attributes`).toBeFalsy()
         done()
     })

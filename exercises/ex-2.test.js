@@ -1,18 +1,20 @@
 const { mongoose } = require('../../src/server')
 const client = require('../../utils/client.class')
 const dbUtils = require('../../utils/db.class')
-const server = require('../../src/server')
+
 describe('exercise2', () => {
+  let server
   beforeAll(async done => {
+    server = require('../../src/server')
     await dbUtils.dropDBs()
     done()
   })
 
-  it('You should write a query to your db from the `/users` route to find all the users and res.send() them in the response', async done => {
+  it('You should write a query to your db from the `/users` route to save the given user and res.send() the saved user in the response', async done => {
     const user = { username: 'shoobidoobi', age: 88 }
-    await client.addUser(user)
+    await client.addDoc(user, 'users')
 
-    const newUser = await dbUtils.queryDB(user.username)
+    const newUser = await dbUtils.queryDB('User', { username: user.username })
 
     expect(newUser.username, `After posting ${JSON.stringify(user)} to your /users route and querying the db, username should be ${user.username} instead received ${newUser.username}`).toBe(user.username)
     expect(newUser.age, `After posting ${JSON.stringify(user)} to your /users route and querying the db, age should be ${user.age} instead received ${newUser.age}`).toBe(user.age)

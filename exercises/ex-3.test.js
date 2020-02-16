@@ -6,6 +6,7 @@ describe('Exercise 3', function () {
       const arr2 = []
 
       swap(arr1, arr2)
+      
 
       expect(arr1.length, `the function did not swap the arrays - when passing ${JSON.stringify(arr1)} as arr1 to the function expected length of arr1 to be 0 but got ${arr1.length}`).toBe(0)
       expect(arr2.length, `the function did not swap the arrays - when passing ${JSON.stringify(arr2)} as arr1 to the function expected length of arr1 to be 9 but got ${arr2.length}`).toBe(9)

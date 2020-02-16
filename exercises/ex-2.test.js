@@ -1,4 +1,3 @@
-const { mongoose } = require('../../src/server')
 const client = require('../../utils/client.class')
 const dbUtils = require('../../utils/db.class')
 
@@ -24,11 +23,6 @@ describe('exercise2', () => {
 
   afterAll(async done => {
     await dbUtils.dropAndDisconnect()
-    server.socket.close(() => {
-      mongoose.disconnect(() => {
-        done()
-        //Tests still don't close
-      })
-    })
+    server.socket.close(done)
   })
 })

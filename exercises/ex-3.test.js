@@ -35,6 +35,7 @@ describe('exercise-3', () => {
     const sumPage = paragraphs[paragraphs.length - 1].children[0].data
     expect(sumPage, `when adding ${numDivs} divs to the web page with random numbers the sum that is found is ${sumPage} instead of ${sum}`).toBe(`${sum}`)
     done()
+    
   })
 
   afterAll(async done => {

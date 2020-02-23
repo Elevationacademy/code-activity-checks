@@ -13,7 +13,6 @@ describe('Exercise 1', function () {
 
     it('The function findOddOccurrences should run in O(n)', function () {
         const isRuntimeCorrect = utils.isON(findOddOccurrences)
-
         expect(isRuntimeCorrect, `the function did not run in O(n), it ran in a higher time complexity`).toBeTruthy()
     })
 } )

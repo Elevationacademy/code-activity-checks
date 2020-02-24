@@ -2,7 +2,7 @@ const { migrateData } = require('../../src/app')
 const utils = require('../../utils/utils.class')
 
 describe('Exercise 2', function () {
-    it('The function findOddOccurrences should find all the numbers that appear an odd number of times and output them in an array', function () {
+    it('The function migrateData should migrate a given object to a new object based on the given instructions', function () {
         const movies = require('../../utils/dummyMovies.json')
         const expectedResult = require('../../utils/migratedMovies.json')
         const result = migrateData(movies)

@@ -29,7 +29,7 @@ describe('Exercise 3', function() {
     } catch (e) {
       expect(
         false,
-        `There was an error with your code when providing a matrix with 3 rows and 4 columns. Make sure your code provide an answer for this kind of matrix`
+        `There was an error with your code when providing a matrix with 3 rows and 4 columns. Make sure your function accounts for this scenario`
       ).toBeTruthy();
     }
   });
@@ -62,7 +62,7 @@ describe('Exercise 3', function() {
     } catch (e) {
       expect(
         false,
-        `There was an error with your code when providing a matrix with 4 rows and 3 columns. Make sure your code provide an answer for this kind of matrix`
+        `There was an error with your code when providing a matrix with 4 rows and 3 columns. Make sure your function accounts for this scenario`
       ).toBeTruthy();
     }
   });

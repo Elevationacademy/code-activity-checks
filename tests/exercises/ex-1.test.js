@@ -132,6 +132,7 @@ describe('Exercise 1', function() {
       "there should be a function called 'use' in the Instrument class - p.s. it should be outside of the constructor"
     ).toEqual('function');
   });
+  
   it('The use function in Instrument class should decrease the value attribute by 5 ONLY if category = "Strings"', function() {
     let inst = new Instrument('Strings', 'Jona');
     inst.use();

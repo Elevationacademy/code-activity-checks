@@ -1,7 +1,7 @@
 let Store, Client, Item, Book, Instrument;
 
-// Importing the classes
 describe('Exercise 1', function() {
+  // Importing the classes
   it('There should be Item, Book, Instrument, Client and Store files/classes', function() {
     let classesToCheck = ['Book', 'Item', 'Instrument', 'Client', 'Store'];
 
@@ -26,10 +26,8 @@ describe('Exercise 1', function() {
       }
     }
   });
-});
 
-// Item class tests
-describe('Exercise 1', function() {
+  // Item class tests
   it("The Item class should create an object with 2 attributes: status with a value of 'Available', and value with a value of 100", function() {
     let item = new Item();
     expect(
@@ -62,10 +60,8 @@ describe('Exercise 1', function() {
       'The use() function in Item class should NOT decrease the value attribute if it is lower than 5'
     ).toEqual(2);
   });
-});
 
-// Book class tests
-describe('Exercise 1', function() {
+  // Book class tests
   it('The Book class should inherit from the Item class', function() {
     let book = new Book();
     expect(book instanceof Item, 'Book class should inherit from Item class').toBeTruthy();
@@ -106,10 +102,8 @@ describe('Exercise 1', function() {
       'the use function of Book class should decrease the value attribute by 10 if pages <= 50'
     ).toEqual(85);
   });
-});
 
-// Instrument class tests
-describe('Exercise 1', function() {
+  // Instrument class tests
   it('The Instrument class should inherit from the Item class', function() {
     let inst = new Instrument();
     expect(inst instanceof Item, 'Instrument class should inherit from Item class').toBeTruthy();
@@ -132,7 +126,7 @@ describe('Exercise 1', function() {
       "there should be a function called 'use' in the Instrument class - p.s. it should be outside of the constructor"
     ).toEqual('function');
   });
-  
+
   it('The use function in Instrument class should decrease the value attribute by 5 ONLY if category = "Strings"', function() {
     let inst = new Instrument('Strings', 'Jona');
     inst.use();
@@ -147,10 +141,8 @@ describe('Exercise 1', function() {
       'the use function of Instrument class should NOT decrease the value attribute by 10 if category NOT equal to "Strings"'
     ).toEqual(95);
   });
-});
 
-// Client class tests
-describe('Exercise 1', function() {
+  // Client class tests
   it('The Client class should create an object with 2 attributes: firstName and lastName - and they should be initialized in the constructor', function() {
     let client = new Client('elevation', 'Jona');
     expect(
@@ -203,10 +195,8 @@ describe('Exercise 1', function() {
       "rentItem() function in the Store class wasn't called from the checkoutItem() function of the Client class"
     ).toHaveBeenCalled();
   });
-});
 
-// Store class tests
-describe('Exercise 1', function() {
+  // Store class tests
   it('The Store class should create an object with 3 attributes: name (should be initialized in the constructor), clients array and items array', function() {
     let store = new Store('elevation');
     expect(
@@ -311,6 +301,7 @@ describe('Exercise 1', function() {
       }
     ]);
   });
+
   it("the returnItem function of Store class should delete the item from the client's rentedItems and change the item's status to 'Available'", function() {
     let client = new Client('elevation', 'Jona');
     let book = new Book('elevation', 'Jona', 100);

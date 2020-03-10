@@ -52,7 +52,7 @@ describe('Exercise 1', function() {
     item.use();
     expect(
       item.value,
-      'The use() function in Item class should decrease the value attribute by 5 if the value is higher than 5'
+      'The use() function in Item class should decrease the value attribute by 5'
     ).toEqual(95);
   });
 });
@@ -85,7 +85,7 @@ describe('Exercise 1', function() {
       "there should be a function called 'use' in the Book class - p.s. it should be outside of the constructor"
     ).toEqual('function');
   });
-  it('The use function in Book class should decrease the value attribute by 5 if pages > 50 or else by 10', function() {
+  it('The use function in Book class should decrease the value attribute by 5 if pages > 50, or else by 10', function() {
     let book = new Book('elevation', 'Jona', 100);
     book.use();
     expect(
@@ -125,18 +125,18 @@ describe('Exercise 1', function() {
       "there should be a function called 'use' in the Instrument class - p.s. it should be outside of the constructor"
     ).toEqual('function');
   });
-  it('The use function in Instrument class should decrease the value attribute by 5 ONLY if category = "Strings"', function() {
+  it('The use function in Instrument class should decrease the value attribute by 5 ONLY if its category = "Strings"', function() {
     let inst = new Instrument('Strings', 'Jona');
     inst.use();
     expect(
       inst.value,
-      'the use function of Instrument class should decrease the value attribute by 5 if category = "Strings"'
+      'the use function of Instrument class should decrease the value attribute by 5 if its category = "Strings"'
     ).toEqual(95);
     inst.category = 'elevation';
     inst.use();
     expect(
       inst.value,
-      'the use function of Instrument class should NOT decrease the value attribute by 10 if category NOT equal to "Strings"'
+      'the use function of Instrument class should NOT decrease the value attribute (at all) if its category is NOT equal to "Strings"'
     ).toEqual(95);
   });
 });
@@ -154,7 +154,7 @@ describe('Exercise 1', function() {
       "the 'lastName' of the client was not initialized in the constructor - make sure you're using `this`"
     ).toEqual('Jona');
   });
-  it('The Client class should create an empty array when being initiated', function() {
+  it('The Client class should create an empty array when being initialized', function() {
     let client = new Client('elevation', 'Jona');
     expect(
       client.rentedItems,
@@ -168,16 +168,22 @@ describe('Exercise 1', function() {
       "there should be a function called 'checkoutItem' in the Client class - p.s. it should be outside of the constructor"
     ).toEqual('function');
   });
-
-  it('The checkoutItem function in Client class should push the item to the rentedItems array if the rentedItems array has less than 5 items AND the item status is "Available"', function() {
+  it("The checkoutItem function in Client class should push the item to the rentedItems array if the rentedItems array has less than 5 items AND the item's status is 'Available'", function() {
     let client = new Client('elevation', 'Jona');
     let book = new Book('elevation', 'Jona', 100);
     let store = new Store('Lior');
-    client.checkoutItem(store, book);
-    expect(
-      client.rentedItems.length,
-      'the checkoutItem function of Client class should push the item to the rentedItems'
-    ).toEqual(1);
+    try {
+      client.checkoutItem(store, book);
+      expect(
+        client.rentedItems.length,
+        'the checkoutItem function of Client class should push the item to the rentedItems'
+      ).toEqual(1);
+    } catch (error) {
+      expect(
+        false,
+        "There was an error with your code while trying to invoke checkoutItem() function of Client class. Make sure you're passing the item and the client to rentItem() function of the Store class. Use 'this' to pass the client"
+      ).toBeTruthy();
+    }
   });
 
   it('The checkoutItem function in Client class should use the Store class function rentItem()', function() {
@@ -192,7 +198,7 @@ describe('Exercise 1', function() {
 
     expect(
       mockRentItem,
-      "rentItem() function in the Store class wasn't called from the checkoutItem() function of the Client class"
+      "rentItem() function in the Store class wasn't called by the checkoutItem() function of the Client class"
     ).toHaveBeenCalled();
   });
 });
@@ -277,7 +283,7 @@ describe('Exercise 1', function() {
     ).toEqual('In Repair');
   });
 
-  it("the rentItem function of Store class should push the item to the rentedItems of the clients ; set the item's status to 'Rented'; invoke item's use() function - under certain conditions", function() {
+  it("the rentItem function of Store class should push the item to the rentedItems of the clients ; set the item's status to 'Rented'; invoke item's use() function - only if rentedItems array's length is less than 5 AND the item's status is 'Available'", function() {
     let client = new Client('elevation', 'Jona');
     let book = new Book('elevation', 'Jona', 100);
     let store = new Store('Lior');
@@ -288,7 +294,7 @@ describe('Exercise 1', function() {
     ).toEqual('Rented');
     expect(
       book.value,
-      'the rentItem function of Store class should invoke the use() function of Item class and increase the value of the item'
+      'the rentItem function of Store class should invoke the use() function of Item class and decrease the value of the item'
     ).toEqual(95);
     expect(
       client.rentedItems,
@@ -302,8 +308,32 @@ describe('Exercise 1', function() {
         pages: 100
       }
     ]);
+    let book2 = new Book('elevation2', 'Jona2', 100);
+    book2.status = 'Lior';
+    store.rentItem(book2, client);
+    expect(
+      client.rentedItems,
+      "the rentItem function of Store class should NOT push the item to the rentedItems of the clients if the item's status is not 'Available'"
+    ).toEqual([
+      {
+        status: 'Rented',
+        value: 95,
+        title: 'elevation',
+        author: 'Jona',
+        pages: 100
+      }
+    ]);
+    expect(
+      book2.value,
+      "the rentItem function of Store class should NOT invoke the use() function of Item class and NOT decrease the value of the item if the item's status is not 'Available'"
+    ).toEqual(100);
+    expect(
+      book2.status,
+      "the rentItem function of Store class should NOT change the item's status to 'Rented' if the item's status is not 'Available'"
+    ).toEqual('Lior');
   });
-  it("the returnItem function of Store class should delete the item from the client's rentedItems and change the item's status to 'Available'", function() {
+
+  it("the returnItem function of Store class should delete the item from the client's rentedItems and change the item's status to 'Available' if it's value > 0, otherwise use the repairItem() function to change its status to 'In Repair'", function() {
     let client = new Client('elevation', 'Jona');
     let book = new Book('elevation', 'Jona', 100);
     let store = new Store('Lior');
@@ -312,11 +342,22 @@ describe('Exercise 1', function() {
     store.returnItem(book);
     expect(
       book.status,
-      "the returnItem function of Store class should change the item's status to 'Available' - p.s. it should be outside of the constructor"
+      "the returnItem function of Store class should change the item's status to 'Available' if it's value is greater than 0 - p.s. it should be outside of the constructor"
     ).toEqual('Available');
     expect(
       client.rentedItems.length,
       "the rentItem function of Store class should should delete the item from the client's rentedItems"
     ).toEqual(0);
+    let client2 = new Client('elevation', 'Jona');
+    let book2 = new Book('elevation', 'Jona', 100);
+    let store2 = new Store('Lior');
+    store2.addClient(client2);
+    store2.rentItem(book2, client2);
+    book2.value = 0;
+    store2.returnItem(book2);
+    expect(
+      book2.status,
+      "the returnItem function of Store class should change the item's status to 'In Repair' if it's value is 0 - p.s. it should be outside of the constructor"
+    ).toEqual('In Repair');
   });
 });

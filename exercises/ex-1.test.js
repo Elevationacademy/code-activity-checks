@@ -15,6 +15,56 @@ let pathMap = {};
 describe('exercise1', () => {
   const wrapper = mount(<App />);
 
+  // Link tests
+  it('should have first Link to "/"', () => {
+    try {
+      expect(
+        wrapper
+          .find('a')
+          .at(0)
+          .instance()
+          .href.slice(-1),
+        'First Link is not to - /. Make sure you use a Link to - /'
+      ).toBe('/');
+    } catch (e) {
+      expect(false, 'First Link is not to - /. Make sure you use a Link to - /').toBeTruthy();
+    }
+  });
+  it('should have second Link to "/inputs"', () => {
+    try {
+      expect(
+        wrapper
+          .find('a')
+          .at(1)
+          .instance().href,
+        'Second Link is not to - /inputs. Make sure you use a Link to - /inputs'
+      ).toContain('/inputs');
+    } catch (e) {
+      expect(
+        false,
+        'Second Link is not to - /inputs. Make sure you use a Link to - /inputs'
+      ).toBeTruthy();
+    }
+  });
+
+  it('should have third Link to "/leaderboard"', () => {
+    try {
+      expect(
+        wrapper
+          .find('a')
+          .at(2)
+          .instance().href,
+        'Third Link is not to - /leaderboard. Make sure you use a Link to - /leaderboard'
+      ).toContain('/leaderboard');
+    } catch (e) {
+      expect(
+        false,
+        'Third Link is not to - /leaderboard. Make sure you use a Link to - /leaderboard'
+      ).toBeTruthy();
+    }
+  });
+
+  // Routes tests
   beforeAll(() => {
     pathMap = wrapper.find(Route).reduce((pathMap, route) => {
       const routeProps = route.props();
@@ -27,7 +77,6 @@ describe('exercise1', () => {
     }, {});
   });
 
-  // Routes tests
   it('should show Home component for / router', () => {
     expect(pathMap['/'], 'Could not find a Home component for / router').toBe(Home);
   });
@@ -40,16 +89,4 @@ describe('exercise1', () => {
       'Could not find a LeaderBoard component for /leaderboard router'
     ).toBe(LeaderBoard);
   });
-
-  // Link tests
-  it('should have first Link to "/"', () => {
-    expect(wrapper.find('a').at(0).instance().href.slice(-1), "First Link is not to - /. Make sure you use a Link to - /").toBe("/");
-  });
-  it('should have second Link to "/inputs"', () => {
-      expect(wrapper.find('a').at(1).instance().href, "Second Link is not to - /inputs. Make sure you use a Link to - /inputs").toContain("/inputs");
-    });
-
-    it('should have third Link to "/leaderboard"', () => {
-    expect(wrapper.find('a').at(2).instance().href, "Third Link is not to - /leaderboard. Make sure you use a Link to - /leaderboard").toContain("/leaderboard");
-   });
 });

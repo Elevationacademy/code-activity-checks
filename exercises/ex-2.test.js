@@ -76,17 +76,20 @@ describe('exercise2', () => {
         value: 'Jona'
       }
     };
-    let nameIdTag = wrapper.find('#name-input')
+    let nameIdTag = wrapper.find('#name-input');
     if (nameIdTag.length != 0) {
       nameIdTag.simulate('change', mockEvent);
 
       expect(
         spy,
         `onChange wasn't called in the name's input field with handleChange method`
-        ).toHaveBeenCalledWith(mockEvent);
+      ).toHaveBeenCalledWith(mockEvent);
     } else {
-      expect(false, "Could not find tag with id of 'name'. Make sure you give the name's input an id of 'name'").toBeTruthy()
-      }
+      expect(
+        false,
+        "Could not find tag with id of 'name'. Make sure you give the name's input an id of 'name'"
+      ).toBeTruthy();
+    }
   });
 
   // score input
@@ -99,16 +102,19 @@ describe('exercise2', () => {
         value: '100'
       }
     };
-    let scoreIdTag = wrapper.find('#score-input')
+    let scoreIdTag = wrapper.find('#score-input');
     if (scoreIdTag.length != 0) {
       scoreIdTag.simulate('change', mockEvent);
       expect(
         spy,
         `onChange wasn't called in the score's input field with handleChange method`
-        ).toHaveBeenCalledWith(mockEvent);
-      } else {
-        expect(false, "Could not find tag with id of 'score'. Make sure that you give the score's input an id of 'score'").toBeTruthy()
-        }
+      ).toHaveBeenCalledWith(mockEvent);
+    } else {
+      expect(
+        false,
+        "Could not find tag with id of 'score'. Make sure that you give the score's input an id of 'score'"
+      ).toBeTruthy();
+    }
   });
 
   // button onClick
@@ -121,17 +127,20 @@ describe('exercise2', () => {
         value: '100'
       }
     };
-    let submitIdTag = wrapper.find('#submit-btn')
+    let submitIdTag = wrapper.find('#submit-btn');
     if (submitIdTag.length != 0) {
       submitIdTag.simulate('click', mockEvent);
       expect(
         spy,
         `onClick wasn't called with addPlayer method when clicking the button. Make sure that onClick attribute was given with addPlayer()`
-        ).toHaveBeenCalledWith(mockEvent);
-      } else {
-        expect(false, "Could not find tag with id of 'submit'. Make sure that you give the submit button an id of 'submit'").toBeTruthy()
-        }
-    });
+      ).toHaveBeenCalledWith(mockEvent);
+    } else {
+      expect(
+        false,
+        "Could not find tag with id of 'submit'. Make sure that you give the submit button an id of 'submit'"
+      ).toBeTruthy();
+    }
+  });
 
   // *** addPlayer() tests ***
   // addPlayer() with valid inputs

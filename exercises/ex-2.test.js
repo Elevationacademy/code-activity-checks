@@ -7,18 +7,39 @@ describe('exercise-2', () => {
   })
 
   it(`If the user enters an invalid breed, you should append a 'p' element to the 'div' with id 'result' letting the user know the breed was 'not found'.`, async function (done) {
+    let html, pElem, shouldFail = false
 
-    let html = await page.content()
-    const pElem = $('#result p', html)
+    try {
+      html = await page.content()
+      pElem = $('#result p', html)
+    } catch (e) {
+      shouldFail = true
+    }
+
+    if (shouldFail) {
+      expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
+      done()
+      return
+    }
     expect(pElem.length, `There was a 'p' element in the 'div' with id 'result' before initiating the search. Make sure to make the API request only when the user clicks the search button and append the error message only when there is an error`).toBe(0)
 
-    const searchValue = 'h'
-    await page.evaluate((searchValue) => {
-      document.querySelector('#breed-input').value = searchValue
-    }, searchValue)
-    await page.click('#search')
-    await page.waitFor(4000)
-    html = await page.content()
+    try {
+      const searchValue = 'h'
+      await page.evaluate((searchValue) => {
+        document.querySelector('#breed-input').value = searchValue
+      }, searchValue)
+      await page.click('#search')
+      await page.waitFor(4000)
+      html = await page.content()
+    } catch (e) {
+      shouldFail = true
+    }
+
+    if (shouldFail) {
+      expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
+      done()
+      return
+    }
 
     let text
     try {

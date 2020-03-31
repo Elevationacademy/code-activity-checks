@@ -16,6 +16,7 @@ describe('exercise-2', () => {
     } catch (e) {
       expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
       done()
+      return
     }
     expect(pElem.length, `There was a 'p' element in the 'div' with id 'result' before initiating the search. Make sure to make the API request only when the user clicks the search button and append the error message only when there is an error`).toBe(0)
 
@@ -31,6 +32,7 @@ describe('exercise-2', () => {
     } catch (e) {
       expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
       done()
+      return
     }
 
     let text
@@ -39,6 +41,7 @@ describe('exercise-2', () => {
     } catch (e) {
       expect(false, `There was no 'p' in the 'div' with id 'result' after the API request was made. Please append a 'p' with the correct text to the 'result' 'div' after the error occurs`).toBeTruthy()
       done()
+      return
     }
 
     if (text) {
@@ -49,9 +52,8 @@ describe('exercise-2', () => {
 
       expect(includesErrorText, `The 'p' element did not have an error message inside when searching for an invalid input such as '${searchValue}', make sure to add a 'p' element with the message "Breed not found - try again" to the 'div' with id 'result' if there is an 'error' with the API request`).toBeTruthy()
       done()
+      return
     }
-    
-    done()
   })
 
   afterAll(async done => {

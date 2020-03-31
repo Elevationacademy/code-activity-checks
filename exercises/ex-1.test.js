@@ -16,6 +16,7 @@ describe('exercise-1', () => {
     } catch (e) {
       expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
       done()
+      return
     }
     expect(imgElem.length, `There was an image in the 'div' with id 'result' before initiating the search. Make sure to make the API request only when the user clicks the search button and append the image when the response from the API is received`).toBe(0)
 
@@ -33,6 +34,7 @@ describe('exercise-1', () => {
       console.log(e.stack)
       expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
       done()
+      return
     }
 
     let src
@@ -41,6 +43,7 @@ describe('exercise-1', () => {
     } catch (e) {
       expect(false, `There was no image in the 'div' with id 'result' after the API request was made. Please append an image with the correct 'src' attribute to the 'result' 'div' after the response from the API is received`).toBeTruthy()
       done()
+      return
     }
 
     if (src) {
@@ -54,9 +57,8 @@ describe('exercise-1', () => {
 
       expect(isImage, `The 'src' attribute of the 'img' tag was not a valid image when searching for '${searchValue}', make sure to add the image link from the API response to the 'src' attribute of the 'img'`).toBeTruthy()
       done()
+      return
     }
-
-    done()
   })
 
   afterAll(async done => {

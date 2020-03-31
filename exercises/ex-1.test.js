@@ -7,17 +7,40 @@ describe('exercise-1', () => {
   })
 
   it(`When clicking on the 'Search' button, you should make an API request to the Dog API with the breed from the input`, async function (done) {
-    let html = await page.content()
-    const imgElem = $('#result img', html)
+    let html, imgElem, shouldFail = false
+
+    try {
+      html = await page.content()
+      imgElem = $('#result img', html)
+    } catch (e) {
+      shouldFail = true
+    }
+
+    if (shouldFail) {
+      expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
+      done()
+      return
+    }
+
     expect(imgElem.length, `There was an image in the 'div' with id 'result' before initiating the search. Make sure to make the API request only when the user clicks the search button and append the image when the response from the API is received`).toBe(0)
 
-    const searchValue = 'hound'
-    await page.evaluate((searchValue) => {
-      document.querySelector('#breed-input').value = searchValue
-    }, searchValue)
-    await page.click('#search')
-    await page.waitFor(4000)
-    html = await page.content()
+    try {
+      const searchValue = 'hound'
+      await page.evaluate((searchValue) => {
+        document.querySelector('#breed-input').value = searchValue
+      }, searchValue)
+      await page.click('#search')
+      await page.waitFor(4000)
+      html = await page.content()
+    } catch (e) {
+      shouldFail = true
+    }
+
+    if (shouldFail) {
+      expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
+      done()
+      return
+    }
 
     let src
     try {

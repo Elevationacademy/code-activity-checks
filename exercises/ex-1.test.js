@@ -29,6 +29,8 @@ describe('exercise-1', () => {
       await page.waitFor(4000)
       html = await page.content()
     } catch (e) {
+      console.log(e.message)
+      console.log(e.stack)
       expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
       done()
     }

@@ -55,6 +55,8 @@ describe('exercise-1', () => {
       expect(isImage, `The 'src' attribute of the 'img' tag was not a valid image when searching for '${searchValue}', make sure to add the image link from the API response to the 'src' attribute of the 'img'`).toBeTruthy()
       done()
     }
+
+    done()
   })
 
   afterAll(async done => {

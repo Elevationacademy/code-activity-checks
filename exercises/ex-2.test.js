@@ -50,6 +50,8 @@ describe('exercise-2', () => {
       expect(includesErrorText, `The 'p' element did not have an error message inside when searching for an invalid input such as '${searchValue}', make sure to add a 'p' element with the message "Breed not found - try again" to the 'div' with id 'result' if there is an 'error' with the API request`).toBeTruthy()
       done()
     }
+    
+    done()
   })
 
   afterAll(async done => {

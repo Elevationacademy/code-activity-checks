@@ -22,7 +22,7 @@ describe('exercise-2', () => {
       await page.waitFor(4000)
       html = await page.content()
     } catch (e) {
-      expect(false, `Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.`).toBeTruthy()
+      expect(false, `Hmm, seems like you're error handling isn't working. Please make sure you are not using try/catch. You should be using the jQuery ajax method and passing an 'error' callback`).toBeTruthy()
     }
 
     let text

@@ -59,6 +59,8 @@ describe('exercise-1', () => {
       done()
       return
     }
+
+    done()
   })
 
   afterAll(async done => {

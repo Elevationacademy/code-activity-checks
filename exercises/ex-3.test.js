@@ -39,9 +39,14 @@ describe('exercise-3', () => {
       const html = await page.content()
       const paragraphs = $('#sum p', html)
 
-      const sumPage = paragraphs[paragraphs.length - 1].children[0].data
-      expect(sumPage, `when adding ${numDivs} divs to the web page with random numbers the sum that is found is ${sumPage} instead of ${sum}`).toBe(`${sum}`)
-      done()
+      if (paragraphs.length > 1) {
+        const sumPage = paragraphs[paragraphs.length - 1].children[0].data
+        expect(sumPage, `When adding ${numDivs} divs to the web page with random numbers the sum that is found is ${sumPage} instead of ${sum}`).toBe(`${sum}`)
+        done()
+      } else {
+        expect(false, `When adding ${numDivs} divs to the web page with random numbers and clicking the 'calc-sum' button we could not find the sum on the page. Please append a 'p' element with the sum inside the div with id 'sum'.`).toBeTruthy()
+        done()
+      }
     } else {
       expect(false, `Couldn't find a button with id of 'calc-sum' on the page. Please add the button inside the div with the class 'exercise'.`).toBeTruthy()
       done()

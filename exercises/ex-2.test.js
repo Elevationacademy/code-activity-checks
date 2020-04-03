@@ -32,9 +32,14 @@ describe('exercise-2', () => {
       const boxes = $('.box', html)
       const paragraphs = $('#total p', html)
 
-      const total = paragraphs[paragraphs.length - 1].children[0].data
-      expect(total, `when adding ${numDivs} divs to the web page the total that is found is ${total} instead of ${numDivs}`).toBe(`${numDivs}`)
-      done()
+      if (paragraphs.length > 1) {
+        const total = paragraphs[paragraphs.length - 1].children[0].data
+        expect(total, `When adding ${numDivs} divs to the web page the total that is found is ${total} instead of ${numDivs}`).toBe(`${numDivs}`)
+        done()
+      } else {
+        expect(false, `When adding ${numDivs} divs to the web page with random numbers and clicking the 'calc-total' button we could not find the 'p' with the total on the page. Please append a 'p' element with the total inside the div with id 'total'.`).toBeTruthy()
+        done()
+      }
     } else {
       expect(false, `Couldn't find a button with id of 'calc-total' on the page. Please add the button inside the div with the class 'exercise'.`).toBeTruthy()
       done()

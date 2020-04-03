@@ -28,14 +28,24 @@ describe('exercise-3', () => {
       return sum
     }, numDivs)
 
-    await page.click('#calc-sum')
-    const html = await page.content()
-    const paragraphs = $('#sum p', html)
+    let buttonExists = true
+    try {
+      await page.click('#calc-sum')
+    } catch (e) {
+      buttonExists = false
+    }
 
-    const sumPage = paragraphs[paragraphs.length - 1].children[0].data
-    expect(sumPage, `when adding ${numDivs} divs to the web page with random numbers the sum that is found is ${sumPage} instead of ${sum}`).toBe(`${sum}`)
-    done()
-    
+    if (buttonExists) {
+      const html = await page.content()
+      const paragraphs = $('#sum p', html)
+
+      const sumPage = paragraphs[paragraphs.length - 1].children[0].data
+      expect(sumPage, `when adding ${numDivs} divs to the web page with random numbers the sum that is found is ${sumPage} instead of ${sum}`).toBe(`${sum}`)
+      done()
+    } else {
+      expect(false, `Couldn't find a button with id of 'calc-sum' on the page. Please add the button inside the div with the class 'exercise'.`).toBeTruthy()
+      done()
+    }
   })
 
   afterAll(async done => {

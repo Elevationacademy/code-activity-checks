@@ -20,14 +20,25 @@ describe('exercise-2', () => {
       }
     }, numDivs)
 
-    await page.click('#calc-total')
-    const html = await page.content()
-    const boxes = $('.box', html)
-    const paragraphs = $('#total p', html)
+    let buttonExists = true
+    try {
+      await page.click('#calc-total')
+    } catch (e) {
+      buttonExists = false
+    }
 
-    const total = paragraphs[paragraphs.length - 1].children[0].data
-    expect(total, `when adding ${numDivs} divs to the web page the total that is found is ${total} instead of ${numDivs}`).toBe(`${numDivs}`)
-    done()
+    if (buttonExists) {
+      const html = await page.content()
+      const boxes = $('.box', html)
+      const paragraphs = $('#total p', html)
+
+      const total = paragraphs[paragraphs.length - 1].children[0].data
+      expect(total, `when adding ${numDivs} divs to the web page the total that is found is ${total} instead of ${numDivs}`).toBe(`${numDivs}`)
+      done()
+    } else {
+      expect(false, `Couldn't find a button with id of 'calc-total' on the page. Please add the button inside the div with the class 'exercise'.`).toBeTruthy()
+      done()
+    }
   })
 
   afterAll(async done => {

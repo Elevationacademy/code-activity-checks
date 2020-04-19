@@ -1,8 +1,8 @@
 const { transposeMatrix } = require('../../src/app');
 const utils = require('../../utils/utils.class');
 
-describe('Exercise 3', function() {
-  it("The function transposeMatrix should flip over a given matrix's main diagonal, switching the row and column indices of the matrix", function() {
+describe('Exercise 3', function () {
+  it("The function transposeMatrix should flip over a given matrix's main diagonal, switching the row and column indices of the matrix", function () {
     const matrix = [
       [1, 2, 3, 4],
       [5, 6, 7, 8],
@@ -14,9 +14,20 @@ describe('Exercise 3', function() {
       [3, 7, 11],
       [4, 8, 12]
     ];
-    try {
-      const result = transposeMatrix(matrix);
 
+    let result, hasError
+    try {
+      result = transposeMatrix(matrix);
+    } catch (e) {
+      hasError = true
+    }
+
+    if (hasError) {
+      expect(
+        false,
+        `There was an error with your code when providing a matrix with 3 rows and 4 columns. Make sure your function accounts for this scenario`
+      ).toBeTruthy();
+    } else {
       const isCorrect = utils.isMatEqual(result, expectedResult);
       expect(
         isCorrect,
@@ -26,15 +37,10 @@ describe('Exercise 3', function() {
           result
         )}`
       ).toBeTruthy();
-    } catch (e) {
-      expect(
-        false,
-        `There was an error with your code when providing a matrix with 3 rows and 4 columns. Make sure your function accounts for this scenario`
-      ).toBeTruthy();
     }
   });
 
-  it("The function transposeMatrix should flip over a given matrix's main diagonal, switching the row and column indices of the matrix", function() {
+  it("The function transposeMatrix should flip over a given matrix's main diagonal, switching the row and column indices of the matrix", function () {
     const matrix = [
       [1, 2, 3],
       [4, 5, 6],
@@ -47,9 +53,19 @@ describe('Exercise 3', function() {
       [3, 6, 9, 12]
     ];
 
+    let result, hasError
     try {
-      const result = transposeMatrix(matrix);
+      result = transposeMatrix(matrix);
+    } catch (e) {
+      hasError = true
+    }
 
+    if (hasError) {
+      expect(
+        false,
+        `There was an error with your code when providing a matrix with 4 rows and 3 columns. Make sure your function accounts for this scenario`
+      ).toBeTruthy();
+    } else {
       const isCorrect = utils.isMatEqual(result, expectedResult);
       expect(
         isCorrect,
@@ -58,11 +74,6 @@ describe('Exercise 3', function() {
         )} to the function expected ${JSON.stringify(expectedResult)} instead got ${JSON.stringify(
           result
         )}`
-      ).toBeTruthy();
-    } catch (e) {
-      expect(
-        false,
-        `There was an error with your code when providing a matrix with 4 rows and 3 columns. Make sure your function accounts for this scenario`
       ).toBeTruthy();
     }
   });

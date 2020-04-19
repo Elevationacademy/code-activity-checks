@@ -87,7 +87,7 @@ describe('exercise2', () => {
     } else {
       expect(
         false,
-        "Could not find tag with id of 'name'. Make sure you give the name's input an id of 'name'"
+        "Could not find tag with id of 'name-input'. Make sure you give the name's input an id of 'name-input'"
       ).toBeTruthy();
     }
   });
@@ -112,7 +112,7 @@ describe('exercise2', () => {
     } else {
       expect(
         false,
-        "Could not find tag with id of 'score'. Make sure that you give the score's input an id of 'score'"
+        "Could not find tag with id of 'score-input'. Make sure that you give the score's input an id of 'score-input'"
       ).toBeTruthy();
     }
   });
@@ -137,7 +137,7 @@ describe('exercise2', () => {
     } else {
       expect(
         false,
-        "Could not find tag with id of 'submit'. Make sure that you give the submit button an id of 'submit'"
+        "Could not find tag with id of 'submit-btn'. Make sure that you give the submit button an id of 'submit-btn'"
       ).toBeTruthy();
     }
   });

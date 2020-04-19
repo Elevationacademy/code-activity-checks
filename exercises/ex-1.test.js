@@ -77,16 +77,16 @@ describe('exercise1', () => {
     }, {});
   });
 
-  it('should show Home component for / router', () => {
-    expect(pathMap['/'], 'Could not find a Home component for / router').toBe(Home);
+  it('You should render the Home component for the / route', () => {
+    expect(pathMap['/'], 'Could not find a Home component for the / route, make sure your / Route is rendering the Home component.').toBe(Home);
   });
-  it('should show Inputs component for /inputs router', () => {
-    expect(pathMap['/inputs'], 'Could not find a Inputs component for /inputs router').toBe(Inputs);
+  it('You should render the Inputs component for the /inputs route', () => {
+    expect(pathMap['/inputs'], 'Could not find an Inputs component for the /inputs route, make sure your /inputs Route is rendering the Inputs component.').toBe(Inputs);
   });
-  it('should show LeaderBoard component for /leaderboard router', () => {
+  it('You should render the LeaderBoard component for the /leaderboard route', () => {
     expect(
       pathMap['/leaderboard'],
-      'Could not find a LeaderBoard component for /leaderboard router'
+      'Could not find a LeaderBoard component for the /leaderboard route, make sure your /leaderboard Route is rendering the LeaderBoard component.'
     ).toBe(LeaderBoard);
   });
 });

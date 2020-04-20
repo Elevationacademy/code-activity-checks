@@ -21,17 +21,12 @@ describe('exercise6', () => {
     const populatedUser = await client.getPopulatedUser(dummyUsers[0].username);
     user = await dbUtils.queryDB('User', { username: user.username })
 
-    expect(populatedUser.messages[0].text,`After adding a message with id ${messageFound._id} and text of '${messageToSave.text}' to the db for a user with id ${user._id} and querying the db for that user with his populated messages, the user's message array didn't include the populated message. The user's message array looked like this: ${JSON.stringify(user.messages)}, while it should look like this: [{"_id": "${messageFound._id}", "text": "${messageToSave.text}", "time": "${messageToSave.time}"}]`).toBe(messageToSave.text);
+    expect(populatedUser.messages[0].text, `After adding a message with id ${messageFound._id} and text of '${messageToSave.text}' to the db for a user with id ${user._id} and querying the db for that user with his populated messages, the user's message array didn't include the populated message. The user's message array looked like this: ${JSON.stringify(user.messages)}, while it should look like this: [{"_id": "${messageFound._id}", "text": "${messageToSave.text}", "time": "${messageToSave.time}"}]`).toBe(messageToSave.text);
     done();
   });
 
   afterAll(async done => {
-    await dbUtils.dropAndDisconnect();
-    server.socket.close(() => {
-      mongoose.disconnect(() => {
-        done();
-        //Tests still don't close
-      });
-    });
+    await dbUtils.dropAndDisconnect()
+    server.socket.close(done)
   });
 });

@@ -5,6 +5,7 @@ describe('exercise2', () => {
   beforeAll(async done => {
     server = require('../../src/server')
     try {
+      dbUtils = require('../../utils/db.class')
       await dbUtils.dropDBs()
     } catch (e) {
       hasError = true

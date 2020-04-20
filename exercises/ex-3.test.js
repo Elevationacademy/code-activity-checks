@@ -1,5 +1,4 @@
 const client = require('../../utils/client.class')
-const dbUtils = require('../../utils/db.class')
 
 describe('exercise3', () => {
     let server
@@ -13,12 +12,33 @@ describe('exercise3', () => {
         const dummyUsers = require('../../utils/dummyUsers.json')
         const AMOUNT_TO_ADD = dummyUsers.length
 
-        for (let user of dummyUsers) {
-            await dbUtils.addToDB('User', user)
+        let hasError
+        try {
+            const dbUtils = require('../../utils/db.class')
+            for (let user of dummyUsers) {
+                await dbUtils.addToDB('User', user)
+            }
+        } catch (e) {
+            hasError = true
         }
 
-        const users = await client.getUsers()
-        expect(users.length, `After adding ${AMOUNT_TO_ADD} users to db and sending a request to your '/users' route we receive ${users.length} users`).toBe(AMOUNT_TO_ADD)
+        if (hasError) {
+            expect(false, "There seems to be something wrong with the export of your model/s, check them and try again").toBeTruthy()
+        } else {
+            let users
+            hasError = false
+            try {
+                users = await client.getUsers()
+            } catch (e) {
+                hasError = true
+            }
+
+            if (hasError) {
+                expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
+            } else {
+                expect(users.length, `After adding ${AMOUNT_TO_ADD} users to db and sending a request to your '/users' route we receive ${users.length} users`).toBe(AMOUNT_TO_ADD)
+            }
+        }
         done()
     })
 

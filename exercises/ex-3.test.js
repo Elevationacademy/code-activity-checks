@@ -1,30 +1,29 @@
 const client = require('../../utils/client.class')
 
 describe('exercise3', () => {
-    let server
+    let server, dbUtils, hasError
     beforeAll(async done => {
         server = require('../../src/server')
-        await dbUtils.dropDBs()
-        done()
+    try {
+      dbUtils = require('../../utils/db.class')
+      await dbUtils.dropDBs()
+    } catch (e) {
+      hasError = true
+    }
+    done()
     })
 
     it('You should write a query to your db from the `/users` route to find all the users and res.send() them in the response', async done => {
-        const dummyUsers = require('../../utils/dummyUsers.json')
-        const AMOUNT_TO_ADD = dummyUsers.length
-
-        let hasError
-        try {
-            const dbUtils = require('../../utils/db.class')
-            for (let user of dummyUsers) {
-                await dbUtils.addToDB('User', user)
-            }
-        } catch (e) {
-            hasError = true
-        }
-
         if (hasError) {
             expect(false, "There seems to be something wrong with the export of your model/s, check them and try again").toBeTruthy()
         } else {
+            const dummyUsers = require('../../utils/dummyUsers.json')
+            const AMOUNT_TO_ADD = dummyUsers.length
+
+            for (let user of dummyUsers) {
+                await dbUtils.addToDB('User', user)
+            }
+
             let users
             hasError = false
             try {

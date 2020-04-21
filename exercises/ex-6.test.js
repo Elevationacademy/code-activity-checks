@@ -15,7 +15,7 @@ describe('exercise6', () => {
     done()
   });
 
-  it('You should write a query to your db from the `/users/:username` to find a user by a given username and res.send() this user with his extracted messages (using populate)', async done => {
+  it('You should write a query to your db from the `/users/:username` route to find a user by a given username and res.send() this user with their messages (using populate)', async done => {
     if (hasError) {
       expect(false, "There seems to be something wrong with the export of your model/s, check them and try again").toBeTruthy()
     } else {

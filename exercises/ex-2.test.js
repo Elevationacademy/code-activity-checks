@@ -12,7 +12,7 @@ beforeAll(async done => {
     done()
 })
 
-describe( 'exercise2', () => {
+describe('exercise2', () => {
     it( `You should create a 'get' route called '/reservations' that responds with the full array of reservations`, async done => {
         if (hasError) {
             expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
@@ -35,6 +35,6 @@ describe( 'exercise2', () => {
     } )
 } )
 
-afterAll( done => {
+afterAll(done => {
     server.socket.close(done)
-} )
+})

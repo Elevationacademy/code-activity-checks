@@ -18,7 +18,7 @@ describe('Exercise 1', function () {
         `Expected to receive ['Madagascar: Escape 2 Africa', 'Madagascar', 'Big Nothing', 'Ice Age'] when searching for movies between 80 to 90 minutes, but received ${findMoviesByDurRange(
           80,
           90
-        )}' instead`
+        )} instead`
       ).toEqual(['Madagascar: Escape 2 Africa', 'Madagascar', 'Big Nothing', 'Ice Age']);
 
       expect(
@@ -26,7 +26,7 @@ describe('Exercise 1', function () {
         `Expected to receive [] when searching for movies between 0 to 60 minutes, but received ${findMoviesByDurRange(
           0,
           60
-        )}' instead`
+        )} instead`
       ).toEqual([]);
 
       expect(
@@ -34,7 +34,7 @@ describe('Exercise 1', function () {
         `Expected to receive ['Looper', 'The Beach', 'Match Point', 'American History X','Birdman or (The Unexpected Virtue of Ignorance)'] when searching for movies between 118 to 120 minutes, but received ${findMoviesByDurRange(
           118,
           120
-        )}' instead`
+        )} instead`
       ).toEqual([
         'Looper',
         'The Beach',

@@ -18,7 +18,7 @@ describe('Exercise 2', function () {
         `Expected to receive ['Ice Age'] when searching for movies with year of 2002 and genre of Animation, but received ${findMoviesByYearAndGenre(
           2002,
           'Animation'
-        )}' instead`
+        )} instead`
       ).toEqual(['Ice Age']);
 
       expect(
@@ -26,7 +26,7 @@ describe('Exercise 2', function () {
         `Expected to receive ['The Last Samurai'] when searching for movies with year of 2003 and genre of History, but received ${findMoviesByYearAndGenre(
           2003,
           'History'
-        )}' instead`
+        )} instead`
       ).toEqual(['The Last Samurai']);
 
       expect(
@@ -34,7 +34,7 @@ describe('Exercise 2', function () {
         `Expected to receive ['Chinatown'] when searching for movies with year of 2003 and genre of History, but received ${findMoviesByYearAndGenre(
           1974,
           'Mystery'
-        )}' instead`
+        )} instead`
       ).toEqual(['Chinatown']);
     }
   });

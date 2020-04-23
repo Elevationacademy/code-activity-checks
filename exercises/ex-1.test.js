@@ -3,16 +3,17 @@ const reservations = require('../../server/reservations')
 let server, hasError
 
 
-beforeAll(async done => {
-    try {
-        server = require('../../server/server')
-    } catch (e) {
-        hasError = true
-    }
-    done()
-})
 
 describe('exercise1', () => {
+    beforeAll(async done => {
+        try {
+            server = require('../../server/server')
+        } catch (e) {
+            hasError = true
+        }
+        done()
+    })
+
     it(`You should create a 'post' route called '/reservations' which should add a new reservation to the reservations array`, async done => {
         if (hasError) {
             expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
@@ -37,8 +38,9 @@ describe('exercise1', () => {
         }
         done()
     })
+
+    afterAll(done => {
+        server.socket.close(done)
+    })
 })
 
-afterAll(done => {
-    server.socket.close(done)
-})

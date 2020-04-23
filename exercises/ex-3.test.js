@@ -3,16 +3,17 @@ const reservations = require('../../server/reservations')
 let server, hasError
 
 
-beforeAll(async done => {
-    try {
-        server = require('../../server/server')
-    } catch (e) {
-        hasError = true
-    }
-    done()
-})
 
 describe('exercise3', () => {
+    beforeAll(async done => {
+        try {
+            server = require('../../server/server')
+        } catch (e) {
+            hasError = true
+        }
+        done()
+    })
+
     it(`You should create a 'put' route called '/reservations' that receives one parameter 'resId' and an object with the keys 'prop' and 'value'. You should then update the reservation with id 'resId' and change the property in key prop to the value in key value and respond with the updated reservation object`, async done => {
         if (hasError) {
             expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
@@ -51,8 +52,8 @@ describe('exercise3', () => {
         }
         done()
     })
-})
 
-afterAll(done => {
-    server.socket.close(done)
+    afterAll(done => {
+        server.socket.close(done)
+    })
 })

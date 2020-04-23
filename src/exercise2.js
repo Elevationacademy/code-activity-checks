@@ -2,7 +2,7 @@
 const movies = require('./movies.json');
 //===================================
 
-const findMoviesByYearAndGenre = function (year, genre) {
+const findMoviesByYearAndGenre = function (genre, year) {
   let moviesFound = [];
   for (let movie of movies) {
     if (parseInt(movie.year) === year && movie.genres.includes(genre)) {

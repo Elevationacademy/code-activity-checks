@@ -14,18 +14,24 @@ describe('Exercise 3', function () {
       ).toBeTruthy();
     } else {
       expect(
-        findNumOfMoviesByActors(["John Lithgow"]),
-        `Expected to receive 2 when searching for number of movies with John Lithgow, but received ${findNumOfMoviesByActors(["John Lithgow"])}' instead`
+        findNumOfMoviesByActors(['John Lithgow']),
+        `Expected to receive 2 when searching for number of movies with John Lithgow, but received ${findNumOfMoviesByActors(
+          ['John Lithgow']
+        )} instead`
       ).toBe(2);
 
       expect(
-        findNumOfMoviesByActors(["Robert De Niro"]),
-        `Expected to receive 4 when searching for number of movies with Robert De Niro, but received ${findNumOfMoviesByActors(["Robert De Niro"])}' instead`
+        findNumOfMoviesByActors(['Robert De Niro']),
+        `Expected to receive 4 when searching for number of movies with Robert De Niro, but received ${findNumOfMoviesByActors(
+          ['Robert De Niro']
+        )} instead`
       ).toBe(4);
 
       expect(
-        findNumOfMoviesByActors(["David Schwimmer", "Simon Pegg"]),
-        `Expected to receive 1 when searching for number of movies with David Schwimmer and Simon Pegg, but received ${findNumOfMoviesByActors(["David Schwimmer", "Simon Pegg"])}' instead`
+        findNumOfMoviesByActors(['David Schwimmer', 'Simon Pegg']),
+        `Expected to receive 1 when searching for number of movies with David Schwimmer and Simon Pegg, but received ${findNumOfMoviesByActors(
+          ['David Schwimmer', 'Simon Pegg']
+        )} instead`
       ).toBe(1);
     }
   });

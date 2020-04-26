@@ -14,7 +14,7 @@ describe('exercise3', () => {
         done()
     })
 
-    it(`You should create a 'put' route called '/reservations' that receives one parameter 'resId' and an object with the keys 'prop' and 'value'. You should then update the reservation with id 'resId' and change the property in key prop to the value in key value and respond with the updated reservation object`, async done => {
+    it(`You should create a 'put' route called '/reservations' that receives one parameter 'resId' and a 'body' with the keys 'prop' and 'value'. You should then find the reservation with id 'resId' and update it's property that has name found in the body's 'prop' key to the value found in the body's 'value' key. The route should respond with the updated reservation object.`, async done => {
         if (hasError) {
             expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
         } else {
@@ -36,17 +36,17 @@ describe('exercise3', () => {
             ]
 
             for (let body of toUpdate) {
-                const  response = await Client.put(`reservations/${res.id}`, body)
+                const response = await Client.put(`reservations/${res.id}`, body)
                 if (response.error) {
-                    expect(false, 'Hmm, seems the code you submitted is crashing. Please check things like syntax and try again.').toBeTruthy()
+                    expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
                 } else {
                     let { prop, value } = body
                     value = prop === 'date' ? new Date(value) : value
                     const responseValue = prop === 'date' ? new Date(response[prop]) : response[prop]
                     const arrValue = prop === 'date' ? new Date(reservations[0][prop]) : reservations[0][prop]
 
-                    expect(responseValue, `We added this object to the reservations: ${JSON.stringify(res)}. When making a 'put' request to '/reservation/${res.id}' with the 'body' ${JSON.stringify(body)}, the object in response we received should have had property '${prop}' with value ${value}, but instead the value was ${responseValue}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(value)
-                    expect(arrValue, `We added this object to the reservations: ${JSON.stringify(res)}. When making a 'put' request to '/reservation/${res.id}' with the 'body' ${JSON.stringify(body)}, the reservation object with id '${res.id}' in the 'reservations' array should have had property '${prop}' with value ${value}, but instead the value was ${arrValue}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(value)
+                    expect(responseValue, `We added this object to the 'reservations' array: ${JSON.stringify(res)}. When making a 'put' request to '/reservation/${res.id}' with the 'body' ${JSON.stringify(body)}, the object in the response should have had property '${prop}' with value '${value}', but instead the value was ${responseValue}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(value)
+                    expect(arrValue, `We added this object to the 'reservations' array: ${JSON.stringify(res)}. When making a 'put' request to '/reservation/${res.id}' with the 'body' ${JSON.stringify(body)}, the reservation object with id '${res.id}' in the 'reservations' array should have had property '${prop}' with value '${value}', but instead the value was ${arrValue}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(value)
                 }
             }
         }

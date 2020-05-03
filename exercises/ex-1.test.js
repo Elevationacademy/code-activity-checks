@@ -43,28 +43,28 @@ describe('exercise1', () => {
       linksStr += links.at(i).instance().href;
     }
 
-    it('should have 3 Links in the App component', () => {
+    it('The App component should render 3 Links', () => {
       expect(
         links.length,
-        `There aren't 3 Links in the App component, instead it has ${links.length} Links`
+        `There aren't 3 Links in the App component, instead it renders ${links.length} Links`
       ).toBe(3);
     });
 
-    it('should have a Link to - /home', () => {
+    it('The App component should render a Link to - /home', () => {
       expect(
         linksStr,
         `Could not find a Link to /home. Please check your Links and try again`
       ).toContain('/home');
     });
 
-    it('should have a Links to - /inputs', () => {
+    it('The App component should render a Link to - /inputs', () => {
       expect(
         linksStr,
         `Could not find a Link to /inputs. Please check your Links and try again`
       ).toContain('/inputs');
     });
 
-    it('should have a Links to - /leaderboard', () => {
+    it('The App component should render a Link to - /leaderboard', () => {
       expect(
         linksStr,
         `Could not find a Link to /leaderboard. Please check your Links and try again`
@@ -85,22 +85,22 @@ describe('exercise1', () => {
     }, {});
   });
 
-  it('You should render the Home component for the /home route', () => {
+  it('You should render the Home component when accessing the /home route', () => {
     expect(
       pathMap['/home'],
-      'Could not find a Home component for the /home route, make sure your /home Route is rendering the Home component.'
+      'Could not find a Home component when accessing the /home route, make sure your /home Route is rendering the Home component.'
     ).toBe(Home);
   });
-  it('You should render the Inputs component for the /inputs route', () => {
+  it('You should render the Inputs component when accessing the /inputs route', () => {
     expect(
       pathMap['/inputs'],
-      'Could not find an Inputs component for the /inputs route, make sure your /inputs Route is rendering the Inputs component.'
+      'Could not find an Inputs component when accessing the /inputs route, make sure your /inputs Route is rendering the Inputs component.'
     ).toBe(Inputs);
   });
-  it('You should render the LeaderBoard component for the /leaderboard route', () => {
+  it('You should render the LeaderBoard component when accessing the /leaderboard route', () => {
     expect(
       pathMap['/leaderboard'],
-      'Could not find a LeaderBoard component for the /leaderboard route, make sure your /leaderboard Route is rendering the LeaderBoard component.'
+      'Could not find a LeaderBoard component when accessing the /leaderboard route, make sure your /leaderboard Route is rendering the LeaderBoard component.'
     ).toBe(LeaderBoard);
   });
 
@@ -117,29 +117,29 @@ describe('exercise1', () => {
   if (hasError) {
     expect(
       false,
-      'There was a problem while trying to invoke the addPlayer method'
+      'There was a problem while trying to invoke the addPlayer method. Check things like syntax and try again.'
     ).toBeTruthy();
   } else {
 
-    it('addPlayer method should increase counter by 1', () => {
+    it('The addPlayer method should increase the App component\'s counter property by 1', () => {
       expect(
         wrapper.instance().counter,
-        `Expected for the counter property to be 1 after initializing it to 0 and invoking addPlayer() method, but instead got ${wrapper.instance().counter}`
+        `After reassigning the App's counter property to 0 and invoking the addPlayer() method, expected the counter property to be 1, but instead got ${wrapper.instance().counter}`
       ).toBe(1);
     });
 
-    it('addPlayer method should add a player object to players array in state', () => {
+    it('The addPlayer method should add a player object to players array in state the App\s state', () => {
       expect(
         wrapper.state().players.length,
-        `Expected for a players array length of 1 after initializing it to [] (empty array) and invoking addPlayer() method, but instead got ${wrapper.state().players.length}`
+        `After reassigning the players array in state to [] (an empty array) and invoking the addPlayer() method, expected for the players array to have length of 1, but instead got ${wrapper.state().players.length}`
       ).toBe(1);
     });
 
-    it('addPlayer method should add a player object with a given name, score and id attributes', () => {
+    it('The addPlayer method should add a player object with a given name, score and id attributes', () => {
       expect(
         wrapper.state().players[0],
-        `Expected the players array to contain an object of - {id: 1, name: 'John', score: 90} after initializing the counter to 0 and invoking the addPlayer method with 'John' and 90 as name and score. Instead got the following players array - ${JSON.stringify(wrapper.state().players)}`
-      ).toEqual({id: 1, name: 'John', score: 90});
+        `After reassigning the App's counter property to 0 and invoking the addPlayer method with 'John' and 90 as name and score, expected the players array to contain the following object - {id: 1, name: 'John', score: 90}. Instead the players array was - ${JSON.stringify(wrapper.state().players)}`
+      ).toEqual({ id: 1, name: 'John', score: 90 });
     });
   }
 });

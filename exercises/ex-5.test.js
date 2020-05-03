@@ -30,7 +30,7 @@ describe('exercise5', () => {
             let expectedResponse = getTotal(reservations, month, year)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response, `After adding the data from the 'data.json' file (located in the server folder) to the 'reservations' array, and making a 'get' request to '/reservations/total/${month}/${year}', the route responded with the wrong object. The route should respond with ${JSON.stringify(expectedResponse)} but instead it responded with ${JSON.stringify(response)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedResponse)
             }
@@ -46,7 +46,7 @@ describe('exercise5', () => {
             let expectedResponse = getTotal(reservations, month, year, null, true)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response, `After adding the data from the 'data.json' file (located in the server folder) to the 'reservations' array, and making a 'get' request to '/reservations/total/${month}/${year}?population=true', the route responded with the wrong object. The route should respond with ${JSON.stringify(expectedResponse)} but instead it responded with ${JSON.stringify(response)}. Remember, when the 'population' query is provided you must return the total number of people found in the relevant reservations. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedResponse)
             }
@@ -62,7 +62,7 @@ describe('exercise5', () => {
             let expectedResponse = getTotal(reservations, month, year, day)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response, `After adding the data from the 'data.json' file (located in the server folder) to the 'reservations' array, and making a 'get' request to '/reservations/total/${month}/${year}?date=${day}', the route responded with the wrong object. The route should respond with ${JSON.stringify(expectedResponse)} but instead it responded with ${JSON.stringify(response)}. Remember, if the 'date' query is provided you must limit your total to only reservations made for that date. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedResponse)
             }
@@ -71,7 +71,7 @@ describe('exercise5', () => {
             expectedResponse = getTotal(reservations, month, year, day, true)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response, `After adding the data from the 'data.json' file (located in the server folder) to the reservations array, and making a 'get' request to '/reservations/total/${month}/${year}?date=${day}&population=true', the route responded with the wrong object. The route should respond with ${JSON.stringify(expectedResponse)} but instead it responded with ${JSON.stringify(response)}. Remember, if the 'date' query is provided you must limit your total to only reservations made for that date. Additionally, when the 'population' query is provided you must return the total number of people found in the reservations. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedResponse)
             }

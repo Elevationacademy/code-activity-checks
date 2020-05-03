@@ -26,7 +26,7 @@ describe('exercise2', () => {
 
             const response = await Client.get('reservations')
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response instanceof Array, `The '/reservations' 'get' route did not respond with an array. Make sure the route is sending only the 'reservations' array in the response.`).toBeTruthy()
                 expect(response.length, `When adding ${data.length} reservations to the 'reservations' array and then making a 'get' request to to the '/reservations' route, the array that was sent in the response was not the correct one (had length of ${response.length})`).toBe(data.length)

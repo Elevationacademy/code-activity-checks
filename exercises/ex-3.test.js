@@ -38,7 +38,7 @@ describe('exercise3', () => {
             for (let body of toUpdate) {
                 const response = await Client.put(`reservations/${res.id}`, body)
                 if (response.error) {
-                    expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                    expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
                 } else {
                     let { prop, value } = body
                     value = prop === 'date' ? new Date(value) : value

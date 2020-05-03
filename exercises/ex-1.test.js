@@ -26,7 +26,7 @@ describe('exercise1', () => {
             const response = await Client.post('reservations', reservation)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 expect(response.name, `When making a post request to the '/reservations' route with ${JSON.stringify(reservation)}, you should respond with the object that was added to the array, and it should have a key 'name' with value ${reservation.name}. Instead the name property found was ${response.name} and the full object received was ${JSON.stringify(response)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toBe(reservation.name)
                 expect(new Date(response.date), `When making a post request to the '/reservations' route with ${JSON.stringify(reservation)}, you should respond with the object that was added to the array and it should have a key 'date' with value ${reservation.date}. Instead the date property found was ${new Date(response.date)} and the full object received was ${JSON.stringify(response)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(reservation.date)

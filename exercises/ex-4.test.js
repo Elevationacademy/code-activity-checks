@@ -29,7 +29,7 @@ describe('exercise4', () => {
             const response = await Client.delete(`reservations/${resToDelete.id}`)
 
             if (response.error) {
-                expect(false, 'Hmm, seems the code you submitted is crashing or the route doesn\'t exist. Please check things like syntax and try again.').toBeTruthy()
+                expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
             } else {
                 const exists = reservations.some(r => r.id === resToDelete.id)
 

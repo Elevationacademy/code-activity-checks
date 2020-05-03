@@ -25,7 +25,7 @@ describe('exercise2', () => {
 
   // *** handleChange() tests ***
   // handleChange() with name property
-  it('handleChange should call setState with name property', () => {
+  it('The handleChange method should call setState with the name property', () => {
     const mockEvent = {
       target: {
         name: 'name',
@@ -52,17 +52,17 @@ describe('exercise2', () => {
     } else {
       expect(
         wrapper.state(),
-        `handleChange() did not change the state with the right name propety. When passing Jona in the name input field: the state should be - {name: 'Jona', score: null}, but instead got - {name: '${
+        `handleChange() did not change the state with the correct name property. When entering 'Jona' in the name input field: the state should be - {name: 'Jona', score: null}, but instead got - {name: '${
           wrapper.state().name
         }', score: ${
           wrapper.state().score
-        }}. Remember to - initiate the name and score propeties to null and to have name attribute of 'name' in the name's input field`
+        }}. Remember to - initiate the name and score propeties to null and to have the name attribute set to 'name' in the name's input field`
       ).toEqual(expected);
     }
   });
 
   // handleChange() with score property
-  it('handleChange should call setState with score property', () => {
+  it('handleChange should call setState with the score property', () => {
     const mockEvent = {
       target: {
         name: 'score',
@@ -89,18 +89,18 @@ describe('exercise2', () => {
     } else {
       expect(
         wrapper.state(),
-        `handleChange() did not change the state with the right score propety. When passing 100 in the score input field: the state should be - {name: null, score: '100'}, but instead got - {name: ${
+        `handleChange() did not change the state with the correct score property. When entering 100 in the score input field: the state should be - {name: null, score: '100'}, but instead got - {name: ${
           wrapper.state().name
         }, score: '${
           wrapper.state().score
-        }'}. Remember to - initiate the name and score propeties to null and to have name attribute of 'score' in the score's input field`
+        }'}. Remember to - initiate the name and score propeties to null and to have the name attribute set to 'score' in the score's input field`
       ).toEqual(expected);
     }
   });
 
   // *** inputs onChange and button onClick tests ***
   // name input
-  it('onChange should call handleChange on name change with the correct params', () => {
+  it('The onChange attribute on the name input should invoke the handleChange method (with the correct arguments) when the value of the name input changes', () => {
     let spy, mockEvent, nameIdTag, hasError;
     try {
       spy = jest.spyOn(wrapper.instance(), 'handleChange');
@@ -127,19 +127,19 @@ describe('exercise2', () => {
 
         expect(
           spy,
-          `onChange wasn't called in the name's input field with handleChange method`
+          `The onChange didn't invoke the handleChange method when entering text in the name's input field`
         ).toHaveBeenCalledWith(mockEvent);
       } else {
         expect(
           false,
-          "Could not find tag with id of 'name-input'. Make sure you give the name's input an id of 'name-input'"
+          "Could not find a tag with id of 'name-input'. Make sure you give the name's input an id of 'name-input'"
         ).toBeTruthy();
       }
     }
   });
 
   // score input
-  it('onChange should call handleChange on score change with the correct params', () => {
+  it('The onChange attribute on the score input should invoke the handleChange method (with the correct arguments) when the value of the score input changes', () => {
     let spy,mockEvent, scoreIdTag, hasError;
     try {
       spy = jest.spyOn(wrapper.instance(), 'handleChange');
@@ -165,19 +165,19 @@ describe('exercise2', () => {
         scoreIdTag.simulate('change', mockEvent);
         expect(
           spy,
-          `onChange wasn't called in the score's input field with handleChange method`
+          `The onChange didn't invoke the handleChange method when entering text in the score's input field`
         ).toHaveBeenCalledWith(mockEvent);
       } else {
         expect(
           false,
-          "Could not find tag with id of 'score-input'. Make sure that you give the score's input an id of 'score-input'"
+          "Could not find a tag with id of 'score-input'. Make sure that you give the score's input an id of 'score-input'"
         ).toBeTruthy();
       }
     }
   });
 
   // button onClick
-  it('onClick should call addPlayer when button is clicked', () => {
+  it('The onClick attribute should invoke the addPlayer method when the button is clicked', () => {
     let spy, mockEvent, submitIdTag, hasError;
     try {
       spy = jest.spyOn(wrapper.instance(), 'addPlayer');
@@ -203,12 +203,12 @@ describe('exercise2', () => {
         submitIdTag.simulate('click', mockEvent);
         expect(
           spy,
-          `onClick wasn't called with addPlayer method when clicking the button. Make sure that onClick attribute was given with addPlayer()`
+          `The onClick didn't invoke the addPlayer method when clicking the button. Make sure that the onClick attribute was provided with addPlayer`
         ).toHaveBeenCalledWith(mockEvent);
       } else {
         expect(
           false,
-          "Could not find tag with id of 'submit-btn'. Make sure that you give the submit button an id of 'submit-btn'"
+          "Could not find a tag with the id of 'submit-btn'. Make sure that you give the submit button an id of 'submit-btn'"
         ).toBeTruthy();
       }
     }
@@ -216,7 +216,7 @@ describe('exercise2', () => {
 
   // *** addPlayer() tests ***
   // addPlayer() with valid inputs
-  it("With valid inputs - Inputs' addPlayer() should alert the user and call App's addPlayer() with the correct params", () => {
+  it("When entering valid inputs - the Inputs' addPlayer() method should alert the user and invoke App's addPlayer() method with the correct arguments", () => {
     let hasError;
     try {
       wrapper.setState({
@@ -239,18 +239,18 @@ describe('exercise2', () => {
     } else {
       expect(
         window.alert,
-        `When state is set to - {name: "Jona", score: "100"}, while submit button was clicked, there was not an alert with the message - 'Jona was added with a score of 100'. Make sure you alert the user with the exact text`
+        `When the state is set to - {name: "Jona", score: "100"}, and the submit button is clicked, there was not an alert with the message - 'Jona was added with a score of 100'. Make sure you alert the user with the exact message provided.`
       ).toBeCalledWith(`Jona was added with a score of 100`);
 
       expect(
         mockAddPlayer,
-        `App's addPlayer method was not called with the correct name and score from Input's state. Make sure you parseInt score before invoking App's addPlayer() using props`
+        `App's addPlayer method was not invoked with the correct name and score from the Input's state. Make sure you parseInt score before invoking App's addPlayer() method using props`
       ).toHaveBeenCalledWith('Jona', 100);
     }
   });
 
   // addPlayer test with invalid inputs
-  it("With invalid input - Inputs' addPlayer() should alert the user when the inputs are invalid and not call on App's addPlayer method", () => {
+  it("When entering invalid inputs - the Inputs' addPlayer() method should alert the user that the inputs are invalid and not invoke the App's addPlayer method", () => {
     let hasError;
     try {
       wrapper.setState({
@@ -273,12 +273,12 @@ describe('exercise2', () => {
     } else {
       expect(
         window.alert,
-        `When state is set to - {name: "", score: "100"}, while submit button was clicked, there was not an alert with the message - 'Invalid Name and/or Score'. Make sure to use validateInputs() method correctly and alert the user with the exact text`
+        `When state is set to - {name: "", score: "100"}, and the submit button is clicked, there was not an alert with the message - 'Invalid Name and/or Score'. Make sure to use the validateInputs() method correctly and alert the user with the exact message provided.`
       ).toBeCalledWith(`Invalid Name and/or Score`);
 
       expect(
         mockAddPlayer,
-        `When state is set to - {name: "", score: "100"}, App's addPlayer method was called (even though the input is invalid). Make sure to use validateInputs() method correctly, when given false from that method you should not invoke the App's addPlayer method`
+        `When state is set to - {name: "", score: "100"}, the App's addPlayer method was invoked (even though the input is invalid). Make sure to use the validateInputs() method correctly - when that method returns false you should not invoke the App's addPlayer method`
       ).not.toHaveBeenCalled();
     }
   });

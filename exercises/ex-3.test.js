@@ -26,7 +26,7 @@ describe('exercise3', () => {
                 isComplete: false
             }
             reservations.length = 0
-            reservations.push(res)
+            reservations.push({ ...res })
 
             const toUpdate = [
                 { prop: 'isComplete', value: true },

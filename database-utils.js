@@ -1,19 +1,18 @@
 require('dotenv').config();
 const Keyv = require('keyv');
 const KeyvFile = require('keyv-file');
-const { Sequilize } = require('sequlize');
+const { Sequelize } = require('sequelize');
 
 class DatabaseUtils {
     constructor() {
-
         this.store = new Keyv({ store: new KeyvFile() }, { namespace: 'sqlpad' });
         if (process.env.SQL_CONNECTION_STRING) {
-            this.sequelizeInstance = new Sequilize(process.env.SQL_CONNECTION_STRING);
+            this.sequelizeInstance = new Sequelize(process.env.SQL_CONNECTION_STRING);
         }
     }
 
     async getUserInput() {
-        return Keyv.get('sql_results');
+        return this.store.get('sql_results');
     }
 
     async runQuery(query) {
@@ -25,9 +24,11 @@ class DatabaseUtils {
     }
 
     async close() {
-        return this.sequelizeInstance.close();
+        if (this.sequelizeInstance) {
+            return this.sequelizeInstance.close();
+        }
     }
     
 }
 
-export default DatabaseUtils;
+module.exports = DatabaseUtils;

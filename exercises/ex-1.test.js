@@ -1,7 +1,7 @@
 const DatabaseUtils = require('../database-utils');
 
 describe("Exercise 1", () => {
-    let { utils, results };
+    let { utils, results } = {};
     
     beforeAll(async (done) => {
         utils = new DatabaseUtils();

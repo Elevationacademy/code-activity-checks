@@ -16,6 +16,7 @@ describe('Exercise 1', function () {
       expect(false, `${error}`).toBeTruthy();
     }
   });
+  
 
   it("The Item class should have a method called use that decreases the value property by 5", function () {
     try {

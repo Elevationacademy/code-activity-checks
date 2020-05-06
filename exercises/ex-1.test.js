@@ -1,4 +1,4 @@
-const DatabaseUtils = require('../database-utils');
+const DatabaseUtils = require('../../database-utils');
 
 describe("Exercise 1", () => {
     let { utils, results } = {};

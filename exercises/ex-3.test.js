@@ -14,6 +14,7 @@ describe('Exercise 3', function () {
     }
   });
 
+
   it('The Instrument class should create an object with 2 properties: category and type - and they should be initialized in the constructor', function () {
     try {
       const Instrument = require(`../../src/Instrument`);

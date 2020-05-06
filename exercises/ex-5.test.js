@@ -22,6 +22,7 @@ describe('Exercise 5', function () {
     }
   });
 
+  
   it('The Store class should have the following methods - `rentItem`, `returnItem`, `addItem`, `repairItem`, and `addClient`', function () {
     try {
       const Store = require(`../../src/Store`);

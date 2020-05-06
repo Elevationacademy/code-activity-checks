@@ -21,6 +21,7 @@ describe('Exercise 4', function () {
     }
   });
 
+
   it("The Client class should have a method called checkoutItem that should push the item to the client's `rentedItems` array if the `rentedItems` array has less than 5 items AND the item's status is 'Available'", function () {
     try {
       const Client = require(`../../src/Client`);

@@ -35,6 +35,7 @@ describe('Exercise 2', function () {
     }
   });
 
+
   it('The Book class should have a method called use that decrease the value property by 5 if pages is greater than 50, or by 10 otherwise', function () {
     try {
       const Book = require(`../../src/Book`);
@@ -59,3 +60,6 @@ describe('Exercise 2', function () {
     }
   });
 });
+
+
+

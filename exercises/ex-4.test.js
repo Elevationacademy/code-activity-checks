@@ -1,5 +1,5 @@
 describe('Exercise 4', function () {
-  it('countMoviesByGenres function should receive no parameter, and return an object with key-value pairs of genre and number of movies that belong to that genre', function () {
+  it('The countMoviesByGenres function should receive no parameter, and return an object with key-value pairs of genre name and number of movies that belong to that genre', function () {
     try {
       let countMoviesByGenres = require('../../src/exercise4');
       expect(

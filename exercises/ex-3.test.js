@@ -1,5 +1,5 @@
 describe('Exercise 3', function () {
-  it('findNumOfMoviesByActors function should receive 1 parameter - actors array, and return the number of movies in which all the actors included in', function () {
+  it('The findNumOfMoviesByActors function should receive 1 parameter - `actors` which is an array, and return the number of movies in which included all the given actors', function () {
     try {
       let findNumOfMoviesByActors = require('../../src/exercise3');
       expect(

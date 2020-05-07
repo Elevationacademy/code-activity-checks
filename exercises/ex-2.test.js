@@ -1,5 +1,5 @@
 describe('Exercise 2', function () {
-  it('findMoviesByYearAndGenre function should receive 2 parameters (year and genre) and return an array with titles of movies with matching year and genre', function () {
+  it('The findMoviesByYearAndGenre function should receive 2 parameters (year and genre) and return an array with titles of movies with year and genre matching the parameters', function () {
     try {
       let findMoviesByYearAndGenre = require('../../src/exercise2');
       expect(

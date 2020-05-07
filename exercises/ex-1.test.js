@@ -1,5 +1,5 @@
 describe('Exercise 1', function () {
-  it('findMoviesByDurRange function should receive 2 parameters (minDur and maxDur) and return an array with titles of movies which duration is between minDur and maxDur (not included)', function () {
+  it('The findMoviesByDurRange function should receive 2 parameters (minDur and maxDur) and return an array with titles of movies which duration is between minDur and maxDur (not included)', function () {
     try {
       let findMoviesByDurRange = require('../../src/exercise1');
       expect(

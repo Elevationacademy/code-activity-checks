@@ -14,7 +14,7 @@ describe("Exercise 1", () => {
     });
 
     it('The query should contain at least 2 rows', () => {
-        expect(results.queryResults.length, `Your query only returned ${results.queryResults.length} results`).toBeGreaterThan(2);
+        expect(results.queryResults.rows.length, `Your query only returned ${results.queryResults.rows.length} results`).toBeGreaterThan(2);
     });
 
     it('The query should contain SELECT and not INSERT', () => {

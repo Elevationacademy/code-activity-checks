@@ -1,12 +1,7 @@
-
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { Product } from '../../src/stores/Product'
 import { isComputedProp, isObservableProp } from 'mobx'
 
 const data = require('../../src/utils/data.json')
-
-configure({ adapter: new Adapter() })
 
 let product, productToAdd
 describe("exercise1", () => {
@@ -48,10 +43,10 @@ describe("exercise1", () => {
             expect(isComputedProp(product, 'onSale'), `The 'onSale' property/method should be a MobX 'computed' property. The 'onSale' property/method which was found was not a MobX 'computed' property. Make sure you use the 'computed' decorator and the method is a 'get'ter.`).toBeTruthy()
 
             product.price = 110
-            expect(product.onSale, `When the product's price is ${product.price}, 'onSale' should return 'true'.`).toBeTruthy()
+            expect(product.onSale, `When the product's price is ${product.price}, 'onSale' should return 'true', instead it returned ${product.onSale}.`).toBeTruthy()
 
             product.price = 10
-            expect(product.onSale, `When the product's price is ${product.price}, 'onSale' should return 'false'.`).toBeFalsy()
+            expect(product.onSale, `When the product's price is ${product.price}, 'onSale' should return 'false', instead it returned ${product.onSale}.`).toBeFalsy()
         } else {
             expect(product.onSale, `Could not find an 'onSale' 'computed' property in the Product store.`).toBeDefined()
         }

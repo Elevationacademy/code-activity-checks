@@ -9,8 +9,10 @@ const promise = new Promise((resolve, reject) => {
 });
 
 describe('Exercise 3', () => {
-  let { getWantedCustomers, wantedCustomers } = require('../../src/exercise3');
+  let getWantedCustomers, wantedCustomers;
   try {
+    getWantedCustomers = require('../../src/exercise3').getWantedCustomers;
+    wantedCustomers = require('../../src/exercise3').wantedCustomers;
     getWantedCustomers(promise);
   } catch (error) {
     expect(false, `${error}`).toBeTruthy();
@@ -44,7 +46,6 @@ describe('Exercise 3', () => {
           balance: 30519,
         },
       ]);
-
     } catch (error) {
       expect(false, `${error}`).toBeTruthy();
     }

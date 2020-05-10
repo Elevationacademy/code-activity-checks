@@ -6,8 +6,10 @@ const promise = new Promise((resolve, reject) => {
 
 describe('Exercise 1', () => {
 
-  let { getRiskyCustomersInfo, info } = require('../../src/exercise1');
+  let getRiskyCustomersInfo, info
   try {
+    getRiskyCustomersInfo = require('../../src/exercise1').getRiskyCustomersInfo;
+    info = require('../../src/exercise1').info;
     getRiskyCustomersInfo(promise);
   } catch (error) {
     expect(false, `${error}`).toBeTruthy();

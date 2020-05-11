@@ -38,7 +38,7 @@ describe('Exercise 1', () => {
 
       expect(
         getRiskyCustomersInfo.toString().includes('async'),
-        `Expected the 'getRiskyCustomersInfo' function to NOT include the 'async' keyword to resolve the promise. Please make sure you use the then() method instead`
+        `Expected the 'getRiskyCustomersInfo' function to NOT be an 'async' function. Please make sure you use the then() method instead`
       ).toBeFalsy();
 
       expect(

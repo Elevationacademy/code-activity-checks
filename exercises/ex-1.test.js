@@ -15,7 +15,7 @@ describe('Exercise 1', () => {
     expect(false, `${error}`).toBeTruthy();
   }
 
-  it('getRiskyCustomersInfo should resolve a promise which contain a list of customers objects and update the info object with the number of risky customers (customers which balance in below -10,000$) and with the riskiest customer full name', function () {
+  it(`The 'getRiskyCustomersInfo' should resolve a promise which contains a list of customers objects and updates the 'info' object with the number of risky customers (customers which balance in below -10,000$) and with the full name of the riskiest customer.`, function () {
     try {
       expect(
         info.counter,
@@ -23,27 +23,27 @@ describe('Exercise 1', () => {
           info.counter
         } as the number of customers which balance is below -10,000$, which is ${
           info.counter > 16 ? 'higher' : 'lower'
-        } then the correct answer. Remember to use the then() keyword and to include an if statement to count the number of customers which balance is lower then -10,000$. Also remember that you should update the info object (the counter property)`
+        } than the correct answer. Remember to use the then() method and to include an if statement to count the number of customers whose balance is lower then -10,000$. Also remember that you should update the info object (the counter property)`
       ).toBe(16);
 
       expect(
         info.riskiestCustomer,
-        `The name of the riskiest customer was incorrect. We got ${info.riskiestCustomer} as the name of the riskiest customer. Rememeber that we expect to get the full name (firstName + ' ' + lastName) of the customer with the lowest balance value - this should be in the info object (the riskiestCustomer property)`
+        `The name of the riskiest customer was incorrect. We got ${info.riskiestCustomer} as the name of the riskiest customer. Rememeber that we expect to get the full name (firstName + ' ' + lastName) of the customer with the lowest balance - this should be stored in the info object (the riskiestCustomer property)`
       ).toBe('Nicole Hart');
 
       expect(
         getRiskyCustomersInfo.toString().includes('then'),
-        `Expected getRiskyCustomersInfo function to include the then() method to resolve the promise. Please make sure you use the then() method`
+        `Expected the 'getRiskyCustomersInfo' function to include the then() method to resolve the promise. Please make sure you use the then() method`
       ).toBeTruthy();
 
       expect(
         getRiskyCustomersInfo.toString().includes('async'),
-        `Expected getRiskyCustomersInfo function to NOT include the async keyword to resolve the promise. Please make sure you use the then() method instead`
+        `Expected the 'getRiskyCustomersInfo' function to NOT include the 'async' keyword to resolve the promise. Please make sure you use the then() method instead`
       ).toBeFalsy();
 
       expect(
         getRiskyCustomersInfo.toString().includes('await'),
-        `Expected getRiskyCustomersInfo function to NOT include the await keyword to resolve the promise. Please make sure you use the then() method instead`
+        `Expected the 'getRiskyCustomersInfo' function to NOT include the 'await' keyword to resolve the promise. Please make sure you use the then() method instead`
       ).toBeFalsy();
 
 

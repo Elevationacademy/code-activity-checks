@@ -1,12 +1,19 @@
 import { Shop } from '../../src/stores/Shop'
 import { Product } from '../../src/stores/Product'
-import { isComputedProp, isObservableArray } from 'mobx'
+import { isObservableArray } from 'mobx'
+import React from 'react'
+import { configure, mount, shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import App from '../../src/App'
+import { Provider } from 'mobx-react'
+
 
 const data = require('../../src/utils/data.json')
+configure({ adapter: new Adapter() })
 
 let shopStore
 describe("exercise2", () => {
-    beforeEach(()=> {
+    beforeEach(() => {
         shopStore = new Shop()
     })
     it(`The Shop store should have a 'products' property which is initialized to an empty array.`, () => {
@@ -25,33 +32,14 @@ describe("exercise2", () => {
             expect(shopStore.getProducts, `Could not find a 'getProducts' method in the Shop store.`).toBeDefined()
         }
     })
-    it(`The Shop store should have a 'findProductById' method which receives an 'id' as a parameter and return the product with the given id.`, () => {
-        if (shopStore.findProductById) {
-            expect(shopStore.findProductById.isMobxAction, `When running the code, we found that your 'findProductById' method was a MobX 'action'. The 'findProductById' method should not be a MobX 'action' because it is not changing an 'observable'.`).toBeFalsy()
-
-            shopStore.products = data.map(d => new Product(d.id, d.name, d.img, d.price, d.likes))
-            for (let product of data) {
-                const { id, name, img, price, likes } = product
-                const expectedProduct = new Product(id, name, img, price, likes)
-                const productReceived = shopStore.findProductById(expectedProduct.id)
-
-                expect(productReceived, `When invoking the 'findProductById' method with the 'id' ${id}, we should have received the following product: ${JSON.stringify(expectedProduct)}. Instead we received: ${JSON.stringify(productReceived)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedProduct)
-                expect(productReceived instanceof Product, `The product received when invoking the 'findProductById' method with 'id' ${id} was not an instance of the Product class. Make sure you every product in your products array is an instance of the Product class.`).toBeTruthy()
-            }
-        } else {
-            expect(shopStore.findProductById, `Could not find a 'findProductById' method in the Shop store.`).toBeDefined()
-        }
-    })
-    it(`The Shop store should have a 'computed' property called 'isProductsPopulated'.`, () => {
-        if (shopStore.isProductsPopulated !== undefined) {
-            expect(isComputedProp(shopStore, 'isProductsPopulated'), `The 'isProductsPopulated' property/method should be a MobX 'computed' property. The 'isProductsPopulated' property/method which was found was not a MobX 'computed' property. Make sure you use the 'computed' decorator and the method is a 'get'ter.`).toBeTruthy()
-
-            expect(shopStore.isProductsPopulated, `When the 'products' array is empty, the 'isProductsPopulated' property should return 'false', instead it returned ${shopStore.isProductsPopulated}.`).toBeFalsy()
-
-            shopStore.products = data.map(d => new Product(d.id, d.name, d.img, d.price, d.likes))
-            expect(shopStore.isProductsPopulated, `After adding products to the 'products' array, the 'isProductsPopulated' property should return 'true', instead it returned ${shopStore.isProductsPopulated}.`).toBeTruthy()
-        } else {
-            expect(shopStore.isProductsPopulated, `Could not find a 'isProductsPopulated' 'computed' property in the Shop store.`).toBeDefined()
-        }
+    it(`You should add your 'Shop' state from MobX into the 'Products' component. You should also access the state correctly and assign the 'shopStore' variable on line 10 with the 'injected' 'shopStore'.`, () => {
+        const stores = { shopStore }
+        const wrapper = mount(
+            <Provider {...stores}>
+                <App />
+            </Provider>
+        )
+        const products = wrapper.find('.product')
+        expect(products.length, `The products page is rendering ${products.length} products when is should be rendering ${data.length} products. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(data.length)
     })
 })

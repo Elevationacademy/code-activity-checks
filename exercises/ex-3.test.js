@@ -46,7 +46,7 @@ describe("exercise3", () => {
             expect(shopStore.isProductsPopulated, `Could not find a 'isProductsPopulated' 'computed' property in the Shop store.`).toBeDefined()
         }
     })
-    it(`You should add your 'Shop' state from MobX into the 'Products' component. You should also access the state correctly and assign the 'shopStore' variable on line 10 with the 'injected' 'shopStore'.`, () => {
+    it(`You should add your 'Shop' state from MobX into the 'ProductPage' component. You should also access the state correctly and assign the 'shopStore' variable on line 13 with the 'injected' 'shopStore'. Additionally, you should invoke the store's 'findProductById' method with the 'productId' variable and assign the returned product to the 'product' variable on line 14.`, () => {
         const stores = { shopStore }
         shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
         const expectedProduct = shopStore.products.find(p => p.id === 7)

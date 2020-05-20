@@ -42,18 +42,45 @@ describe('Exercise 4', () => {
   });
 
   it(`Should display an input with id=search-field, button with id=search-btn, and div with id="search-results", after clicking on the search button (span)`, async function (done) {
-    await page.click('#search')
-    let html = await page.content()
-    let searchField = $('#search-field', html)
-    let searchBtn = $('#search-btn', html)
-    let searchResults = $('#search-results', html)
-    expect(searchField.length, `Could not find a tag with id=search-field after clicking the search button (span). Use the on() method for dynamic event listener`).toBe(1)
-    expect(searchField[0].name, `The tag with id=search-field is not an 'input' tag, instead we got - ${searchField[0].name}. Make sure you're using the 'input' tag`).toBe('input')
-    expect(searchBtn.length, `Could not find a tag with id=search-btn after clicking the search button (span). Use the on() method for dynamic event listener`).toBe(1)
-    expect(searchBtn[0].name, `The tag with id=search-btn is not an 'button' tag, instead we got - ${searchBtn[0].name}. Make sure you're using the 'button' tag`).toBe('button')
-    expect(searchResults.length, `Could not find a tag with id=search-results after clicking the search button (span). Use the on() method for dynamic event listener`).toBe(1)
-    done()
-  })
+    try {
+      await page.click('#search');
+      let html = await page.content();
+      let searchField = $('#search-field', html);
+      let searchBtn = $('#search-btn', html);
+      let searchResults = $('#search-results', html);
+      expect(
+        searchField.length,
+        `Could not find a tag with id=search-field after clicking the search button (span). Use the on() method for dynamic event listener`
+      ).toBe(1);
+      expect(
+        searchField[0].name,
+        `The tag with id=search-field is not an 'input' tag, instead we got - ${searchField[0].name}. Make sure you're using the 'input' tag`
+      ).toBe('input');
+      expect(
+        searchBtn.length,
+        `Could not find a tag with id=search-btn after clicking the search button (span). Use the on() method for dynamic event listener`
+      ).toBe(1);
+      expect(
+        searchBtn[0].name,
+        `The tag with id=search-btn is not an 'button' tag, instead we got - ${searchBtn[0].name}. Make sure you're using the 'button' tag`
+      ).toBe('button');
+      expect(
+        searchResults.length,
+        `Could not find a tag with id=search-results after clicking the search button (span). Use the on() method for dynamic event listener`
+      ).toBe(1);
+
+      await page.click('#search');
+      html = await page.content();
+      searchField = $('#search-field', html);
+      expect(
+        searchField.length,
+        `Could not find one tag with id=search-field after clicking the search button (span) twice. Use the on() method for dynamic event listener and make sure you empty the container`
+      ).toBe(1);
+      done();
+    } catch (error) {
+      expect(false, `${error}`).toBeTruthy();
+    }
+  });
 
   it(`Should display a message containing an input after clicking the Search button`, async function (done) {
     try {
@@ -63,7 +90,10 @@ describe('Exercise 4', () => {
       let innerText = await page.evaluate(
         () => document.querySelector('#search-results').innerText
       );
-      expect(innerText.includes('Data'), `After insert the string 'Data' to the input (id=#search-field) and clicking the button (id=search), there was not a message in a div (id=search-results) containing the searched word. This is what we got in the div (id=search-results): ${innerText}`).toBeTruthy();
+      expect(
+        innerText.includes('Data'),
+        `After insert the string 'Data' to the input (id=#search-field) and clicking the button (id=search), there was not a message in a div (id=search-results) containing the searched word. This is what we got in the div (id=search-results): ${innerText}`
+      ).toBeTruthy();
       done();
     } catch (error) {
       expect(false, `${error}`).toBeTruthy();

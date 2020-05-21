@@ -28,13 +28,9 @@ describe("exercise2", () => {
         if (shopStore.getProducts) {
             expect(shopStore.getProducts.isMobxAction, `The 'getProducts' method should be a MobX 'action' because it changes an 'observable' property. The 'getProducts' method which was found was not a MobX 'action'.`).toBeTruthy()
 
-            shopStore.getProducts()
-            expect(shopStore.products.length, `After invoking the 'getProducts method in the Shop store, the 'products' array in the Shop store should have length of ${data.length}, but instead it had length of ${shopStore.products.length}`).toBe(data.length)
-            expect(shopStore.products, `After invoking the 'getProducts method in the Shop store, the 'products' array in the Shop store should have look like this: ${JSON.stringify(data)}. Instead it looked like this: ${JSON.stringify(shopStore.products)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(data)
-
-            let isInstance, hasError = false
+            let hasError = false
             try {
-                isInstance = shopStore.products[0] instanceof Product
+                shopStore.getProducts()
             } catch (e) {
                 hasError = true
             }
@@ -42,7 +38,9 @@ describe("exercise2", () => {
             if (hasError) {
                 expect(false, `The code you submitted is crashing. Please check things like syntax and try again. Additionally, make sure you are using the correct decorators.`).toBeTruthy()
             } else {
-                expect(isInstance, `The products in the 'products' array after invoking the 'getProducts' method should be instances of the Product store. When checking the 'products' array, the elements were not instances of the Product store.`).toBeTruthy()
+            expect(shopStore.products.length, `After invoking the 'getProducts method in the Shop store, the 'products' array in the Shop store should have length of ${data.length}, but instead it had length of ${shopStore.products.length}`).toBe(data.length)
+            expect(shopStore.products, `After invoking the 'getProducts method in the Shop store, the 'products' array in the Shop store should have look like this: ${JSON.stringify(data)}. Instead it looked like this: ${JSON.stringify(shopStore.products)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(data)
+            expect(shopStore.products[0] instanceof Product, `The products in the 'products' array after invoking the 'getProducts' method should be instances of the Product store. When checking the 'products' array, the elements were not instances of the Product store.`).toBeTruthy()
             }
         } else {
             expect(shopStore.getProducts, `Could not find a 'getProducts' method in the Shop store.`).toBeDefined()

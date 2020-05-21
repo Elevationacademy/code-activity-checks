@@ -34,12 +34,23 @@ describe("exercise2", () => {
     })
     it(`You should add your 'Shop' state from MobX into the 'Products' component. You should also access the state correctly and assign the 'shopStore' variable on line 10 with the 'injected' 'shopStore'.`, () => {
         const stores = { shopStore }
-        const wrapper = mount(
-            <Provider {...stores}>
-                <App />
-            </Provider>
-        )
-        const products = wrapper.find('.product')
-        expect(products.length, `The products page is rendering ${products.length} products when is should be rendering ${data.length} products. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(data.length)
+
+        let wrapper, hasError = false
+        try {
+            wrapper = mount(
+                <Provider {...stores}>
+                    <App />
+                </Provider>
+            )
+        } catch (e) {
+            hasError = true
+        }
+
+        if (hasError) {
+            expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
+        } else {
+            const products = wrapper.find('.product')
+            expect(products.length, `The products page is rendering ${products.length} products when is should be rendering ${data.length} products. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(data.length)
+        }
     })
 })

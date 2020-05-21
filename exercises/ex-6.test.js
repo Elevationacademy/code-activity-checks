@@ -115,8 +115,13 @@ describe("exercise6", () => {
             } else {
                 const expectedCart = [cartItem]
                 wrapper.find('.add-to-cart').simulate('click')
-                expect(shopStore.cart.length, `When clicking the 'add to cart' button for the ${productToDisplay.name} product, it is not being added to cart correctly. The cart should have a length of ${expectedCart.length} but instead it had length of ${shopStore.cart.length}. Make sure you are 'inject'ing the 'shopStore', accessing it correctly, and invoking it's add to cart method with the product's id (the product is already declared for you).`).toBe(expectedCart.length)
                 expect(shopStore.cart, `When clicking the 'add to cart' button for the ${productToDisplay.name} product, it is not being added to cart correctly. The cart should look like this: ${JSON.stringify(expectedCart)}, but instead is looked like this: ${JSON.stringify(shopStore.cart)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedCart)
+
+                if (!shopStore.cart) {
+                    shopStore.cart = []
+                }
+
+                expect(shopStore.cart.length, `When clicking the 'add to cart' button for the ${productToDisplay.name} product, it is not being added to cart correctly. The cart should have a length of ${expectedCart.length} but instead it had length of ${shopStore.cart.length}. Make sure you are 'inject'ing the 'shopStore', accessing it correctly, and invoking it's add to cart method with the product's id (the product is already declared for you).`).toBe(expectedCart.length)
 
                 cartItem.quantity++
                 wrapper.find('.add-to-cart').simulate('click')

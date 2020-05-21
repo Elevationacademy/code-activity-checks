@@ -14,7 +14,11 @@ configure({ adapter: new Adapter() })
 let shopStore
 describe("exercise5", () => {
     beforeEach(() => {
-        shopStore = new Shop()
+        try {
+            shopStore = new Shop()
+        } catch (e) {
+            shopStore = {}
+        }
     })
     it(`The Shop store should have a 'computed' property called 'cartQuantity'.`, () => {
         if (shopStore.cartQuantity !== undefined) {

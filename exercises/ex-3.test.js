@@ -15,7 +15,11 @@ configure({ adapter: new Adapter() })
 let shopStore
 describe("exercise3", () => {
     beforeEach(() => {
-        shopStore = new Shop()
+        try {
+            shopStore = new Shop()
+        } catch (e) {
+            shopStore = {}
+        }
     })
     it(`The Shop store should have a 'findProductById' method which receives an 'id' as a parameter and returns the product with the given id.`, () => {
         if (shopStore.findProductById) {

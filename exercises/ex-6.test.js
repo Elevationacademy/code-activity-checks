@@ -15,7 +15,11 @@ configure({ adapter: new Adapter() })
 let shopStore
 describe("exercise6", () => {
     beforeEach(() => {
-        shopStore = new Shop()
+        try {
+            shopStore = new Shop()
+        } catch (e) {
+            shopStore = {}
+        }
     })
     it(`The Shop store should have a 'deleteFromCart' method which receives an 'id' as a paramter and deletes that product from the cart. The method should be a MobX 'action'.`, () => {
         if (shopStore.deleteFromCart) {

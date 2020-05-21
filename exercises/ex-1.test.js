@@ -7,7 +7,11 @@ let product, productToAdd
 describe("exercise1", () => {
     beforeAll(() => {
         productToAdd = data[0]
-        product = new Product(productToAdd.id, productToAdd.name, productToAdd.img, productToAdd.price, productToAdd.likes)
+        try {
+            product = new Product(productToAdd.id, productToAdd.name, productToAdd.img, productToAdd.price, productToAdd.likes)
+        } catch (e) {
+            product = {}
+        }
     })
     it(`You must create a 'Product' store with the following properties: 'id', 'name', 'img', 'price', 'likes'. Since we need to track changes in 'likes' and 'price', those properties must be 'observable'.`, () => {
         expect(product.id, `The Product's 'id' property was not created properly. Expected the 'id' to be ${productToAdd.id}, instead it was ${product.id}.`).toBe(productToAdd.id)

@@ -14,7 +14,11 @@ configure({ adapter: new Adapter() })
 let shopStore
 describe("exercise2", () => {
     beforeEach(() => {
-        shopStore = new Shop()
+        try {
+            shopStore = new Shop()
+        } catch (e) {
+            shopStore = {}
+        }
     })
     it(`The Shop store should have a 'products' property which is initialized to an empty array.`, () => {
         expect(shopStore.products, `The 'products' property in the Shop store must be an empty array ([]), instead its' value was ${shopStore.products}`).toEqual([])

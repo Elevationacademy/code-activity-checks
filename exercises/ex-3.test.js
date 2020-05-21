@@ -47,43 +47,34 @@ describe("exercise3", () => {
         }
     })
     it(`You should add your 'Shop' state from MobX into the 'ProductPage' component. You should also access the state correctly and assign the 'shopStore' variable on line 13 with the 'injected' 'shopStore'. Additionally, you should invoke the store's 'findProductById' method with the 'productId' variable and assign the returned product to the 'product' variable on line 14.`, () => {
-        let hasError = false
+        shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
+        const expectedProduct = shopStore.products.find(p => p.id === 7)
+        const matchProps = { params: { productId: `${expectedProduct.id}` } }
 
+        const stores = { shopStore }
+
+        let wrapper
+        let hasError = false
         try {
-            shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
-            const expectedProduct = shopStore.products.find(p => p.id === 7)
-            const matchProps = { params: { productId: `${expectedProduct.id}` } }
+            wrapper = mount(
+                <Provider {...stores}>
+                    <MemoryRouter>
+                        <ProductPage match={matchProps} />
+                    </MemoryRouter>
+                </Provider>
+            )
         } catch (e) {
             hasError = true
         }
 
         if (hasError) {
-            expect(false, `The app seems to be crashing. Make sure your 'Product' store is complete and that all the syntax is correct.`).toBeTruthy()
+            expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
         } else {
-            const stores = { shopStore }
-            hasError = false
-            let wrapper
-            try {
-                wrapper = mount(
-                    <Provider {...stores}>
-                        <MemoryRouter>
-                            <ProductPage match={matchProps} />
-                        </MemoryRouter>
-                    </Provider>
-                )
-            } catch (e) {
-                hasError = true
-            }
+            const product = wrapper.find(Product)
+            expect(product.length, `The product page is not rendering a single product. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(1)
 
-            if (hasError) {
-                expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
-            } else {
-                const product = wrapper.find(Product)
-                expect(product.length, `The product page is not rendering a single product. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(1)
-
-                const prop = product.first().props().product
-                expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable on line 14.`).toEqual(expectedProduct)
-            }
+            const prop = product.first().props().product
+            expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable on line 14.`).toEqual(expectedProduct)
         }
     })
 })

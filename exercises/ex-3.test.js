@@ -25,14 +25,24 @@ describe("exercise3", () => {
         if (shopStore.findProductById) {
             expect(shopStore.findProductById.isMobxAction, `When running the code, we found that your 'findProductById' method was a MobX 'action'. The 'findProductById' method should not be a MobX 'action' because it is not changing an 'observable'.`).toBeFalsy()
 
-            shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
-            for (let product of data) {
-                const { id, name, img, price, likes } = product
-                const expectedProduct = new Prod(id, name, img, price, likes)
-                const productReceived = shopStore.findProductById(expectedProduct.id)
+            let hasError = false
+            try {
+                shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
+            } catch (e) {
+                hasError = true
+            }
 
-                expect(productReceived, `When invoking the 'findProductById' method with the 'id' ${id}, we should have received the following product: ${JSON.stringify(expectedProduct)}. Instead we received: ${JSON.stringify(productReceived)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedProduct)
-                expect(productReceived instanceof Prod, `The product received when invoking the 'findProductById' method with 'id' ${id} was not an instance of the Product class. Make sure you every product in your products array is an instance of the Product class.`).toBeTruthy()
+            if (hasError) {
+                expect(false, `The code you submitted is crashing. Please check things like syntax and try again. Additionally, make sure you are using the correct decorators.`).toBeTruthy()
+            } else {
+                for (let product of data) {
+                    const { id, name, img, price, likes } = product
+                    const expectedProduct = new Prod(id, name, img, price, likes)
+                    const productReceived = shopStore.findProductById(expectedProduct.id)
+
+                    expect(productReceived, `When invoking the 'findProductById' method with the 'id' ${id}, we should have received the following product: ${JSON.stringify(expectedProduct)}. Instead we received: ${JSON.stringify(productReceived)}. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedProduct)
+                    expect(productReceived instanceof Prod, `The product received when invoking the 'findProductById' method with 'id' ${id} was not an instance of the Product class. Make sure you every product in your products array is an instance of the Product class.`).toBeTruthy()
+                }
             }
         } else {
             expect(shopStore.findProductById, `Could not find a 'findProductById' method in the Shop store.`).toBeDefined()
@@ -44,41 +54,61 @@ describe("exercise3", () => {
 
             expect(shopStore.isProductsPopulated, `When the 'products' array is empty, the 'isProductsPopulated' property should return 'false', instead it returned ${shopStore.isProductsPopulated}.`).toBeFalsy()
 
-            shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
-            expect(shopStore.isProductsPopulated, `After adding products to the 'products' array, the 'isProductsPopulated' property should return 'true', instead it returned ${shopStore.isProductsPopulated}.`).toBeTruthy()
+            let hasError = false
+            try {
+                shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
+            } catch (e) {
+                hasError = true
+            }
+
+            if (hasError) {
+                expect(false, `The code you submitted is crashing. Please check things like syntax and try again. Additionally, make sure you are using the correct decorators.`).toBeTruthy()
+            } else {
+                expect(shopStore.isProductsPopulated, `After adding products to the 'products' array, the 'isProductsPopulated' property should return 'true', instead it returned ${shopStore.isProductsPopulated}.`).toBeTruthy()
+            }
         } else {
             expect(shopStore.isProductsPopulated, `Could not find a 'isProductsPopulated' 'computed' property in the Shop store.`).toBeDefined()
         }
     })
     it(`You should add your 'Shop' state from MobX into the 'ProductPage' component. You should also access the state correctly and assign the 'shopStore' variable on line 13 with the 'injected' 'shopStore'. Additionally, you should invoke the store's 'findProductById' method with the 'productId' variable and assign the returned product to the 'product' variable on line 14.`, () => {
-        shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
-        const expectedProduct = shopStore.products.find(p => p.id === 7)
-        const matchProps = { params: { productId: `${expectedProduct.id}` } }
-
-        const stores = { shopStore }
-
-        let wrapper
         let hasError = false
         try {
-            wrapper = mount(
-                <Provider {...stores}>
-                    <MemoryRouter>
-                        <ProductPage match={matchProps} />
-                    </MemoryRouter>
-                </Provider>
-            )
+            shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
         } catch (e) {
             hasError = true
         }
 
         if (hasError) {
-            expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
+            expect(false, `The code you submitted is crashing. Please check things like syntax and try again. Additionally, make sure you are using the correct decorators.`).toBeTruthy()
         } else {
-            const product = wrapper.find(Product)
-            expect(product.length, `The product page is not rendering a single product. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(1)
+            const expectedProduct = shopStore.products.find(p => p.id === 7)
+            const matchProps = { params: { productId: `${expectedProduct.id}` } }
 
-            const prop = product.first().props().product
-            expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable on line 14.`).toEqual(expectedProduct)
+            const stores = { shopStore }
+
+            let wrapper
+            let hasError = false
+            try {
+                wrapper = mount(
+                    <Provider {...stores}>
+                        <MemoryRouter>
+                            <ProductPage match={matchProps} />
+                        </MemoryRouter>
+                    </Provider>
+                )
+            } catch (e) {
+                hasError = true
+            }
+
+            if (hasError) {
+                expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
+            } else {
+                const product = wrapper.find(Product)
+                expect(product.length, `The product page is not rendering a single product. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(1)
+
+                const prop = product.first().props().product
+                expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable on line 14.`).toEqual(expectedProduct)
+            }
         }
     })
 })

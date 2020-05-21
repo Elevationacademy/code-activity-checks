@@ -53,31 +53,43 @@ describe("exercise5", () => {
     })
     it(`You should add your 'Shop' state from MobX into the 'Navbar' component. You should also access the state correctly and assign the 'shopStore' variable on line 12 with the 'injected' 'shopStore'.`, () => {
         const stores = { shopStore }
-        shopStore.products = data.map(d => new Product(d.id, d.name, d.img, d.price, d.likes))
-        const item1 = new Product(data[0].id, data[0].name, data[0].img, data[0].price, data[0].likes)
-        const item2 = new Product(data[1].id, data[1].name, data[1].img, data[1].price, data[1].likes)
-        shopStore.cart = [{ item: item1, quantity: 1 }, { item: item2, quantity: 2 }]
 
-        let wrapper, hasError = false
+        let item1, item2, hasError = false
         try {
-            wrapper = mount(
-                <Provider {...stores}>
-                    <MemoryRouter>
-                        <Navbar />
-                    </MemoryRouter>
-                </Provider>
-            )
+            shopStore.products = data.map(d => new Product(d.id, d.name, d.img, d.price, d.likes))
+            item1 = new Product(data[0].id, data[0].name, data[0].img, data[0].price, data[0].likes)
+            item2 = new Product(data[1].id, data[1].name, data[1].img, data[1].price, data[1].likes)
         } catch (e) {
             hasError = true
         }
 
         if (hasError) {
-            expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
+            expect(false, `The code you submitted is crashing. Please check things like syntax and try again. Additionally, make sure you are using the correct decorators.`).toBeTruthy()
         } else {
-            const cartTotal = shopStore.cart.reduce((acc, cur) => acc + cur.item.price * cur.quantity, 0)
-            const cartInfo = wrapper.find('#cart-info').first()
-            expect(cartInfo.text().includes('3'), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
-            expect(cartInfo.text().includes(`${cartTotal}`), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
+            shopStore.cart = [{ item: item1, quantity: 1 }, { item: item2, quantity: 2 }]
+
+            let wrapper
+            hasError = false
+            try {
+                wrapper = mount(
+                    <Provider {...stores}>
+                        <MemoryRouter>
+                            <Navbar />
+                        </MemoryRouter>
+                    </Provider>
+                )
+            } catch (e) {
+                hasError = true
+            }
+
+            if (hasError) {
+                expect(false, `The component is not accessing the 'Shop' store correctly. Make sure you are 'inject'ing it into the component.`).toBeTruthy()
+            } else {
+                const cartTotal = shopStore.cart.reduce((acc, cur) => acc + cur.item.price * cur.quantity, 0)
+                const cartInfo = wrapper.find('#cart-info').first()
+                expect(cartInfo.text().includes('3'), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
+                expect(cartInfo.text().includes(`${cartTotal}`), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
+            }
         }
     })
 })

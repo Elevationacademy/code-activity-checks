@@ -70,7 +70,7 @@ describe("exercise3", () => {
             expect(shopStore.isProductsPopulated, `Could not find a 'isProductsPopulated' 'computed' property in the Shop store.`).toBeDefined()
         }
     })
-    it(`You should add your 'Shop' state from MobX into the 'ProductPage' component. You should also access the state correctly and assign the 'shopStore' variable on line 13 with the 'injected' 'shopStore'. Additionally, you should invoke the store's 'findProductById' method with the 'productId' variable and assign the returned product to the 'product' variable on line 14.`, () => {
+    it(`You should add your 'Shop' state from MobX into the 'ProductPage' component. You should also access the state correctly and assign the 'shopStore' variable in the 'render' method with the 'injected' 'shopStore'. Additionally, you should invoke the store's 'findProductById' method with the 'productId' variable and assign the returned product to the 'product' variable in the 'render' method.`, () => {
         let hasError = false
         try {
             shopStore.products = data.map(d => new Prod(d.id, d.name, d.img, d.price, d.likes))
@@ -107,7 +107,7 @@ describe("exercise3", () => {
                 expect(product.length, `The product page is not rendering a single product. Make sure that that your component 'observes' state, the store is 'injected' to the component, and that you are accessing the injected store correctly through props.`).toBe(1)
 
                 const prop = product.first().props().product
-                expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable on line 14.`).toEqual(expectedProduct)
+                expect(prop, `You did not use the 'Shop' store's 'findProductById' method correctly. Make sure you are invoking it with the 'productId' variable (declared for you) and assigning the return value to the 'product' variable in the 'render' method.`).toEqual(expectedProduct)
             }
         }
     })

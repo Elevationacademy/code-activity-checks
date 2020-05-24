@@ -51,7 +51,7 @@ describe("exercise5", () => {
             expect(shopStore.cartTotal, `Could not find a 'cartTotal' 'computed' property in the Shop store.`).toBeDefined()
         }
     })
-    it(`You should add your 'Shop' state from MobX into the 'Navbar' component. You should also access the state correctly and assign the 'shopStore' variable on line 12 with the 'injected' 'shopStore'.`, () => {
+    it(`You should add your 'Shop' state from MobX into the 'Navbar' component. You should also access the state correctly and assign the 'shopStore' variable in the 'render' method with the 'injected' 'shopStore'.`, () => {
         const stores = { shopStore }
 
         let item1, item2, hasError = false
@@ -87,8 +87,8 @@ describe("exercise5", () => {
             } else {
                 const cartTotal = shopStore.cart.reduce((acc, cur) => acc + cur.item.price * cur.quantity, 0)
                 const cartInfo = wrapper.find('#cart-info').first()
-                expect(cartInfo.text().includes('3'), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
-                expect(cartInfo.text().includes(`${cartTotal}`), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the 'shopStore' to the 'shopStore' variable on line 12.`).toBeTruthy()
+                expect(cartInfo.text().includes('3'), `The 'Navbar' component is not accessing the 'Shop' store correctly. . Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the shopStore to the 'shopStore' variable in the 'render' method.`).toBeTruthy()
+                expect(cartInfo.text().includes(`${cartTotal}`), `The 'Navbar' component is not accessing the 'Shop' store correctly. Make sure that that your component 'observes' state, the store is 'injected' to the component, you are accessing the injected store correctly through props, and that you are assigning the shopStore to the 'shopStore' variable in the 'render' method.`).toBeTruthy()
             }
         }
     })

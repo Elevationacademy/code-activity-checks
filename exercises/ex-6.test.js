@@ -57,7 +57,7 @@ describe("exercise6", () => {
             expect(shopStore.deleteFromCart, `Could not find an 'deleteFromCart' method in the Shop store.`).toBeDefined()
         }
     })
-    it(`You should add your 'Shop' state from MobX into the 'Cart' component. You should also access the state correctly and assign the 'shopStore' variable on line 11 with the 'injected' 'shopStore'.`, () => {
+    it(`You should add your 'Shop' state from MobX into the 'Cart' component. You should also access the state correctly and assign the 'shopStore' variable in the 'render' method with the 'injected' 'shopStore'.`, () => {
         const stores = { shopStore }
         let item1, item2, hasError = false
         try {

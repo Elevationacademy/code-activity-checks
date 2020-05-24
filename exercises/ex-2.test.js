@@ -46,7 +46,7 @@ describe("exercise2", () => {
             expect(shopStore.getProducts, `Could not find a 'getProducts' method in the Shop store.`).toBeDefined()
         }
     })
-    it(`You should add your 'Shop' state from MobX into the 'Products' component. You should also access the state correctly and assign the 'shopStore' variable on line 10 with the 'injected' 'shopStore'.`, () => {
+    it(`You should add your 'Shop' state from MobX into the 'Products' component. You should also access the state correctly and assign the 'shopStore' variable in the 'render' method with the 'injected' 'shopStore'.`, () => {
         const stores = { shopStore }
 
         let wrapper, hasError = false

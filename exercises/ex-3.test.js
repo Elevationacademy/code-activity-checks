@@ -43,13 +43,13 @@ describe('Exercise 3', function () {
   it(`The 'moviesObject' should have a 'modifyMovies' key whose value is a method that receives a function and invokes it with the 'movies' array`, function () {
     try {
       const moviesObject = require('../../src/exercise3');
-      const makeSequal = function (movies) {
+      const makeSequel = function (movies) {
         for (let index in movies) {
           movies[index] += `: Part II`;
         }
       };
       moviesObject.movies = ['The Godfather', 'Back to the Future']
-      moviesObject.modifyMovies(makeSequal)
+      moviesObject.modifyMovies(makeSequel)
       const movies = moviesObject.movies
       expect(movies, `After invoking the 'modifyMovies' method with a 'makeSequel' function (which was created by us), expected to recieve ["The Godfather: Part II", "Back to the Future: Part II"] as the value of the 'movies' property (of 'moviesObject'), but instead got - ${JSON.stringify(movies)}.  Make sure 'modifyMovies' receives a function as a parameter and invokes it with the 'movies' array. Use 'this'`).toEqual(["The Godfather: Part II","Back to the Future: Part II"])
 
@@ -61,9 +61,9 @@ describe('Exercise 3', function () {
   it(`The 'moviesObject' should have a 'modifyMovies' key whose value is a method that receives a function and invokes it with the 'movies' array. This method should be able to use the 'makeSequel' and 'addCounter' functions properly`, function () {
     try {
       const moviesObject = require('../../src/exercise3');
-      const { makeSequal, addCounter } = require('../../src/exercise2');
+      const { makeSequel, addCounter } = require('../../src/exercise2');
       moviesObject.movies = ['The Godfather', 'Back to the Future']
-      moviesObject.modifyMovies(makeSequal)
+      moviesObject.modifyMovies(makeSequel)
       const movies = moviesObject.movies
       expect(movies, `After invoking the 'modifyMovies' method with the 'makeSequel' function, expected to get ["The Godfather: Part II", "Back to the Future: Part II"] as the value of the 'movies' property (of 'moviesObject') , but instead got - ${JSON.stringify(movies)}.  Make sure 'modifyMovies' receives a function as a parameter and invokes it with the 'movies' array. Use 'this'`).toEqual(["The Godfather: Part II","Back to the Future: Part II"])
 

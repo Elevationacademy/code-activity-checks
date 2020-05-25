@@ -44,9 +44,9 @@ describe('Exercise 2', function () {
 
   it(`The 'makeSequel' function should receive an array of strings and add ': Part II' to each one of them`, function () {
     try {
-      const { makeSequal} = require('../../src/exercise2');
+      const { makeSequel} = require('../../src/exercise2');
       const movies = ['The Godfather', 'Back to the Future']
-      makeSequal(movies)
+      makeSequel(movies)
       expect(movies, `After invoking the 'makeSequel' function with an array of ["The Godfather", "Back to the Future"], expected to get ["The Godfather: Part II", "Back to the Future: Part II"], but instead got - ${JSON.stringify(movies)}.  Make sure 'makeSequel' iterates over the array and adds ': Part II' to each one of its elements`).toEqual(['The Godfather: Part II', 'Back to the Future: Part II'])
     } catch (error) {
       expect(false, `${error}`).toBeTruthy();
@@ -67,16 +67,15 @@ describe('Exercise 2', function () {
   it(`The 'moviesModule' should return a 'modifyMovies' function which receives a function and invokes it with the 'movies' array`, function () {
     try {
       const { moviesModule } = require('../../src/exercise2');
-      const makeSequal = function (movies) {
+      const makeSequel = function (movies) {
         for (let index in movies) {
           movies[index] += `: Part II`;
         }
       };
       const m = moviesModule()
-      m.modifyMovies(makeSequal)
+      m.modifyMovies(makeSequel)
       const movies = m.getMovies()
       expect(movies, `After invoking the 'modifyMovies' function with a 'makeSequel' function (which was created by us), expected to get ["The Godfather: Part II", "Back to the Future: Part II"], but instead got - ${JSON.stringify(movies)}.  Make sure 'modifyMovies' receives a function as a parameter and invokes it with the 'movies' array`).toEqual(["The Godfather: Part II","Back to the Future: Part II"])
-
     } catch (error) {
       expect(false, `${error}`).toBeTruthy();
     }
@@ -84,9 +83,9 @@ describe('Exercise 2', function () {
 
   it(`The 'moviesModule' should return a 'modifyMovies' function which receives a function and invokes it with the 'movies' array. This function should be able to use the 'makeSequel' and 'addCounter' functions properly`, function () {
     try {
-      const { moviesModule, makeSequal, addCounter } = require('../../src/exercise2');
+      const { moviesModule, makeSequel, addCounter } = require('../../src/exercise2');
       const m = moviesModule()
-      m.modifyMovies(makeSequal)
+      m.modifyMovies(makeSequel)
       const movies = m.getMovies()
       expect(movies, `After invoking the 'modifyMovies' function with the 'makeSequel' function, expected to get ["The Godfather: Part II", "Back to the Future: Part II"], but instead got - ${JSON.stringify(movies)}. Make sure 'modifyMovies' receives a function as a parameter and invokes it with the 'movies' array`).toEqual(["The Godfather: Part II","Back to the Future: Part II"])
 

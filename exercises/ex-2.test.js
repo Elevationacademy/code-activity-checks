@@ -7,7 +7,7 @@ const { getCommitByMessage } = require('../utils')
 
 describe('Exercise 2', () => {
   const branchName = 'readme'
-  const commitMessage = 'added readme'
+  const commitMessage = 'readme'
 
   it(`You should create a new branch called '${branchName}'.`, async (done) => {
     const branch = await git.branch()

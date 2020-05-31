@@ -8,7 +8,7 @@ const { getCommitByMessage } = require('../utils')
 describe('Exercise 3', () => {
   const srcBranchName = 'readme'
   const branchName = 'master'
-  const commitMessage = 'added readme'
+  const commitMessage = 'readme'
 
   it(`You should merge your '${srcBranchName}' branch to your '${branchName}' branch.`, async (done) => {
     try {

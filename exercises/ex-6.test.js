@@ -103,7 +103,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isMargin,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') do not have left or right margins. Hint: try using the padding property for the #container element`
+        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') do not have space on the left or right sides. Make sure to add space on both sides as per the provided image`
       ).toBeTruthy();
 
       let isEqualMargin = true;
@@ -114,7 +114,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isEqualMargin,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') is not positioned around the center of the element with id of 'nav-bar'. Hint: try using the padding property for the #container element`
+        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') do not have equal space on the left or right sides. Make sure to add equal space on both sides as per the provided image`
       ).toBeTruthy();
       done();
     } catch (error) {

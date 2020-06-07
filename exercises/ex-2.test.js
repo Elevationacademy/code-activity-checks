@@ -121,6 +121,26 @@ describe('Exercise 2', () => {
     }
   });
 
+  it(`The height of the logo image (the element with the id of 'logo') should be bigger than the height of the element with id of 'logo-title'`, async function (done) {
+    try {
+      const logoElem = await page.$('#logo');
+      expect(logoElem, `Could not find an element with id of 'logo'`).toBeTruthy();
+      const logoTitleElem = await page.$('#logo-title');
+      expect(logoTitleElem, `Could not find an element with id of 'logo-title'`).toBeTruthy();
+      const logoBox = await logoElem.boxModel();
+      const logoTitleBox = await logoTitleElem.boxModel();
+      const logoHeight = logoBox.height
+      const logoTitleHeight = logoTitleBox.height
+      expect(
+        logoHeight>logoTitleHeight,
+        `The height of the logo image (the element with the id of 'logo') is not bigger than the height of the element with id of 'logo-title'`
+      ).toBeTruthy();
+      done();
+    } catch (error) {
+      expect(false, `${error}`).toBeTruthy();
+    }
+  });
+
   afterAll(async (done) => {
     done();
   });

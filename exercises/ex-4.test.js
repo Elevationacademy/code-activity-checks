@@ -20,12 +20,12 @@ describe('Exercise 4', () => {
     html = await page.content();
   });
 
-  it(`There should be an element with an id of 'tour' inside an element with an id of 'container'. Inside this element there should be a <h2> element and four elements with class of 'dates'`, async function (done) {
+  it(`There should be an element with an id of 'tour' inside an element with an id of 'container'. Inside this element there should be a <h2> element and four elements with class of 'date'`, async function (done) {
     try {
       const container = $('#container', html);
       const tour = $('#tour', container);
       const h2Tag = $('h2', tour);
-      const dates = $('.dates', tour);
+      const dates = $('.date', tour);
       expect(container.length, `Could not find an element with an id of 'container'`).toBe(1);
       expect(
         tour.length,
@@ -37,7 +37,7 @@ describe('Exercise 4', () => {
       ).toBe(1);
       expect(
         dates.length,
-        `Could not find four elements with class of 'dates' inside an element with id of 'tour', instead found - ${dates.length}`
+        `Could not find four elements with class of 'date' inside an element with id of 'tour', instead found - ${dates.length}`
       ).toBe(4);
       done();
     } catch (error) {
@@ -136,9 +136,9 @@ describe('Exercise 4', () => {
     }
   });
 
-  it(`The elements with class of 'dates' inside the element with id of 'tour' should have color of #1e2f4d (rgb(30, 47, 77)), background-color of #ffffff (rgb(255, 255, 255)) and font-family of "Miriam Libre", sans-serif`, async function (done) {
+  it(`The elements with class of 'date' inside the element with id of 'tour' should have color of #1e2f4d (rgb(30, 47, 77)), background-color of #ffffff (rgb(255, 255, 255)) and font-family of "Miriam Libre", sans-serif`, async function (done) {
     try {
-      const elems = ['body', '#container', '#tour', '.dates'];
+      const elems = ['body', '#container', '#tour', '.date'];
       const expectedProps = {
         bgColor: 'rgb(255, 255, 255)',
         fFamily: 'Miriam Libre',
@@ -148,19 +148,19 @@ describe('Exercise 4', () => {
       if (isColor == undefined)
         expect(
           false,
-          `Could not find one or more elements with an id of 'container', 'tour' or elements with class of 'dates'`
+          `Could not find one or more elements with an id of 'container', 'tour' or elements with class of 'date'`
         ).toBeTruthy();
       expect(
         isColor,
-        `At least one of the four elements with class of 'dates' (and their ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
+        `At least one of the four elements with class of 'date' (and their ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
       ).toBeTruthy();
       expect(
         isBGColor,
-        `At least one of the four elements with class of 'dates' (and their ancestors) do not have a background-color of #ffffff (rgb(255, 255, 255))`
+        `At least one of the four elements with class of 'date' (and their ancestors) do not have a background-color of #ffffff (rgb(255, 255, 255))`
       ).toBeTruthy();
       expect(
         isFont,
-        `At least one of the four elements with class of 'dates' (and their ancestors) do not have a font-family of "Miriam Libre", sans-serif`
+        `At least one of the four elements with class of 'date' (and their ancestors) do not have a font-family of "Miriam Libre", sans-serif`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -168,10 +168,10 @@ describe('Exercise 4', () => {
     }
   });
 
-  it(`The elements with class of 'dates' should all have inner HTML that contain the string '2071'`, async function (done) {
+  it(`The elements with class of 'date' should all have inner HTML that contain the string '2071'`, async function (done) {
     try {
-      const dates = await $('.dates', html);
-      expect(dates.length, `Could not find any elements with class of 'dates'`).toBeTruthy();
+      const dates = await $('.date', html);
+      expect(dates.length, `Could not find any elements with class of 'date'`).toBeTruthy();
 
       isCorrentHTML = true;
       $(dates).each(function (i, elm) {
@@ -179,7 +179,7 @@ describe('Exercise 4', () => {
       });
       expect(
         isCorrentHTML,
-        `At least one of the four elements with class of 'dates' do not contain the string '2071' in their inner HTML`
+        `At least one of the four elements with class of 'date' do not contain the string '2071' in their inner HTML`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -187,10 +187,10 @@ describe('Exercise 4', () => {
     }
   });
 
-  it(`The elements with class of 'dates' inside the element with id of 'tour' should be aligned vertically, not blocking each others and with the same width and height'`, async function (done) {
+  it(`The elements with class of 'date' inside the element with id of 'tour' should be aligned vertically, not blocking each others and with the same width and height'`, async function (done) {
     try {
-      const datesElems = await page.$$('.dates');
-      expect(datesElems, `Could not find any elements with class of 'dates'`).toBeTruthy();
+      const datesElems = await page.$$('.date');
+      expect(datesElems, `Could not find any elements with class of 'date'`).toBeTruthy();
 
       let datesBox = [];
       for (let i = 0; i < datesElems.length; i++) {
@@ -201,7 +201,7 @@ describe('Exercise 4', () => {
       let isX = true;
       let isHeight = true;
       let isWidth = true;
-      expect(datesBox.length, `Could not find any elements with class of 'dates'`).toBeTruthy();
+      expect(datesBox.length, `Could not find any elements with class of 'date'`).toBeTruthy();
       for (let i = 0; i < datesBox.length - 1; i++) {
         if (
           datesBox[i].content[0].x > datesBox[i + 1].content[0].x * 1.1 ||
@@ -214,19 +214,19 @@ describe('Exercise 4', () => {
       }
       expect(
         isX,
-        `At least one of the elements with class 'dates' is not aligned vertically`
+        `At least one of the elements with class 'date' is not aligned vertically`
       ).toBeTruthy();
       expect(
         isY,
-        `At least one of the elements with class 'dates' is hiding another element with class 'dates'`
+        `At least one of the elements with class 'date' is hiding another element with class 'date'`
       ).toBeTruthy();
       expect(
         isHeight,
-        `At least one of the elements with class 'dates' is not at the same height as another element with class 'dates'`
+        `At least one of the elements with class 'date' is not at the same height as another element with class 'date'`
       ).toBeTruthy();
       expect(
         isWidth,
-        `At least one of the elements with class 'dates' is not at the same width as another element with class 'dates'`
+        `At least one of the elements with class 'date' is not at the same width as another element with class 'date'`
       ).toBeTruthy();
       done();
     } catch (error) {

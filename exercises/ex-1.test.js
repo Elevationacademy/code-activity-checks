@@ -92,10 +92,9 @@ describe('Exercise 1', () => {
   it(`The elements with class 'link' should have a color of #ffffff (rgb(255, 255, 255)) and font-family of "Miriam Libre", sans-serif`, async function (done) {
     try {
       const linksColor = await getStyleFromElements(page, '.link', 'color');
-      expect(linksColor, `Could not find elements with class of 'link'`).toBeTruthy()
+      expect(linksColor, `Could not find elements with class of 'link'`).toBeTruthy();
       const linksFF = await getStyleFromElements(page, '.link', 'fontFamily');
-      expect(linksFF, `Could not find elements with class of 'link'`).toBeTruthy()
-
+      expect(linksFF, `Could not find elements with class of 'link'`).toBeTruthy();
       expect(
         linksColor.includes('rgb(255, 255, 255)'),
         `The elements with class 'link' do not have a color of #ffffff (rgb(255, 255, 255)), instead they have a color of - ${linksColor}`
@@ -114,7 +113,7 @@ describe('Exercise 1', () => {
   it(`The element with id of 'nav-bar' should be placed at the upper-left corner of the page`, async function (done) {
     try {
       const navbarElem = await page.$('#nav-bar');
-      expect(navbarElem, `Could not find an element with id of 'nav-bar'`).toBeTruthy()
+      expect(navbarElem, `Could not find an element with id of 'nav-bar'`).toBeTruthy();
       const navbarBox = await navbarElem.boxModel();
       const navbarX = navbarBox.margin[0].x;
       const navbarY = navbarBox.margin[0].y;
@@ -139,10 +138,7 @@ describe('Exercise 1', () => {
       let isY = true;
       let isX = true;
       let isHeight = true;
-      expect(
-        linksBox.length,
-        `Could not find any elements with class of 'link'`
-      ).toBeTruthy();
+      expect(linksBox.length, `Could not find any elements with class of 'link'`).toBeTruthy();
       for (let i = 0; i < linksBox.length - 1; i++) {
         if (
           linksBox[i].content[0].y > linksBox[i + 1].content[0].y * 1.1 ||

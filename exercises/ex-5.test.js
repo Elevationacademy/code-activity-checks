@@ -56,7 +56,7 @@ describe('Exercise 5', () => {
       let isBGColor = false;
       for (let e of elems) {
         const elementBGColor = await getStyleFromElement(page, e, 'backgroundColor');
-        expect(elementBGColor,`Could not find an element with id of ${e.slice(1)}`).toBeTruthy()
+        expect(elementBGColor, `Could not find an element with id of ${e.slice(1)}`).toBeTruthy();
         if (elementBGColor.includes('rgb(249, 210, 220)')) isBGColor = true;
       }
       expect(
@@ -105,7 +105,10 @@ describe('Exercise 5', () => {
     try {
       const contact = $('#contact', html);
       let h2HTML = $('h2', contact).html();
-      expect(h2HTML, `Could not find a <h2> element inside an element with id of 'contact'`).toBeTruthy();
+      expect(
+        h2HTML,
+        `Could not find a <h2> element inside an element with id of 'contact'`
+      ).toBeTruthy();
 
       expect(
         h2HTML.toLowerCase().includes('contact us'),
@@ -125,11 +128,20 @@ describe('Exercise 5', () => {
       const expectedPlaceholders = ['name', 'email'];
       const placeholders = [];
       $(inputs).each(function (i, elm) {
-        placeholders.push($(this).attr('placeholder').toLowerCase());
+        placeholders.push($(this).attr('placeholder'));
       });
+      isPlaceholders = true;
+      for (let i = 0; i < placeholders.length; i++) {
+        if (typeof placeholders[i] == 'string') placeholders[i] = placeholders[i].toLowerCase();
+        else isPlaceholders = false;
+      }
+      expect(
+        isPlaceholders,
+        `At least one of the <input> elements do not have a 'placeholder' property`
+      ).toBeTruthy();
       expect(
         placeholders,
-        `Expected to find two <input> elements with placeholder attributes of 'Name' and 'Email' - but instead found <input> elements with placeholders of - ${placeholders}`
+        `Expected to find two <input> elements with placeholder attributes of 'Name' and 'Email' (in this exact order!) - but instead found <input> elements with placeholders of - "${placeholders}" (in this order)`
       ).toEqual(expectedPlaceholders);
       done();
     } catch (error) {
@@ -174,7 +186,7 @@ describe('Exercise 5', () => {
 
   it(`The <button> element inside the element with id of 'contact' should change its color to #1e2f4d (rgb(30, 47, 77)) and its background-color to #ffffff (rgb(255, 255, 255)) when hovered on`, async function (done) {
     try {
-      const button = await page.$('button')
+      const button = await page.$('button');
       expect(button, `Could not find a <button> element`).toBeTruthy();
 
       if (button) await page.hover('button');
@@ -198,16 +210,10 @@ describe('Exercise 5', () => {
   it(`The <button> element and two <input> elements inside the element with id of 'contact' should be aligned horizontally, not blocking each others and with around the same height`, async function (done) {
     try {
       const inputsElems = await page.$$('input');
-      expect(
-        inputsElems,
-        `Could not find any <input> elements`
-      ).toBeTruthy();
+      expect(inputsElems, `Could not find any <input> elements`).toBeTruthy();
 
       const buttonElem = await page.$('button');
-      expect(
-        buttonElem,
-        `Could not find a <button> element`
-      ).toBeTruthy();
+      expect(buttonElem, `Could not find a <button> element`).toBeTruthy();
 
       let contactElemsBox = [];
       for (let i = 0; i < inputsElems.length; i++) {

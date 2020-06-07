@@ -82,9 +82,11 @@ describe('Exercise 3', () => {
       const band = $('#band', html);
       let h2HTML = $('h2', band).html();
       expect(h2HTML, `Could not find a <h2> element inside an element with id of 'band'`).toBeTruthy();
+      h2HTML = h2HTML.replace('&apos;', "'")
+      h2HTML = h2HTML.replace('&quot;', '"')
       expect(
-        h2HTML.toLowerCase().includes('we&apos;re back!'),
-        `The <h2> element inside the element with id of 'band' do not have an inner HTML of "We're back!", instead it has inner HTML of - ${h2HTML}`
+        h2HTML.toLowerCase().includes("we're back!"),
+        `The <h2> element inside the element with id of 'band' do not have an inner HTML of "We're back!", instead it has inner HTML of - "${h2HTML}"`
       ).toBeTruthy();
       done();
     } catch (error) {

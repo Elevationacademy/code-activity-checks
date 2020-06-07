@@ -19,25 +19,25 @@ describe('Exercise 6', () => {
     html = await page.content();
   });
 
-  it(`The order of the elements on the page should be (in this exact order, one after another): #nav-bar and then #container. Inside the #container the order should be (in this exact order, one after another): #logo, #band, #tour, #contact`, async function (done) {
+  it(`The order of the elements on the page should be (in this exact order, one after another): #nav-bar and then #container. Inside the #container the order of elements should be (in this exact order, one after another): #logo, #band, #tour, #contact`, async function (done) {
     try {
       const navbarElem = await page.$('#nav-bar');
-      expect(navbarElem, `Could not find any element with id of 'nav-bar'`).toBeTruthy();
+      expect(navbarElem, `Could not find any element with an id of 'nav-bar'`).toBeTruthy();
       const containerElem = await page.$('#container');
-      expect(containerElem, `Could not find any element with id of 'container'`).toBeTruthy();
+      expect(containerElem, `Could not find any element with an id of 'container'`).toBeTruthy();
 
       const navbarBox = await navbarElem.boxModel();
       const containerBox = await containerElem.boxModel();
       expect(
         navbarBox.content[3].y <= containerBox.content[0].y,
-        `The element with id of 'nav-bar' is not positioned above the element with id of 'container'`
+        `The element with an id of 'nav-bar' is not positioned above the element with an id of 'container'`
       ).toBeTruthy();
 
       const containerElems = ['#logo', '#band', '#tour', '#contact'];
       let containerElemsBox = [];
       for (let elem of containerElems) {
         const element = await page.$(elem);
-        expect(element, `Could not find any elements with id of '${elem.slice(1)}'`).toBeTruthy();
+        expect(element, `Could not find any elements with an id of '${elem.slice(1)}'`).toBeTruthy();
         containerElemsBox.push(await element.boxModel());
       }
       let isY = true;
@@ -46,7 +46,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isY,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') is not in its correct place. Make sure the elements are positioned one after another in this exact order: #logo, #band, #tour, #contact`
+        `At least one of the elements in the #container section (the elements with id of 'logo', 'band', 'tour', or 'contact') is not in its correct place. Make sure the elements are positioned one after another in this exact order: #logo, #band, #tour, #contact`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -54,13 +54,13 @@ describe('Exercise 6', () => {
     }
   });
 
-  it(`The #logo, #band, #tour and #contact elements should all be aligned vertically`, async function (done) {
+  it(`The #logo, #band, #tour, and #contact elements should all be aligned vertically`, async function (done) {
     try {
       const containerElems = ['#logo', '#band', '#tour', '#contact'];
       let containerElemsBox = [];
       for (let elem of containerElems) {
         const element = await page.$(elem);
-        expect(element, `Could not find any elements with id of '${elem.slice(1)}'`).toBeTruthy();
+        expect(element, `Could not find any elements with an id of '${elem.slice(1)}'`).toBeTruthy();
         containerElemsBox.push(await element.boxModel());
       }
       let isX = true;
@@ -73,7 +73,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isX,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') is not aligned vertically`
+        `At least one of the elements in the #container section (the elements with id of 'logo', 'band', 'tour', or 'contact') is not aligned vertically`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -81,10 +81,10 @@ describe('Exercise 6', () => {
     }
   });
 
-  it(`The #logo, #band, #tour and #contact elements should all be positioned around the center of the element with id of 'nav-bar' (having left and right margins)`, async function (done) {
+  it(`The #logo, #band, #tour, and #contact elements should all be positioned around the center of the element with an id of 'nav-bar' (having left and right margins)`, async function (done) {
     try {
       const navbarElem = await page.$('#nav-bar');
-      expect(navbarElem, `Could not find any element with id of 'nav-bar'`).toBeTruthy();
+      expect(navbarElem, `Could not find any element with an id of 'nav-bar'`).toBeTruthy();
       const navbarBox = await navbarElem.boxModel();
       const navbarLeftX = navbarBox.margin[0].x;
       const navbarRightX = navbarBox.margin[1].x;
@@ -93,7 +93,7 @@ describe('Exercise 6', () => {
       let containerElemsBox = [];
       for (let elem of containerElems) {
         const element = await page.$(elem);
-        expect(element, `Could not find any elements with id of '${elem.slice(1)}'`).toBeTruthy();
+        expect(element, `Could not find any elements with an id of '${elem.slice(1)}'`).toBeTruthy();
         containerElemsBox.push(await element.boxModel());
       }
 
@@ -103,7 +103,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isMargin,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') do not have space on the left or right sides. Make sure to add space on both sides as per the provided image`
+        `At least one of the elements in the #container section (the elements with id of 'logo', 'band', 'tour', or 'contact') do not have space on the left or right sides. Make sure to add space on both sides as per the provided image.`
       ).toBeTruthy();
 
       let isEqualMargin = true;
@@ -114,7 +114,7 @@ describe('Exercise 6', () => {
       }
       expect(
         isEqualMargin,
-        `At least one of the elements of the #container section (the elements with id of 'logo', 'band', 'tour' or 'contact') do not have equal space on the left or right sides. Make sure to add equal space on both sides as per the provided image`
+        `At least one of the elements in the #container section (the elements with id of 'logo', 'band', 'tour', or 'contact') do not have equal space on the left and right sides. Make sure to add equal space on both sides as per the provided image.`
       ).toBeTruthy();
       done();
     } catch (error) {

@@ -20,7 +20,7 @@ describe('Exercise 3', () => {
     html = await page.content();
   });
 
-  it(`There should be an element with an id of 'band' inside an element with an id of 'container'. Inside this element there should be a <h2> element and two <p>'s elements`, async function (done) {
+  it(`There should be an element with an id of 'band' inside an element with an id of 'container'. Inside this element there should be an <h2> element and two <p> elements`, async function (done) {
     try {
       const container = $('#container', html);
       const band = $('#band', container);
@@ -29,15 +29,15 @@ describe('Exercise 3', () => {
       expect(container.length, `Could not find an element with an id of 'container'`).toBe(1);
       expect(
         band.length,
-        `Could not find an element with an id of 'band' inside an element with id of 'container'`
+        `Could not find an element with an id of 'band' inside an element with an id of 'container'`
       ).toBe(1);
       expect(
         h2Tag.length,
-        `Could not find a <h2> element inside an element with id of 'band'`
+        `Could not find an <h2> element inside an element with an id of 'band'`
       ).toBe(1);
       expect(
         pTags.length,
-        `Could not find two <p> elements inside an element with id of 'band', instead found - ${pTags.length}`
+        `Could not find two <p> elements inside an element with an id of 'band', instead found - ${pTags.length} <p> elements`
       ).toBe(2);
       done();
     } catch (error) {
@@ -45,7 +45,7 @@ describe('Exercise 3', () => {
     }
   });
 
-  it(`The <h2> element inside the element with id of 'band' should have a color of #1e2f4d (rgb(30, 47, 77)), background-color of #f9d2dc (rgb(249, 210, 220)) and and font-family of "Miriam Libre", sans-serif`, async function (done) {
+  it(`The <h2> element inside the element with an id of 'band' should have a color of #1e2f4d (rgb(30, 47, 77)), background-color of #f9d2dc (rgb(249, 210, 220)), and font-family of "Miriam Libre", sans-serif`, async function (done) {
     try {
       const elems = ['body', '#container', '#band', 'h2'];
       const expectedProps = {
@@ -57,19 +57,19 @@ describe('Exercise 3', () => {
       if (isColor == undefined)
         expect(
           false,
-          `Could not find one or more elements with an id of 'container', 'band' or a <h2> element`
+          `Could not find one or more elements with an id of 'container', 'band', or an <h2> element`
         ).toBeTruthy();
       expect(
         isColor,
-        `The <h2> element inside the element with id of 'band' (and its ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
+        `The <h2> element inside the element with an id of 'band' (and its ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
       ).toBeTruthy();
       expect(
         isBGColor,
-        `The <h2> element inside the element with id of 'band' (and its ancestors) do not have a background-color of #f9d2dc (rgb(249, 210, 220))`
+        `The <h2> element inside the element with an id of 'band' (and its ancestors) do not have a background-color of #f9d2dc (rgb(249, 210, 220))`
       ).toBeTruthy();
       expect(
         isFont,
-        `The <h2> element inside the element with id of 'band' (and its ancestors) do not have a font-family of "Miriam Libre", sans-serif`
+        `The <h2> element inside the element with an id of 'band' (and its ancestors) do not have a font-family of "Miriam Libre", sans-serif`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -77,16 +77,16 @@ describe('Exercise 3', () => {
     }
   });
 
-  it(`The <h2> element inside the element with id of 'band' should have an inner HTML of 'We're back!'`, async function (done) {
+  it(`The <h2> element inside the element with an id of 'band' should have an innerHTML of 'We're back!'`, async function (done) {
     try {
       const band = $('#band', html);
       let h2HTML = $('h2', band).html();
-      expect(h2HTML, `Could not find a <h2> element inside an element with id of 'band'`).toBeTruthy();
+      expect(h2HTML, `Could not find an <h2> element inside an element with an id of 'band'`).toBeTruthy();
       h2HTML = h2HTML.replace('&apos;', "'")
       h2HTML = h2HTML.replace('&quot;', '"')
       expect(
         h2HTML.toLowerCase().includes("we're back!"),
-        `The <h2> element inside the element with id of 'band' do not have an inner HTML of "We're back!", instead it has inner HTML of - "${h2HTML}"`
+        `The <h2> element inside the element with an id of 'band' does not have innerHTML of "We're back!", instead it has innerHTML of - "${h2HTML}"`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -94,7 +94,7 @@ describe('Exercise 3', () => {
     }
   });
 
-  it(`The <h2> element inside the element with id of 'band' should have its inner HTML centered`, async function (done) {
+  it(`The <h2> element inside the element with an id of 'band' should have its innerHTML centered`, async function (done) {
     try {
       const elems = ['body', '#container', '#band', 'h2'];
       let isCentered = false;
@@ -102,13 +102,13 @@ describe('Exercise 3', () => {
         const elementTextAlign = await getStyleFromElement(page, e, 'textAlign');
         expect(
           elementTextAlign,
-          `Could not find one or more elements with an id of 'container', 'band' or a <h2> element`
+          `Could not find one or more elements with an id of 'container', 'band', or an <h2> element`
         ).toBeTruthy();
         if (elementTextAlign.includes('center')) isCentered = true;
       }
       expect(
         isCentered,
-        `The <h2> element inside the element with id of 'band' (and its ancestors) do not have a text-align property of 'center'`
+        `The <h2> element inside the element with an id of 'band' (and its ancestors) do not have a text-align property of 'center'`
       ).toBeTruthy();
       done();
     } catch (error) {
@@ -116,7 +116,7 @@ describe('Exercise 3', () => {
     }
   });
 
-  it(`The <p> elements inside the element with id of 'band' should have color of #1e2f4d (rgb(30, 47, 77)), background-color of #f9d2dc (rgb(249, 210, 220)) and font-family of "Miriam Libre", sans-serif`, async function (done) {
+  it(`The <p> elements inside the element with an id of 'band' should have a color of #1e2f4d (rgb(30, 47, 77)), background-color of #f9d2dc (rgb(249, 210, 220)), and font-family of "Miriam Libre", sans-serif`, async function (done) {
     try {
       const elems = ['body', '#container', '#band', 'p'];
       const expectedProps = {
@@ -128,19 +128,19 @@ describe('Exercise 3', () => {
       if (isColor == undefined)
         expect(
           false,
-          `Could not find one or more elements with an id of 'container', 'band' or a <p> element`
+          `Could not find one or more elements with an id of 'container', 'band', or a <p> element`
         ).toBeTruthy();
       expect(
         isColor,
-        `At least one of the <p> elements inside the element with id of 'band' (and their ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
+        `At least one of the <p> elements inside the element with an id of 'band' (and their ancestors) do not have a color property of #1e2f4d (rgb(30, 47, 77))`
       ).toBeTruthy();
       expect(
         isBGColor,
-        `At least one of the <p> elements inside the element with id of 'band' (and their ancestors) do not have a background-color of #f9d2dc (rgb(249, 210, 220))`
+        `At least one of the <p> elements inside the element with an id of 'band' (and their ancestors) do not have a background-color of #f9d2dc (rgb(249, 210, 220))`
       ).toBeTruthy();
       expect(
         isFont,
-        `At least one of the <p> elements inside the element with id of 'band' (and their ancestors) do not have a font-family of "Miriam Libre", sans-serif`
+        `At least one of the <p> elements inside the element with an id of 'band' (and their ancestors) do not have font-family of "Miriam Libre", sans-serif`
       ).toBeTruthy();
       done();
     } catch (error) {

@@ -22,8 +22,8 @@ describe('Exercise 2', () => {
       const log = await git.log()
       const commit = getCommitByMessage(log, commitMessage)
 
-      expect(log.all.length, `Could not find enough commits on the '${branchName}' branch. Expected at least 3 commits instead found ${log.all.length}`).toBeGreaterThan(2)
       expect(commit, `Could not find a commit with the text '${commitMessage}' on the '${branchName}' branch. Please make sure that your commit message contains the text ${commitMessage}`).toBeDefined()
+      expect(log.all.length, `Could not find enough commits on the '${branchName}' branch. Expected at least 3 commits instead found ${log.all.length}`).toBeGreaterThan(2)
     } catch (e) {
       expect(true, `${e.message}`).toBeFalsy()
     }

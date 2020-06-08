@@ -16,8 +16,8 @@ describe('Exercise 1', () => {
 
       const commit = getCommitByMessage(log, commitMessage)
 
-      expect(log.all.length, `Could not find any new commits (after the original commit)`).toBeGreaterThan(1)
       expect(commit, `Could not find a commit with the text '${commitMessage}'. Please make sure that your commit message contains the text ${commitMessage}`).toBeDefined()
+      expect(log.all.length, `Could not find any new commits (after the original commit)`).toBeGreaterThan(1)
     } catch (e) {
       expect(true, `${e.message}`).toBeFalsy()
     }

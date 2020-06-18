@@ -102,7 +102,7 @@ describe("exercise6", () => {
                 wrapper = mount(
                     <Provider {...stores}>
                         <MemoryRouter>
-                            <CartItem product={cartItem} />
+                            <CartItem cartItem={cartItem} />
                         </MemoryRouter>
                     </Provider>
                 )
@@ -152,7 +152,7 @@ describe("exercise6", () => {
                 wrapper = mount(
                     <Provider {...stores}>
                         <MemoryRouter>
-                            <CartItem product={cartItem} />
+                            <CartItem cartItem={cartItem} />
                         </MemoryRouter>
                     </Provider>
                 )

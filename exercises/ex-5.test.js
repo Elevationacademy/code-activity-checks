@@ -18,6 +18,6 @@ describe("Exercise 5", () => {
     });
 
     it('The query should contain LIKE', () => {
-        expect(results.query.toLowerCase().indexOf('LIKE'), "You query did not contain a UNION statement").toBeGreaterThan(-1);
+        expect(results.query.toLowerCase().indexOf('LIKE'), "You query did not contain a LIKE statement").toBeGreaterThan(-1);
     });
 })

@@ -13,11 +13,11 @@ describe("Exercise 3", () => {
         done();
     });
 
-    it('The query should contain 5 rows', () => {
-        expect(results.queryResults.rows.length, `Your query only returned ${results.queryResults.rows.length} results`).toBeGreaterThan(5);
+    it('The query should contain 1 rows', () => {
+        expect(results.queryResults.rows.length, `Your query only returned ${results.queryResults.rows.length} results`).toBeGreaterThan(1);
     });
 
-    it('The query should contain Cake_Flavor', () => {
-        expect(results.query.toLowerCase().indexOf('Cake_Flavor'), "You query did not contain a SUM statement").toBeGreaterThan(-1);
+    it('The query should contain ROUND', () => {
+        expect(results.query.toLowerCase().indexOf('Cake_Flavor'), "You query did not contain a ROUND statement").toBeGreaterThan(-1);
     });
 })

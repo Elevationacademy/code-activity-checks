@@ -92,7 +92,7 @@ describe('Exercise 4', () => {
       );
       expect(
         innerText.includes('Data'),
-        `After inserting the string 'Data' to the input (with id of 'search-field') and clicking the 'Search' button (with id of 'search'), there was not a message in the div with id of 'search-results' containing the searched word. This is what we found in the div (with id of 'search-results'): ${innerText}`
+        `After inserting the string 'Data' to the input (with id of 'search-field') and clicking the 'Search' button (with id of 'search-btn'), there was not a message in the div with id of 'search-results' containing the searched word. This is what we found in the div (with id of 'search-results'): ${innerText}`
       ).toBeTruthy();
       done();
     } catch (error) {

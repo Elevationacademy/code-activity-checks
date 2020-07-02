@@ -71,6 +71,7 @@ describe('Exercise 2', function () {
         for (let index in movies) {
           movies[index] += `: Part II`;
         }
+        return movies
       };
       const m = moviesModule()
       m.modifyMovies(makeSequel)

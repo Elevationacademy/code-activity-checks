@@ -47,6 +47,7 @@ describe('Exercise 3', function () {
         for (let index in movies) {
           movies[index] += `: Part II`;
         }
+        return movies
       };
       moviesObject.movies = ['The Godfather', 'Back to the Future']
       moviesObject.modifyMovies(makeSequel)

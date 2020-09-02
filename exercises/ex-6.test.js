@@ -28,6 +28,7 @@ describe('exercise6', () => {
       let expectedResponse = getTotal(reservations, month, year, day)
 
       if (response.error) {
+        console.log(response.error)
         expect(false, 'Hmm, seems like the code you submitted is crashing (syntax), or the route doesn\'t exist, or you didn\'t close the request-reponse cycle.').toBeTruthy()
       } else {
         expect(response, `After adding the data from the 'data.json' file (located in the server folder) to the 'reservations' array, and making a 'get' request to '/reservations/total/${month}/${year}?day=${day}', the route responded with the wrong object. The route should respond with ${JSON.stringify(expectedResponse)} but instead it responded with ${JSON.stringify(response)}. Remember, if the 'day' query is provided you must limit your total to only reservations made for that date. We suggest you parse these stringified objects in order to comfortably see how they look.`).toEqual(expectedResponse)
